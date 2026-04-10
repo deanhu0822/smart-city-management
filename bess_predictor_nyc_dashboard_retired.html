@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BESS Predictor NYC — Energy Storage Intelligence</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0F172A;color:#F8FAFC;font-family:system-ui,sans-serif;font-size:13px;}
+.ba{display:flex;min-height:100vh;}
+.bsb{width:240px;min-width:240px;background:#080E1C;border-right:1px solid #1E293B;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.bmain{flex:1;min-width:0;}
+.bhdr{background:#1E293B;height:52px;display:flex;align-items:center;padding:0 22px;justify-content:space-between;border-bottom:1px solid #334155;position:sticky;top:0;z-index:10;}
+.bcon{padding:22px;}
+.bsec{margin-bottom:26px;}
+.bstitle{font-size:10px;font-weight:600;color:#475569;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.bcard{background:#1E293B;border:1px solid #243148;border-radius:10px;padding:16px 18px;}
+.btbl{width:100%;border-collapse:collapse;}
+.btbl th{padding:7px 9px;text-align:left;font-size:10px;color:#475569;font-weight:600;letter-spacing:.05em;border-bottom:1px solid #1E293B;white-space:nowrap;}
+.btbl td{padding:7px 9px;border-bottom:1px solid #131D2E;font-size:12px;}
+.brow{cursor:pointer;}
+.brow:hover td{background:#1E293B;}
+.brow.sel td{background:#0C2040;}
+.pill{display:inline-block;padding:2px 7px;border-radius:20px;font-size:11px;font-weight:500;}
+.pg{background:#052E1C;color:#6EE7B7;}
+.pr{background:#450A0A;color:#FCA5A5;}
+.pb{background:#0C2040;color:#93C5FD;}
+.py{background:#431407;color:#FCD34D;}
+.pn{background:#1E293B;color:#94A3B8;border:1px solid #334155;}
+.kc{background:#1E293B;border:1px solid #243148;border-radius:10px;padding:16px 18px;}
+input[type=range]{width:100%;accent-color:#3B82F6;}
+select{background:#1E293B;color:#F8FAFC;border:1px solid #2D3D54;border-radius:5px;padding:5px 7px;font-size:12px;width:100%;}
+.nav-item{padding:8px 10px;border-radius:6px;font-size:13px;cursor:pointer;margin-bottom:2px;}
+</style>
+</head>
+<body>
+<div class="ba">
+
+<!-- SIDEBAR -->
+<div class="bsb">
+  <div style="padding:20px 16px 15px;border-bottom:1px solid #1E293B;">
+    <div style="font-size:16px;font-weight:700;letter-spacing:-.3px;">⚡ BESS Predictor</div>
+    <div style="font-size:11px;color:#475569;margin-top:3px;">NYC Energy Storage Intelligence</div>
+  </div>
+  <nav style="padding:10px 8px;">
+    <div class="nav-item" style="background:#0C2040;color:#60A5FA;">📊 Dashboard</div>
+    <div class="nav-item" style="color:#475569;">🗺️ Site Map</div>
+    <div class="nav-item" style="color:#475569;">📋 Rankings</div>
+    <div class="nav-item" style="color:#475569;">⚙️ Settings</div>
+  </nav>
+  <div style="margin:4px 10px 10px;border:1px solid #1E293B;border-radius:8px;padding:13px;">
+    <div style="font-size:10px;font-weight:600;color:#334155;letter-spacing:.1em;margin-bottom:11px;">FILTERS</div>
+    <div style="margin-bottom:10px;">
+      <label style="font-size:11px;color:#64748B;display:block;margin-bottom:4px;">Borough</label>
+      <select id="boroughFilter">
+        <option>All</option><option>Manhattan</option><option>Brooklyn</option>
+        <option>Queens</option><option>Bronx</option><option>Staten Island</option>
+      </select>
+    </div>
+    <div style="margin-bottom:10px;">
+      <label style="font-size:11px;color:#64748B;display:block;margin-bottom:4px;">Min BESS Score: <span id="msv" style="color:#60A5FA;">0</span></label>
+      <input type="range" id="minScore" min="0" max="100" value="0" step="1" oninput="document.getElementById('msv').textContent=this.value">
+    </div>
+    <div style="font-size:10px;font-weight:600;color:#334155;letter-spacing:.1em;margin-bottom:8px;margin-top:2px;">PRIORITY WEIGHTS</div>
+    <div id="wSliders"></div>
+    <button onclick="applyFilters()" style="width:100%;background:#3B82F6;color:#fff;border:none;border-radius:6px;padding:8px;font-size:12px;font-weight:600;cursor:pointer;margin-top:10px;">Apply Filters</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="bmain">
+<div class="bhdr">
+  <span style="font-size:12px;color:#64748B;">Dashboard › BESS Site Analysis</span>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span class="pill pb" style="font-size:11px;padding:3px 10px;">Provider: Claude API</span>
+    <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:#64748B;">
+      <span style="width:7px;height:7px;border-radius:50%;background:#10B981;display:inline-block;"></span>Pipeline: Complete
+    </span>
+    <span style="font-size:11px;color:#334155;">Last run: Apr 10, 2026 2:34 PM</span>
+  </div>
+</div>
+
+<div class="bcon">
+
+<!-- KPI CARDS -->
+<div class="bsec">
+  <div class="bstitle">System Overview</div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;">
+    <div class="kc">
+      <div style="font-size:18px;margin-bottom:5px;">🏢</div>
+      <div id="kpi1" style="font-size:26px;font-weight:700;line-height:1;">4,268</div>
+      <div style="font-size:11px;color:#64748B;margin-top:4px;">Sites Analyzed</div>
+    </div>
+    <div class="kc">
+      <div style="font-size:18px;margin-bottom:5px;">🔋</div>
+      <div id="kpi2" style="font-size:26px;font-weight:700;line-height:1;">847</div>
+      <div style="font-size:11px;color:#64748B;margin-top:4px;">High-Priority Sites</div>
+      <div style="font-size:11px;color:#10B981;margin-top:3px;">▲ 19.8% of total</div>
+    </div>
+    <div class="kc">
+      <div style="font-size:18px;margin-bottom:5px;">💰</div>
+      <div style="font-size:26px;font-weight:700;line-height:1;">$12.4M</div>
+      <div style="font-size:11px;color:#64748B;margin-top:4px;">Est. Annual Savings</div>
+      <div style="font-size:11px;color:#64748B;margin-top:3px;">if top 50 sites deployed</div>
+    </div>
+    <div class="kc">
+      <div style="font-size:18px;margin-bottom:5px;">🌱</div>
+      <div style="font-size:26px;font-weight:700;line-height:1;">8,240</div>
+      <div style="font-size:11px;color:#64748B;margin-top:4px;">Tons CO₂ Offset/Year</div>
+      <div style="font-size:11px;color:#64748B;margin-top:3px;">equiv. to 1,790 cars</div>
+    </div>
+  </div>
+</div>
+
+<!-- RANKINGS + MAP -->
+<div class="bsec">
+  <div class="bstitle">Site Rankings &amp; Distribution</div>
+  <div style="display:flex;gap:14px;align-items:flex-start;">
+    <div style="flex:6;min-width:0;" class="bcard">
+      <div style="overflow-x:auto;">
+        <table class="btbl">
+          <thead><tr>
+            <th>#</th><th>Site Name</th><th>Borough</th><th>BESS Score</th>
+            <th>Solar</th><th>Equity</th><th>Capacity</th><th>Savings/yr</th>
+          </tr></thead>
+          <tbody id="siteTable"></tbody>
+        </table>
+      </div>
+    </div>
+    <div style="flex:4;min-width:0;" class="bcard">
+      <div style="font-size:11px;font-weight:600;color:#475569;margin-bottom:10px;letter-spacing:.03em;">NYC Municipal Sites — BESS Priority Map</div>
+      <div style="position:relative;background:#080E1C;border:1px solid #1E293B;border-radius:6px;height:256px;overflow:hidden;">
+        <svg width="100%" height="100%" viewBox="0 0 300 256">
+          <defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0L0 0 0 20" fill="none" stroke="#131D2E" stroke-width=".6"/></pattern></defs>
+          <rect width="300" height="256" fill="url(#g)"/>
+          <text x="82" y="46" fill="#1E293B" font-size="9" font-family="system-ui" font-weight="600">THE BRONX</text>
+          <text x="108" y="118" fill="#1E293B" font-size="9" font-family="system-ui" font-weight="600">MANHATTAN</text>
+          <text x="188" y="120" fill="#1E293B" font-size="9" font-family="system-ui" font-weight="600">QUEENS</text>
+          <text x="158" y="192" fill="#1E293B" font-size="9" font-family="system-ui" font-weight="600">BROOKLYN</text>
+          <text x="28" y="228" fill="#1E293B" font-size="9" font-family="system-ui" font-weight="600">STATEN IS.</text>
+          <circle cx="102" cy="60" r="7" fill="#EF4444" opacity=".9"/>
+          <circle cx="116" cy="68" r="5" fill="#EF4444" opacity=".75"/>
+          <circle cx="90" cy="70" r="5" fill="#F59E0B" opacity=".8"/>
+          <circle cx="130" cy="132" r="5" fill="#EF4444" opacity=".85"/>
+          <circle cx="140" cy="148" r="6" fill="#F59E0B" opacity=".8"/>
+          <circle cx="212" cy="108" r="5" fill="#F59E0B" opacity=".9"/>
+          <circle cx="222" cy="124" r="6" fill="#F59E0B" opacity=".75"/>
+          <circle cx="174" cy="186" r="6" fill="#EF4444" opacity=".8"/>
+          <circle cx="190" cy="198" r="5" fill="#F59E0B" opacity=".8"/>
+          <circle cx="162" cy="200" r="5" fill="#3B82F6" opacity=".8"/>
+          <circle cx="52" cy="222" r="5" fill="#F59E0B" opacity=".8"/>
+        </svg>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
+        <span style="display:flex;align-items:center;gap:4px;font-size:11px;color:#64748B;"><span style="width:8px;height:8px;border-radius:50%;background:#EF4444;display:inline-block;"></span>Score 80–100</span>
+        <span style="display:flex;align-items:center;gap:4px;font-size:11px;color:#64748B;"><span style="width:8px;height:8px;border-radius:50%;background:#F59E0B;display:inline-block;"></span>Score 60–79</span>
+        <span style="display:flex;align-items:center;gap:4px;font-size:11px;color:#64748B;"><span style="width:8px;height:8px;border-radius:50%;background:#3B82F6;display:inline-block;"></span>Score &lt;60</span>
+      </div>
+      <div style="font-size:10px;color:#243148;margin-top:6px;">Interactive map powered by Leaflet (connect live data to enable)</div>
+    </div>
+  </div>
+</div>
+
+<!-- SITE DETAIL -->
+<div class="bsec">
+  <div class="bstitle">Site Detail — <span id="detailTitle" style="color:#60A5FA;text-transform:none;letter-spacing:0;font-size:12px;font-weight:500;"></span></div>
+  <div class="bcard"><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;" id="detailPanel"></div></div>
+</div>
+
+<!-- DISPATCH SIMULATION -->
+<div class="bsec">
+  <div class="bstitle">24-Hour BESS Dispatch Schedule — <span id="dispatchTitle" style="color:#60A5FA;text-transform:none;letter-spacing:0;font-size:12px;font-weight:500;"></span></div>
+  <div class="bcard">
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+      <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:#64748B;"><span style="width:10px;height:3px;background:#3B82F6;display:inline-block;border-radius:2px;"></span>Building Demand</span>
+      <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:#64748B;"><span style="width:10px;height:3px;background:#F59E0B;display:inline-block;border-radius:2px;"></span>Solar Generation</span>
+      <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:#64748B;"><span style="width:10px;height:3px;background:#10B981;display:inline-block;border-radius:2px;"></span>BESS Discharge</span>
+      <span style="margin-left:16px;display:flex;align-items:center;gap:5px;font-size:11px;color:#64748B;"><span style="width:10px;height:3px;background:#10B981;display:inline-block;border-radius:2px;"></span>State of Charge</span>
+      <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:#64748B;"><span style="width:10px;height:2px;background:#EF4444;display:inline-block;border-radius:2px;"></span>Min/Max SOC</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div>
+        <div style="font-size:11px;color:#475569;margin-bottom:7px;font-weight:500;">Power Flow (kW)</div>
+        <div style="position:relative;height:210px;">
+          <canvas id="dispatchChart" role="img" aria-label="Stacked area chart showing building demand peaking at 200kW midday, solar peaking at 100kW at noon, and BESS discharge of 80-125kW during peak hours 8-17">24h dispatch</canvas>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:#475569;margin-bottom:7px;font-weight:500;">Battery State of Charge (%)</div>
+        <div style="position:relative;height:210px;">
+          <canvas id="socChart" role="img" aria-label="Line chart showing battery SOC charging overnight from 20% to 90% by hour 6, discharging to 15% by hour 17, recharging to 25% by midnight">SOC chart</canvas>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px;border-top:1px solid #131D2E;padding-top:16px;">
+      <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:#10B981;">$38.50</div><div style="font-size:11px;color:#64748B;margin-top:2px;">Daily Savings</div></div>
+      <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:#3B82F6;">87.2 kW</div><div style="font-size:11px;color:#64748B;margin-top:2px;">Peak Shaved (43.6%)</div></div>
+      <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:#F59E0B;">0.85/day</div><div style="font-size:11px;color:#64748B;margin-top:2px;">Battery Cycles</div></div>
+      <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:#A78BFA;">34%</div><div style="font-size:11px;color:#64748B;margin-top:2px;">Grid Independence</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOROUGH COMPARISON -->
+<div class="bsec">
+  <div class="bstitle">Borough-Level BESS Deployment Summary</div>
+  <div class="bcard">
+    <div style="display:flex;gap:16px;margin-bottom:12px;">
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#64748B;"><span style="width:10px;height:10px;border-radius:2px;background:#334155;display:inline-block;"></span>Total Sites Analyzed</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#64748B;"><span style="width:10px;height:10px;border-radius:2px;background:#3B82F6;display:inline-block;"></span>High-Priority (score ≥ 70)</span>
+    </div>
+    <div style="position:relative;height:240px;">
+      <canvas id="boroughChart" role="img" aria-label="Horizontal grouped bar chart: Bronx 892 total/234 high-priority, Brooklyn 1105/198, Manhattan 687/142, Queens 1024/187, Staten Island 560/86">Borough comparison</canvas>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:12px;" id="boroughCards"></div>
+</div>
+
+<!-- FOOTER -->
+<div style="border-top:1px solid #1E293B;padding-top:14px;display:flex;justify-content:space-between;align-items:center;color:#243148;font-size:11px;padding-bottom:20px;">
+  <span>BESS Predictor v1.0 — Spark Hack NYC 2026</span>
+  <span>Data: NYC Open Data Portal | Model: Claude API on NVIDIA GB10</span>
+  <span>Team Spark</span>
+</div>
+
+</div><!-- bcon -->
+</div><!-- bmain -->
+</div><!-- ba -->
+
+<script>
+const SITES = [
+  {id:1,name:"PS 123 School Complex",borough:"Bronx",score:94,solar:0.92,equity:true,cap:750,savings:287000,
+   addr:"123 Tremont Ave, Bronx NY 10457",agency:"DOE",bbl:"2-03412-0001",cons:142000,peak:187,cost:248000,solPot:89000,roof:"Good",ev:12,pkRed:87,pkPct:46,co2:124,
+   reason:"High electricity consumption in an environmental justice area with excellent solar co-location potential and growing EV charging demand nearby.",
+   c:{e:0.98,g:0.94,s:0.92,eq:1.0,ev:0.80}},
+  {id:2,name:"FDNY Engine 42 Station",borough:"Bronx",score:91,solar:0.88,equity:true,cap:500,savings:243000,
+   addr:"445 E 174th St, Bronx NY 10457",agency:"FDNY",bbl:"2-03156-0028",cons:118000,peak:165,cost:212000,solPot:74000,roof:"Good",ev:8,pkRed:73,pkPct:44,co2:108,
+   reason:"Critical emergency services facility in an equity zone with strong solar potential and high peak demand during emergency response periods.",
+   c:{e:0.88,g:0.84,s:0.88,eq:1.0,ev:0.60}},
+  {id:3,name:"Brooklyn Navy Yard Bldg 77",borough:"Brooklyn",score:89,solar:0.85,equity:false,cap:1000,savings:312000,
+   addr:"63 Flushing Ave, Brooklyn NY 11205",agency:"DCAS",bbl:"3-02023-0001",cons:198000,peak:245,cost:318000,solPot:112000,roof:"Good",ev:18,pkRed:105,pkPct:43,co2:152,
+   reason:"Large industrial facility with high energy consumption and excellent rooftop solar potential. Major EV fleet charging hub for Navy Yard operations.",
+   c:{e:0.99,g:0.98,s:0.85,eq:0.3,ev:1.0}},
+  {id:4,name:"Queens Central Library",borough:"Queens",score:87,solar:0.78,equity:true,cap:600,savings:198000,
+   addr:"89-11 Merrick Blvd, Jamaica NY 11432",agency:"NYPL",bbl:"4-09580-0001",cons:108000,peak:142,cost:187000,solPot:68000,roof:"Fair",ev:10,pkRed:61,pkPct:43,co2:98,
+   reason:"Community anchor in an equity zone with reliable solar exposure. Serves as a cooling center during heat events, making grid resilience critical.",
+   c:{e:0.82,g:0.74,s:0.78,eq:1.0,ev:0.65}},
+  {id:5,name:"Bronx County Courthouse",borough:"Bronx",score:85,solar:0.72,equity:true,cap:800,savings:265000,
+   addr:"851 Grand Concourse, Bronx NY 10451",agency:"Courts",bbl:"2-02385-0001",cons:162000,peak:198,cost:271000,solPot:79000,roof:"Fair",ev:6,pkRed:95,pkPct:48,co2:118,
+   reason:"Large government facility with consistent high consumption and equity zone designation. Serves as emergency shelter during grid outages.",
+   c:{e:0.90,g:0.92,s:0.72,eq:1.0,ev:0.42}},
+  {id:6,name:"Staten Island Borough Hall",borough:"Staten Island",score:83,solar:0.81,equity:false,cap:450,savings:176000,
+   addr:"10 Richmond Terrace, Staten Island NY 10301",agency:"DCAS",bbl:"5-00001-0001",cons:92000,peak:128,cost:162000,solPot:61000,roof:"Good",ev:7,pkRed:58,pkPct:45,co2:87,
+   reason:"Historic building with strong rooftop solar potential. Grid independence is a priority given Staten Island's position at the end of long transmission lines.",
+   c:{e:0.72,g:0.68,s:0.81,eq:0.3,ev:0.48}},
+  {id:7,name:"Manhattan Civic Center",borough:"Manhattan",score:82,solar:0.65,equity:false,cap:900,savings:298000,
+   addr:"1 Centre St, New York NY 10007",agency:"DCAS",bbl:"1-00164-0001",cons:178000,peak:228,cost:302000,solPot:58000,roof:"Fair",ev:22,pkRed:112,pkPct:49,co2:142,
+   reason:"High-consumption building in the dense urban core. Large nearby EV fleet and demand charges create a compelling economic case.",
+   c:{e:0.95,g:0.96,s:0.65,eq:0.3,ev:1.0}},
+  {id:8,name:"Jamaica HVAC Center",borough:"Queens",score:80,solar:0.77,equity:true,cap:550,savings:201000,
+   addr:"168-11 Liberty Ave, Jamaica NY 11433",agency:"DOT",bbl:"4-12345-0002",cons:112000,peak:148,cost:194000,solPot:72000,roof:"Good",ev:9,pkRed:65,pkPct:44,co2:102,
+   reason:"Transportation hub with large flat rooftop ideal for solar and BESS co-deployment. Equity zone location makes resiliency investment doubly impactful.",
+   c:{e:0.84,g:0.76,s:0.77,eq:1.0,ev:0.60}},
+  {id:9,name:"Sunset Park Recreation Ctr",borough:"Brooklyn",score:79,solar:0.83,equity:true,cap:400,savings:167000,
+   addr:"7th Ave & 43rd St, Brooklyn NY 11232",agency:"Parks",bbl:"3-07001-0001",cons:87000,peak:112,cost:148000,solPot:65000,roof:"Good",ev:5,pkRed:48,pkPct:43,co2:82,
+   reason:"Community recreation center in a high-need neighborhood. Excellent solar exposure and essential services make BESS a high-equity priority.",
+   c:{e:0.68,g:0.60,s:0.83,eq:1.0,ev:0.35}},
+  {id:10,name:"Harlem Hospital Center",borough:"Manhattan",score:78,solar:0.70,equity:true,cap:1200,savings:345000,
+   addr:"506 Lenox Ave, New York NY 10037",agency:"HHC",bbl:"1-01808-0001",cons:218000,peak:275,cost:348000,solPot:82000,roof:"Poor",ev:14,pkRed:128,pkPct:47,co2:168,
+   reason:"Essential healthcare facility serving a vulnerable community. High 24/7 energy consumption and critical backup power needs make BESS a public health priority.",
+   c:{e:0.99,g:0.99,s:0.70,eq:1.0,ev:0.90}}
+];
+
+const WEIGHTS = [
+  {key:'e',label:'Energy Cost Reduction',val:0.25},
+  {key:'g',label:'Grid Resilience',val:0.20},
+  {key:'s',label:'Solar Synergy',val:0.20},
+  {key:'eq',label:'Equity Impact',val:0.20},
+  {key:'ev',label:'EV Infrastructure',val:0.15}
+];
+
+const BOROUGH_DATA = [
+  {name:'Bronx',sites:18,savings:'$4.2M',co2:'1,890'},
+  {name:'Brooklyn',sites:15,savings:'$3.8M',co2:'1,650'},
+  {name:'Manhattan',sites:12,savings:'$3.1M',co2:'1,420'},
+  {name:'Queens',sites:14,savings:'$3.5M',co2:'1,560'},
+  {name:'Staten Island',sites:8,savings:'$1.8M',co2:'720'}
+];
+
+let selectedSite = SITES[0];
+
+function getWeights() {
+  const els = document.querySelectorAll('#wSliders input');
+  const ws = {};
+  WEIGHTS.forEach((w,i) => { ws[w.key] = parseFloat(els[i]?.value ?? w.val); });
+  return ws;
+}
+
+function calcScore(site, ws) {
+  const tot = Object.values(ws).reduce((a,b)=>a+b,0)||1;
+  const raw = site.c.e*ws.e + site.c.g*ws.g + site.c.s*ws.s + site.c.eq*ws.eq + site.c.ev*ws.ev;
+  return Math.round((raw/tot)*100);
+}
+
+function scoreStyle(s) {
+  if(s>=80) return {bg:'#052E1C',fg:'#6EE7B7'};
+  if(s>=60) return {bg:'#431407',fg:'#FCD34D'};
+  return {bg:'#450A0A',fg:'#FCA5A5'};
+}
+
+function recalcScores() {
+  const ws = getWeights();
+  SITES.forEach(s => { s.dynScore = calcScore(s, ws); });
+  renderTable();
+  renderDetail(selectedSite);
+}
+
+function applyFilters() { renderTable(); updateKPIs(); }
+
+function updateKPIs() {
+  const b = document.getElementById('boroughFilter').value;
+  const ms = parseInt(document.getElementById('minScore').value);
+  const filt = SITES.filter(s => (b==='All'||s.borough===b) && (s.dynScore??s.score) >= ms);
+  const hp = filt.filter(s=>(s.dynScore??s.score)>=70).length;
+  document.getElementById('kpi1').textContent = filt.length.toLocaleString();
+  document.getElementById('kpi2').textContent = hp.toLocaleString();
+}
+
+function renderTable() {
+  const b = document.getElementById('boroughFilter').value;
+  const ms = parseInt(document.getElementById('minScore').value);
+  const filt = SITES.filter(s => (b==='All'||s.borough===b) && (s.dynScore??s.score) >= ms)
+    .sort((a,z) => (z.dynScore??z.score)-(a.dynScore??a.score));
+  document.getElementById('siteTable').innerHTML = filt.map((s,i) => {
+    const sc = s.dynScore ?? s.score;
+    const {bg,fg} = scoreStyle(sc);
+    const isSel = selectedSite && selectedSite.id === s.id;
+    return `<tr class="brow${isSel?' sel':''}" onclick="selectSite(${s.id})">
+      <td style="color:#475569;font-variant-numeric:tabular-nums;">${i+1}</td>
+      <td style="font-weight:500;color:#E2E8F0;max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s.name}</td>
+      <td><span class="pill pn" style="font-size:10px;">${s.borough}</span></td>
+      <td><span style="background:${bg};color:${fg};padding:2px 8px;border-radius:4px;font-weight:700;font-size:12px;font-variant-numeric:tabular-nums;">${sc}</span></td>
+      <td style="color:#F59E0B;font-variant-numeric:tabular-nums;">${s.solar.toFixed(2)}</td>
+      <td>${s.equity?'<span class="pill pg">✓ Yes</span>':'<span class="pill pr">✗ No</span>'}</td>
+      <td style="color:#94A3B8;font-variant-numeric:tabular-nums;">${s.cap} kWh</td>
+      <td style="color:#10B981;font-weight:600;font-variant-numeric:tabular-nums;">$${Math.round(s.savings/1000)}K</td>
+    </tr>`;
+  }).join('');
+}
+
+function selectSite(id) {
+  selectedSite = SITES.find(s=>s.id===id);
+  renderTable();
+  renderDetail(selectedSite);
+  document.getElementById('detailTitle').textContent = selectedSite.name;
+  document.getElementById('dispatchTitle').textContent = selectedSite.name;
+}
+
+function renderDetail(site) {
+  const sc = site.dynScore ?? site.score;
+  const {fg} = scoreStyle(sc);
+  const circ = 2*Math.PI*34;
+  const offset = circ*(1-sc/100);
+  const roofCls = site.roof==='Good'?'pg':site.roof==='Fair'?'py':'pr';
+  document.getElementById('detailPanel').innerHTML = `
+    <div>
+      <div style="font-size:15px;font-weight:700;color:#E2E8F0;margin-bottom:12px;line-height:1.3;">${site.name}</div>
+      <div style="display:grid;gap:8px;">
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">ADDRESS</div><div style="font-size:12px;color:#94A3B8;">${site.addr}</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">BOROUGH</div><div style="font-size:12px;">${site.borough}</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">AGENCY</div><div style="font-size:12px;">${site.agency}</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">BBL</div><div style="font-size:12px;font-family:monospace;color:#64748B;">${site.bbl}</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:4px;">ENV. JUSTICE AREA</div>${site.equity?'<span class="pill pg">Yes</span>':'<span class="pill pr">No</span>'}</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:600;color:#475569;letter-spacing:.08em;margin-bottom:12px;">ENERGY PROFILE</div>
+      <div style="display:grid;gap:9px;">
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">AVG MONTHLY CONSUMPTION</div><div style="font-size:13px;font-weight:600;">${site.cons.toLocaleString()} kWh</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">PEAK DEMAND</div><div style="font-size:13px;font-weight:600;">${site.peak} kW</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">ANNUAL ENERGY COST</div><div style="font-size:13px;font-weight:600;color:#FCA5A5;">$${site.cost.toLocaleString()}</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">SOLAR POTENTIAL</div><div style="font-size:13px;font-weight:600;color:#FCD34D;">${site.solPot.toLocaleString()} kWh/yr</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:4px;">ROOF CONDITION</div><span class="pill ${roofCls}">${site.roof}</span></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">NEARBY EV PORTS</div><div style="font-size:13px;">${site.ev} within borough</div></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:600;color:#475569;letter-spacing:.08em;margin-bottom:10px;">BESS RECOMMENDATION</div>
+      <div style="text-align:center;margin-bottom:14px;">
+        <svg viewBox="0 0 80 80" width="80" height="80" style="display:block;margin:0 auto;">
+          <circle cx="40" cy="40" r="34" fill="none" stroke="#131D2E" stroke-width="8"/>
+          <circle cx="40" cy="40" r="34" fill="none" stroke="${fg}" stroke-width="8" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+          <text x="40" y="44" text-anchor="middle" fill="#E2E8F0" font-size="17" font-weight="700" font-family="system-ui">${sc}</text>
+        </svg>
+        <div style="font-size:11px;color:#475569;margin-top:3px;">BESS Priority Score</div>
+      </div>
+      <div style="display:grid;gap:8px;">
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">RECOMMENDED CAPACITY</div><div style="font-size:13px;font-weight:600;">${site.cap} kWh</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">EST. ANNUAL SAVINGS</div><div style="font-size:13px;font-weight:600;color:#6EE7B7;">$${site.savings.toLocaleString()}</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">PEAK REDUCTION</div><div style="font-size:13px;font-weight:600;color:#93C5FD;">${site.pkRed} kW (${site.pkPct}%)</div></div>
+        <div><div style="font-size:10px;color:#475569;margin-bottom:2px;">CO₂ OFFSET</div><div style="font-size:13px;font-weight:600;color:#6EE7B7;">${site.co2} tons/yr</div></div>
+        <div style="background:#080E1C;border:1px solid #1E293B;border-radius:6px;padding:10px;margin-top:2px;">
+          <div style="font-size:9px;font-weight:600;color:#334155;letter-spacing:.08em;margin-bottom:4px;">TOP REASON</div>
+          <div style="font-size:11px;color:#64748B;line-height:1.55;">${site.reason}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function initWeightSliders() {
+  document.getElementById('wSliders').innerHTML = WEIGHTS.map(w => `
+    <div style="margin-bottom:9px;">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#64748B;margin-bottom:2px;">
+        <span>${w.label}</span><span id="wv_${w.key}" style="color:#60A5FA;">${w.val.toFixed(2)}</span>
+      </div>
+      <input type="range" min="0" max="1" step="0.05" value="${w.val}" oninput="document.getElementById('wv_${w.key}').textContent=parseFloat(this.value).toFixed(2);recalcScores()">
+    </div>`).join('');
+}
+
+function renderBoroughCards() {
+  document.getElementById('boroughCards').innerHTML = BOROUGH_DATA.map(b => `
+    <div class="kc" style="padding:13px 14px;">
+      <div style="font-size:12px;font-weight:600;margin-bottom:8px;">${b.name}</div>
+      <div style="font-size:10px;color:#475569;margin-bottom:2px;">If budget = $5M</div>
+      <div style="font-size:18px;font-weight:700;color:#60A5FA;">${b.sites} sites</div>
+      <div style="margin-top:8px;display:grid;gap:4px;">
+        <div><span style="font-size:10px;color:#475569;">Savings: </span><span style="font-size:11px;color:#6EE7B7;font-weight:600;">${b.savings}/yr</span></div>
+        <div><span style="font-size:10px;color:#475569;">CO₂ offset: </span><span style="font-size:11px;color:#6EE7B7;font-weight:600;">${b.co2} tons</span></div>
+      </div>
+    </div>`).join('');
+}
+
+function initCharts() {
+  const hrs = Array.from({length:24},(_,i)=>i);
+  const demand = [60,55,52,50,52,58,90,130,170,180,190,195,200,198,195,185,170,140,110,95,85,80,75,65];
+  const solar  = [0,0,0,0,0,0,10,35,70,85,95,100,98,92,80,60,35,10,0,0,0,0,0,0];
+  const bess   = [0,0,0,0,0,0,30,50,80,100,115,125,120,110,100,80,60,30,0,0,0,0,0,0];
+  const soc    = [20,32,45,57,68,79,90,84,78,73,67,61,55,47,39,31,23,15,17,18,20,21,22,25];
+  const gridColor = 'rgba(19,29,46,0.8)';
+  const tickColor = '#475569';
+  const baseOpts = { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, animation:{duration:400} };
+
+  new Chart(document.getElementById('dispatchChart').getContext('2d'), {
+    type:'line',
+    data:{ labels:hrs, datasets:[
+      {label:'Building Demand',data:demand,fill:'origin',backgroundColor:'rgba(59,130,246,0.2)',borderColor:'#3B82F6',borderWidth:2,tension:0.35,pointRadius:0},
+      {label:'Solar Generation',data:solar,fill:'origin',backgroundColor:'rgba(245,158,11,0.2)',borderColor:'#F59E0B',borderWidth:2,tension:0.35,pointRadius:0},
+      {label:'BESS Discharge',data:bess,fill:'origin',backgroundColor:'rgba(16,185,129,0.2)',borderColor:'#10B981',borderWidth:2,tension:0.35,pointRadius:0}
+    ]},
+    options:{...baseOpts, scales:{
+      x:{grid:{color:gridColor},ticks:{color:tickColor,font:{size:10}},title:{display:true,text:'Hour (0–23)',color:'#334155',font:{size:10}}},
+      y:{grid:{color:gridColor},ticks:{color:tickColor,font:{size:10}},title:{display:true,text:'kW',color:'#334155',font:{size:10}}}
+    }}
+  });
+
+  new Chart(document.getElementById('socChart').getContext('2d'), {
+    type:'line',
+    data:{ labels:hrs, datasets:[
+      {label:'SOC',data:soc,fill:false,borderColor:'#10B981',borderWidth:2.5,tension:0.35,pointRadius:0},
+      {label:'Min SOC 10%',data:Array(24).fill(10),fill:false,borderColor:'#EF4444',borderWidth:1,borderDash:[6,4],pointRadius:0},
+      {label:'Max SOC 95%',data:Array(24).fill(95),fill:false,borderColor:'#F59E0B',borderWidth:1,borderDash:[6,4],pointRadius:0}
+    ]},
+    options:{...baseOpts, scales:{
+      x:{grid:{color:gridColor},ticks:{color:tickColor,font:{size:10}}},
+      y:{min:0,max:100,grid:{color:gridColor},ticks:{color:tickColor,font:{size:10},callback:v=>v+'%'}}
+    }}
+  });
+
+  new Chart(document.getElementById('boroughChart').getContext('2d'), {
+    type:'bar',
+    data:{ labels:['Bronx','Brooklyn','Manhattan','Queens','Staten Island'], datasets:[
+      {label:'Total Sites',data:[892,1105,687,1024,560],backgroundColor:'#243148',borderRadius:3},
+      {label:'High-Priority',data:[234,198,142,187,86],backgroundColor:'#3B82F6',borderRadius:3}
+    ]},
+    options:{...baseOpts, indexAxis:'y', scales:{
+      x:{grid:{color:gridColor},ticks:{color:tickColor,font:{size:10}}},
+      y:{grid:{display:false},ticks:{color:'#94A3B8',font:{size:11}}}
+    }}
+  });
+}
+
+// Bootstrap
+initWeightSliders();
+renderTable();
+renderDetail(selectedSite);
+renderBoroughCards();
+document.getElementById('detailTitle').textContent = selectedSite.name;
+document.getElementById('dispatchTitle').textContent = selectedSite.name;
+initCharts();
+</script>
+</body>
+</html>
