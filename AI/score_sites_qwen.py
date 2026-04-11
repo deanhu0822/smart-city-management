@@ -27,7 +27,7 @@ from openai import OpenAI
 # ---------------------------------------------------------------------------
 QWEN_URL = os.getenv("QWEN_URL", "http://localhost:8000/v1")
 QWEN_MODEL = os.getenv("QWEN_MODEL", "qwen3-80b")
-BATCH_SIZE = int(os.getenv("BATCH_SIZE", "10"))
+BATCH_SIZE = int(os.getenv("BATCH_SIZE", "50"))
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GOLD_DIR = os.path.join(BASE_DIR, "data", "gold")
@@ -35,45 +35,17 @@ GOLD_DIR = os.path.join(BASE_DIR, "data", "gold")
 # ---------------------------------------------------------------------------
 # System Prompt
 # ---------------------------------------------------------------------------
-SYSTEM_PROMPT = """You are an expert urban sustainability analyst for New York City. You specialize in Battery Energy Storage Systems (BESS), waste-to-energy optimization, and environmental equity.
+SYSTEM_PROMPT = """Score NYC municipal sites for BESS (battery storage) + waste optimization. Return JSON array only.
 
-TASK: Score each municipal site on three dimensions (0-100) and provide one actionable recommendation.
+Fields per site: site, borough, ej (Environmental Justice area), roof (condition), solar_kwh (annual production), kwh_mo (monthly electric consumption), ev_1km (EV chargers nearby), compost_1km (composting nearby).
 
-SCORING DIMENSIONS:
+Score 0-100 on:
+- energy_score: BESS priority. High solar+consumption+EJ = high. Good roof = bonus.
+- waste_score: Waste optimization opportunity. EJ areas + no nearby compost = high.
+- nexus_score: Combined energy+waste synergy. EJ + solar + EV + waste opportunity = highest.
 
-1. energy_score (0-100): BESS deployment priority
-   - Large buildings (high square footage) with solar-ready roofs score higher
-   - Sites with solar installations or high estimated production score higher
-   - Environmental Justice areas get a bonus (+10)
-   - Good roof condition = ready for solar+BESS pairing
-
-2. waste_score (0-100): Waste optimization opportunity
-   - Sites near composting drop-offs (compost_within_1km = true) but in high-waste districts score higher
-   - Sites far from transfer stations (high nearest_transfer_dist_m) = inefficient collection = higher opportunity
-   - Environmental Justice areas often bear disproportionate waste burden = bonus
-
-3. nexus_score (0-100): Energy-waste cross-domain synergy
-   - Sites where BESS + waste diversion would have combined impact
-   - EV infrastructure nearby (ev_within_1km = true) + solar + BESS = high synergy
-   - Environmental Justice + high energy + high waste = maximum nexus score
-   - Sites near composting but far from transfer stations = organic diversion + energy savings
-
-RETURN FORMAT: A valid JSON array. Each element must have exactly these fields:
-{
-  "site": "<site name>",
-  "energy_score": <int 0-100>,
-  "waste_score": <int 0-100>,
-  "nexus_score": <int 0-100>,
-  "recommended_bess_kwh": <int>,
-  "estimated_annual_savings_usd": <int>,
-  "top_recommendation": "<one specific actionable sentence>",
-  "reasoning": "<2-3 sentences explaining the scores>"
-}
-
-RULES:
-- Return ONLY the JSON array. No markdown fencing. No explanation outside JSON.
-- Every site in the input MUST appear in the output.
-- Be specific in recommendations — name the action, the size, and the expected impact."""
+Return ONLY a JSON array, no markdown. Each element:
+{"site":"name","energy_score":N,"waste_score":N,"nexus_score":N,"recommended_bess_kwh":N,"estimated_annual_savings_usd":N,"top_recommendation":"one sentence","reasoning":"1-2 sentences"}"""
 
 
 # ---------------------------------------------------------------------------
@@ -95,22 +67,13 @@ def build_site_features(sites_df, profiles_df):
 
         f = {
             "site": site_name,
-            "address": str(row.get("Address", "")),
             "borough": str(row.get("Borough", "")),
-            "agency": str(row.get("Agency", "")),
-            "env_justice_area": str(row.get("Environmental Justice Area", "No")),
-            "roof_condition": str(row.get("Roof Condition", "Unknown")),
-            "roof_age": str(row.get("Roof Age", "Unknown")),
-            "sqft": str(row.get("Total Gross Square Footage", "0")),
-            "solar_status": str(row.get("Status", "Unknown")),
-            "solar_production_kwh_yr": _safe_num(solar_prod),
-            "estimated_annual_savings": str(row.get("Estimated Annual Energy Savings", "$0")),
-            "avg_monthly_kwh": round(avg_kwh, 1),
-            "peak_kw": round(peak_kw, 1),
-            "ev_within_1km": bool(row.get("ev_within_1km", False)),
-            "nearest_ev_dist_m": round(float(row.get("nearest_ev_dist_m", 9999) or 9999), 0),
-            "compost_within_1km": bool(row.get("compost_within_1km", False)),
-            "nearest_transfer_dist_m": round(float(row.get("nearest_transfer_dist_m", 9999) or 9999), 0),
+            "ej": str(row.get("Environmental Justice Area", "No")),
+            "roof": str(row.get("Roof Condition", "?"))[:4],
+            "solar_kwh": _safe_num(solar_prod),
+            "kwh_mo": round(avg_kwh, 0),
+            "ev_1km": bool(row.get("ev_within_1km", False)),
+            "compost_1km": bool(row.get("compost_within_1km", False)),
         }
         features.append(f)
 
@@ -144,7 +107,7 @@ def score_batch(client, batch_features):
                 {"role": "user", "content": user_msg},
             ],
             temperature=0.1,
-            max_tokens=8192,
+            max_tokens=4096,
         )
 
         text = response.choices[0].message.content.strip()
