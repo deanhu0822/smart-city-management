@@ -1,0 +1,977 @@
+[
+  {
+    "district_code": "BX01",
+    "energy_score": 85,
+    "waste_score": 71,
+    "nexus_score": 71,
+    "energy_analysis": "District has 0 municipal buildings with 9 solar-ready (1,447,204 kWh/yr potential). Deploying BESS across the district (28,550 kWh total capacity) could save $5,113,675/yr in peak shaving.",
+    "waste_analysis": "Generates 3,106 tons refuse/month with only 9.7% diversion rate (20.3% below 30% target). 12945 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,056 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (3.9 km away). This would generate 528 MWh/month of biogas energy, powering 587 apartments and avoiding 152 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X139: 1000 kWh ($178,850/yr); X184_I.S. 184 South Bronx Academy for Applied Media: 1000 kWh ($178,850/yr); Hostos Community College: C Building / East Academic Complex: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (50% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,056t/mo organics to Hunts Point WRRF \u2192 528 MWh/mo biogas",
+      "Deploy BESS at top sites: X139: 1000 kWh ($178,850/yr)",
+      "Close 20% diversion gap \u2014 add composting sites (currently 11 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BX02",
+    "energy_score": 32,
+    "waste_score": 85,
+    "nexus_score": 88,
+    "energy_analysis": "District has 0 municipal buildings with 3 solar-ready (399,102 kWh/yr potential). Deploying BESS across the district (13,350 kWh total capacity) could save $2,392,295/yr in peak shaving.",
+    "waste_analysis": "Generates 5,442 tons refuse/month with only 4.9% diversion rate (25.1% below 30% target). 6739 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,850 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (1.9 km away). This would generate 925 MWh/month of biogas energy, powering 1,028 apartments and avoiding 266 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X130: 750 kWh ($134,495/yr); X052: 750 kWh ($134,495/yr); X060: 250 kWh ($45,070/yr)",
+    "equity_note": "Environmental Justice district (44% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,850t/mo organics to Hunts Point WRRF \u2192 925 MWh/mo biogas",
+      "Close 25% diversion gap \u2014 add composting sites (currently 5 within 2km)",
+      "Buffer EV demand (25 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BX03",
+    "energy_score": 77,
+    "waste_score": 74,
+    "nexus_score": 74,
+    "energy_analysis": "District has 0 municipal buildings with 9 solar-ready (1,455,421 kWh/yr potential). Deploying BESS across the district (28,850 kWh total capacity) could save $5,168,760/yr in peak shaving.",
+    "waste_analysis": "Generates 1,998 tons refuse/month with only 8.3% diversion rate (21.7% below 30% target). 11157 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "679 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (3.5 km away). This would generate 340 MWh/month of biogas energy, powering 377 apartments and avoiding 98 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X136: 1000 kWh ($178,850/yr); X134: 1000 kWh ($178,850/yr); X147: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (46% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: X136: 1000 kWh ($178,850/yr)",
+      "Close 22% diversion gap \u2014 add composting sites (currently 20 within 2km)",
+      "Buffer EV demand (40 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BX04",
+    "energy_score": 75,
+    "waste_score": 73,
+    "nexus_score": 78,
+    "energy_analysis": "District has 0 municipal buildings with 9 solar-ready (1,017,599 kWh/yr potential). Deploying BESS across the district (28,600 kWh total capacity) could save $5,120,830/yr in peak shaving.",
+    "waste_analysis": "Generates 4,370 tons refuse/month with only 8.6% diversion rate (21.4% below 30% target). 17653 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,486 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (5.0 km away). This would generate 743 MWh/month of biogas energy, powering 826 apartments and avoiding 214 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X166: 1000 kWh ($178,850/yr); X090: 750 kWh ($134,495/yr); University Avenue Family Residences: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (41% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,486t/mo organics to Hunts Point WRRF \u2192 743 MWh/mo biogas",
+      "Deploy BESS at top sites: X166: 1000 kWh ($178,850/yr)",
+      "Close 21% diversion gap \u2014 add composting sites (currently 24 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BX05",
+    "energy_score": 48,
+    "waste_score": 65,
+    "nexus_score": 67,
+    "energy_analysis": "District has 0 municipal buildings with 5 solar-ready (535,722 kWh/yr potential). Deploying BESS across the district (25,500 kWh total capacity) could save $4,566,395/yr in peak shaving.",
+    "waste_analysis": "Generates 3,693 tons refuse/month with only 10.3% diversion rate (19.7% below 30% target). 13066 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,256 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (6.2 km away). This would generate 628 MWh/month of biogas energy, powering 698 apartments and avoiding 181 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X026: 1000 kWh ($178,850/yr); X117: 750 kWh ($134,495/yr); North Hall and Library: 500 kWh ($89,425/yr)",
+    "equity_note": "Partially EJ area (20% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Divert 1,256t/mo organics to Hunts Point WRRF \u2192 628 MWh/mo biogas",
+      "Close 20% diversion gap \u2014 add composting sites (currently 29 within 2km)",
+      "Buffer EV demand (32 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BX06",
+    "energy_score": 73,
+    "waste_score": 70,
+    "nexus_score": 77,
+    "energy_analysis": "District has 0 municipal buildings with 10 solar-ready (621,148 kWh/yr potential). Deploying BESS across the district (29,000 kWh total capacity) could save $5,195,230/yr in peak shaving.",
+    "waste_analysis": "Generates 3,424 tons refuse/month with only 9.2% diversion rate (20.8% below 30% target). 12558 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,164 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (4.9 km away). This would generate 582 MWh/month of biogas energy, powering 647 apartments and avoiding 168 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X435: 1000 kWh ($178,850/yr); X092: 750 kWh ($134,495/yr); X254: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (47% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,164t/mo organics to Hunts Point WRRF \u2192 582 MWh/mo biogas",
+      "Deploy BESS at top sites: X435: 1000 kWh ($178,850/yr)",
+      "Close 21% diversion gap \u2014 add composting sites (currently 22 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BX07",
+    "energy_score": 61,
+    "waste_score": 62,
+    "nexus_score": 62,
+    "energy_analysis": "District has 0 municipal buildings with 6 solar-ready (908,820 kWh/yr potential). Deploying BESS across the district (24,700 kWh total capacity) could save $4,421,885/yr in peak shaving.",
+    "waste_analysis": "Generates 3,906 tons refuse/month with only 12.5% diversion rate (17.5% below 30% target). 16759 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,328 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (7.1 km away). This would generate 664 MWh/month of biogas energy, powering 738 apartments and avoiding 191 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X430: 1000 kWh ($178,850/yr); NYBG Peter Jay Sharp Building Parking Garage: 1000 kWh ($178,850/yr); X445 - Second System: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (34% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,328t/mo organics to Hunts Point WRRF \u2192 664 MWh/mo biogas",
+      "Deploy BESS at top sites: X430: 1000 kWh ($178,850/yr)",
+      "Close 18% diversion gap \u2014 add composting sites (currently 23 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BX08",
+    "energy_score": 45,
+    "waste_score": 38,
+    "nexus_score": 40,
+    "energy_analysis": "District has 0 municipal buildings with 7 solar-ready (974,688 kWh/yr potential). Deploying BESS across the district (14,200 kWh total capacity) could save $2,544,675/yr in peak shaving.",
+    "waste_analysis": "Generates 2,557 tons refuse/month with only 18.7% diversion rate (11.3% below 30% target). 13214 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "869 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (8.9 km away). This would generate 435 MWh/month of biogas energy, powering 483 apartments and avoiding 125 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X143: 1000 kWh ($178,850/yr); X024: 1000 kWh ($178,850/yr); X095: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (29% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Buffer EV demand (26 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BX09",
+    "energy_score": 76,
+    "waste_score": 73,
+    "nexus_score": 78,
+    "energy_analysis": "District has 0 municipal buildings with 11 solar-ready (2,100,417 kWh/yr potential). Deploying BESS across the district (24,750 kWh total capacity) could save $4,434,760/yr in peak shaving.",
+    "waste_analysis": "Generates 4,454 tons refuse/month with only 9.4% diversion rate (20.6% below 30% target). 19429 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,514 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (2.1 km away). This would generate 757 MWh/month of biogas energy, powering 841 apartments and avoiding 218 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X450: 1000 kWh ($178,850/yr); X125: 1000 kWh ($178,850/yr); X131_J.H.S. 131 Albert Einstein: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (41% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,514t/mo organics to Hunts Point WRRF \u2192 757 MWh/mo biogas",
+      "Deploy BESS at top sites: X450: 1000 kWh ($178,850/yr)",
+      "Close 21% diversion gap \u2014 add composting sites (currently 12 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BX10",
+    "energy_score": 46,
+    "waste_score": 30,
+    "nexus_score": 35,
+    "energy_analysis": "District has 0 municipal buildings with 5 solar-ready (938,036 kWh/yr potential). Deploying BESS across the district (21,050 kWh total capacity) could save $3,767,295/yr in peak shaving.",
+    "waste_analysis": "Generates 2,599 tons refuse/month with only 19.7% diversion rate (10.3% below 30% target). 21100 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "883 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (5.6 km away). This would generate 442 MWh/month of biogas energy, powering 491 apartments and avoiding 127 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X181: 1000 kWh ($178,850/yr); X405_Herbert Lehman High School: 1000 kWh ($178,850/yr); X072: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (21% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Monitor for future assessment",
+      "Evaluate solar-readiness for new installations"
+    ]
+  },
+  {
+    "district_code": "BX11",
+    "energy_score": 67,
+    "waste_score": 48,
+    "nexus_score": 51,
+    "energy_analysis": "District has 0 municipal buildings with 8 solar-ready (1,188,759 kWh/yr potential). Deploying BESS across the district (19,650 kWh total capacity) could save $3,519,050/yr in peak shaving.",
+    "waste_analysis": "Generates 3,127 tons refuse/month with only 16.5% diversion rate (13.5% below 30% target). 16208 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,063 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (5.5 km away). This would generate 532 MWh/month of biogas energy, powering 591 apartments and avoiding 153 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X415: 1000 kWh ($178,850/yr); X135: 1000 kWh ($178,850/yr); X144_J.H.S. 144 Michelangelo: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (41% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: X415: 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (46 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BX12",
+    "energy_score": 30,
+    "waste_score": 46,
+    "nexus_score": 50,
+    "energy_analysis": "District has 0 municipal buildings with 4 solar-ready (382,976 kWh/yr potential). Deploying BESS across the district (15,050 kWh total capacity) could save $2,699,200/yr in peak shaving.",
+    "waste_analysis": "Generates 3,997 tons refuse/month with only 17.0% diversion rate (13.0% below 30% target). 33665 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,359 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (8.8 km away). This would generate 679 MWh/month of biogas energy, powering 755 apartments and avoiding 196 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: X425_Bronx Lab School: 750 kWh ($134,495/yr); X021: 750 kWh ($134,495/yr); X112: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (44% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Monitor for future assessment",
+      "Evaluate solar-readiness for new installations"
+    ]
+  },
+  {
+    "district_code": "BX27",
+    "energy_score": 32,
+    "waste_score": 98,
+    "nexus_score": 96,
+    "energy_analysis": "District has 0 municipal buildings with 3 solar-ready (234,410 kWh/yr potential). Deploying BESS across the district (2,750 kWh total capacity) could save $492,910/yr in peak shaving.",
+    "waste_analysis": "Generates 0 tons refuse/month with only 0.0% diversion rate (30.0% below 30% target). 62 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "0 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (5.6 km away). This would generate 0 MWh/month of biogas energy, powering 0 apartments and avoiding 0 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Bronx Central Office: 750 kWh ($134,495/yr); Garden Cafe & Terrace Room: 250 kWh ($45,070/yr); NYBG Howell Family Garden Center: 250 kWh ($45,070/yr)",
+    "equity_note": "Environmental Justice district (44% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Close 30% diversion gap \u2014 add composting sites (currently 18 within 2km)",
+      "Buffer EV demand (59 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BX28",
+    "energy_score": 10,
+    "waste_score": 99,
+    "nexus_score": 98,
+    "energy_analysis": "District has 0 municipal buildings with 0 solar-ready (0 kWh/yr potential). Deploying BESS across the district (200 kWh total capacity) could save $35,770/yr in peak shaving.",
+    "waste_analysis": "Generates 0 tons refuse/month with only 0.0% diversion rate (30.0% below 30% target). 103 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "0 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (8.6 km away). This would generate 0 MWh/month of biogas energy, powering 0 apartments and avoiding 0 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Orchard Beach Administration Building: 100 kWh ($17,885/yr); Orchard Beach Administration Building: 100 kWh ($17,885/yr)",
+    "equity_note": "Environmental Justice district (50% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Close 30% diversion gap \u2014 add composting sites (currently 0 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BK01",
+    "energy_score": 61,
+    "waste_score": 53,
+    "nexus_score": 63,
+    "energy_analysis": "District has 0 municipal buildings with 7 solar-ready (1,086,811 kWh/yr potential). Deploying BESS across the district (25,250 kWh total capacity) could save $4,522,755/yr in peak shaving.",
+    "waste_analysis": "Generates 5,144 tons refuse/month with only 13.7% diversion rate (16.3% below 30% target). 55865 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,749 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (2.7 km away). This would generate 875 MWh/month of biogas energy, powering 972 apartments and avoiding 252 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K650: 1000 kWh ($178,850/yr); BWS Storehouse (GS1): 1000 kWh ($178,850/yr); Brooklyn North 3 District Garage: 1000 kWh ($178,850/yr)",
+    "equity_note": "Partially EJ area (14% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Divert 1,749t/mo organics to Newtown Creek WRRF \u2192 875 MWh/mo biogas",
+      "Deploy BESS at top sites: K650: 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (101 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BK02",
+    "energy_score": 74,
+    "waste_score": 30,
+    "nexus_score": 37,
+    "energy_analysis": "District has 0 municipal buildings with 7 solar-ready (1,676,059 kWh/yr potential). Deploying BESS across the district (34,000 kWh total capacity) could save $6,087,335/yr in peak shaving.",
+    "waste_analysis": "Generates 2,598 tons refuse/month with only 21.2% diversion rate (8.8% below 30% target). 27648 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "883 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (5.7 km away). This would generate 442 MWh/month of biogas energy, powering 491 apartments and avoiding 127 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Brooklyn vy Yard - Building 293: 1000 kWh ($178,850/yr); K307: 1000 kWh ($178,850/yr); K020: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (10% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Brooklyn vy Yard - Building 293: 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (57 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BK03",
+    "energy_score": 88,
+    "waste_score": 67,
+    "nexus_score": 71,
+    "energy_analysis": "District has 0 municipal buildings with 12 solar-ready (2,752,211 kWh/yr potential). Deploying BESS across the district (32,500 kWh total capacity) could save $5,820,490/yr in peak shaving.",
+    "waste_analysis": "Generates 4,474 tons refuse/month with only 10.5% diversion rate (19.5% below 30% target). 41002 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,521 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (5.7 km away). This would generate 761 MWh/month of biogas energy, powering 845 apartments and avoiding 219 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K455_Boys and Girls High School: 1000 kWh ($178,850/yr); K023: 1000 kWh ($178,850/yr); K309: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (47% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,521t/mo organics to Newtown Creek WRRF \u2192 761 MWh/mo biogas",
+      "Deploy BESS at top sites: K455_Boys and Girls High School: 1000 kWh ($178,850/yr)",
+      "Close 20% diversion gap \u2014 add composting sites (currently 67 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BK04",
+    "energy_score": 36,
+    "waste_score": 67,
+    "nexus_score": 64,
+    "energy_analysis": "District has 0 municipal buildings with 2 solar-ready (233,860 kWh/yr potential). Deploying BESS across the district (17,300 kWh total capacity) could save $3,102,685/yr in peak shaving.",
+    "waste_analysis": "Generates 4,528 tons refuse/month with only 11.1% diversion rate (18.9% below 30% target). 26928 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,539 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (5.6 km away). This would generate 770 MWh/month of biogas energy, powering 855 apartments and avoiding 222 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K377: 1000 kWh ($178,850/yr); DeKalb Branch Library: 250 kWh ($45,070/yr); Stockholm Street Family Residence: 100 kWh ($17,885/yr)",
+    "equity_note": "Environmental Justice district (42% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,539t/mo organics to Newtown Creek WRRF \u2192 770 MWh/mo biogas",
+      "Close 19% diversion gap \u2014 add composting sites (currently 62 within 2km)",
+      "Buffer EV demand (40 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BK05",
+    "energy_score": 81,
+    "waste_score": 66,
+    "nexus_score": 74,
+    "energy_analysis": "District has 0 municipal buildings with 14 solar-ready (1,218,965 kWh/yr potential). Deploying BESS across the district (33,600 kWh total capacity) could save $6,020,085/yr in peak shaving.",
+    "waste_analysis": "Generates 4,852 tons refuse/month with only 10.6% diversion rate (19.4% below 30% target). 44205 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,650 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (9.7 km away). This would generate 825 MWh/month of biogas energy, powering 916 apartments and avoiding 238 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K345: 750 kWh ($134,495/yr); K273: 750 kWh ($134,495/yr); K302_J.H.S. Rafael Cordero: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (48% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,650t/mo organics to Newtown Creek WRRF \u2192 825 MWh/mo biogas",
+      "Deploy BESS at top sites: K345: 750 kWh ($134,495/yr)",
+      "Close 19% diversion gap \u2014 add composting sites (currently 9 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BK06",
+    "energy_score": 46,
+    "waste_score": 17,
+    "nexus_score": 23,
+    "energy_analysis": "District has 0 municipal buildings with 7 solar-ready (859,551 kWh/yr potential). Deploying BESS across the district (21,050 kWh total capacity) could save $3,770,155/yr in peak shaving.",
+    "waste_analysis": "Generates 2,635 tons refuse/month with only 25.2% diversion rate (4.8% below 30% target). 30313 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "896 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (7.6 km away). This would generate 448 MWh/month of biogas energy, powering 498 apartments and avoiding 129 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K293 (K497): 1000 kWh ($178,850/yr); Brooklyn South 6 District Garage: 1000 kWh ($178,850/yr); K058: 1000 kWh ($178,850/yr)",
+    "equity_note": "Partially EJ area (7% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Buffer EV demand (58 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BK07",
+    "energy_score": 37,
+    "waste_score": 43,
+    "nexus_score": 47,
+    "energy_analysis": "District has 0 municipal buildings with 4 solar-ready (433,092 kWh/yr potential). Deploying BESS across the district (17,750 kWh total capacity) could save $3,179,235/yr in peak shaving.",
+    "waste_analysis": "Generates 3,486 tons refuse/month with only 17.2% diversion rate (12.8% below 30% target). 27731 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,185 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (10.6 km away). This would generate 593 MWh/month of biogas energy, powering 658 apartments and avoiding 171 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K001: 1000 kWh ($178,850/yr); Brooklyn Army Termil: 750 kWh ($134,495/yr); K094: 500 kWh ($89,425/yr)",
+    "equity_note": "Environmental Justice district (32% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Monitor for future assessment",
+      "Evaluate solar-readiness for new installations"
+    ]
+  },
+  {
+    "district_code": "BK08",
+    "energy_score": 34,
+    "waste_score": 73,
+    "nexus_score": 74,
+    "energy_analysis": "District has 0 municipal buildings with 4 solar-ready (630,982 kWh/yr potential). Deploying BESS across the district (12,850 kWh total capacity) could save $2,303,585/yr in peak shaving.",
+    "waste_analysis": "Generates 4,741 tons refuse/month with only 8.9% diversion rate (21.1% below 30% target). 22114 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,612 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (7.1 km away). This would generate 806 MWh/month of biogas energy, powering 896 apartments and avoiding 232 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Atlantic Avenue Men's Shelter (Armory): 1000 kWh ($178,850/yr); K335: 750 kWh ($134,495/yr); Brooklyn Children's Museum: 250 kWh ($45,070/yr)",
+    "equity_note": "Environmental Justice district (34% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,612t/mo organics to Newtown Creek WRRF \u2192 806 MWh/mo biogas",
+      "Close 21% diversion gap \u2014 add composting sites (currently 64 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BK09",
+    "energy_score": 63,
+    "waste_score": 62,
+    "nexus_score": 64,
+    "energy_analysis": "District has 0 municipal buildings with 6 solar-ready (1,742,444 kWh/yr potential). Deploying BESS across the district (18,750 kWh total capacity) could save $3,360,230/yr in peak shaving.",
+    "waste_analysis": "Generates 3,249 tons refuse/month with only 11.6% diversion rate (18.4% below 30% target). 18772 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,105 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (8.5 km away). This would generate 552 MWh/month of biogas energy, powering 614 apartments and avoiding 159 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Buildings A, B, C: 1000 kWh ($178,850/yr); K470: 1000 kWh ($178,850/yr); K440: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (49% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,105t/mo organics to Newtown Creek WRRF \u2192 552 MWh/mo biogas",
+      "Deploy BESS at top sites: Buildings A, B, C: 1000 kWh ($178,850/yr)",
+      "Close 18% diversion gap \u2014 add composting sites (currently 34 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BK10",
+    "energy_score": 20,
+    "waste_score": 36,
+    "nexus_score": 38,
+    "energy_analysis": "District has 0 municipal buildings with 4 solar-ready (326,040 kWh/yr potential). Deploying BESS across the district (14,150 kWh total capacity) could save $2,534,660/yr in peak shaving.",
+    "waste_analysis": "Generates 3,737 tons refuse/month with only 19.4% diversion rate (10.6% below 30% target). 24671 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,271 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (13.5 km away). This would generate 635 MWh/month of biogas energy, powering 706 apartments and avoiding 183 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K102: 750 kWh ($134,495/yr); K259: 750 kWh ($134,495/yr); 68th Precinct: 500 kWh ($89,425/yr)",
+    "equity_note": "Partially EJ area (8% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Buffer EV demand (23 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BK11",
+    "energy_score": 47,
+    "waste_score": 57,
+    "nexus_score": 60,
+    "energy_analysis": "District has 0 municipal buildings with 7 solar-ready (608,113 kWh/yr potential). Deploying BESS across the district (22,750 kWh total capacity) could save $4,073,485/yr in peak shaving.",
+    "waste_analysis": "Generates 6,662 tons refuse/month with only 14.2% diversion rate (15.8% below 30% target). 28650 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "2,265 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (15.0 km away). This would generate 1,133 MWh/month of biogas energy, powering 1,258 apartments and avoiding 326 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K445: 750 kWh ($134,495/yr); K200: 750 kWh ($134,495/yr); K097: 500 kWh ($89,425/yr)",
+    "equity_note": "Environmental Justice district (40% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 2,265t/mo organics to Newtown Creek WRRF \u2192 1,133 MWh/mo biogas"
+    ]
+  },
+  {
+    "district_code": "BK12",
+    "energy_score": 35,
+    "waste_score": 56,
+    "nexus_score": 57,
+    "energy_analysis": "District has 0 municipal buildings with 4 solar-ready (617,144 kWh/yr potential). Deploying BESS across the district (14,600 kWh total capacity) could save $2,614,785/yr in peak shaving.",
+    "waste_analysis": "Generates 6,026 tons refuse/month with only 14.1% diversion rate (15.9% below 30% target). 34683 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "2,049 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (12.2 km away). This would generate 1,024 MWh/month of biogas energy, powering 1,138 apartments and avoiding 295 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K505_Franklin Delano Roosevelt High School: 1000 kWh ($178,850/yr); K220: 750 kWh ($134,495/yr); K099: 500 kWh ($89,425/yr)",
+    "equity_note": "Environmental Justice district (39% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Monitor for future assessment",
+      "Evaluate solar-readiness for new installations"
+    ]
+  },
+  {
+    "district_code": "BK13",
+    "energy_score": 58,
+    "waste_score": 61,
+    "nexus_score": 65,
+    "energy_analysis": "District has 0 municipal buildings with 9 solar-ready (1,380,280 kWh/yr potential). Deploying BESS across the district (20,550 kWh total capacity) could save $3,681,445/yr in peak shaving.",
+    "waste_analysis": "Generates 3,203 tons refuse/month with only 12.5% diversion rate (17.5% below 30% target). 11515 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,089 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (17.9 km away). This would generate 545 MWh/month of biogas energy, powering 605 apartments and avoiding 157 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K410: 1000 kWh ($178,850/yr); K329: 750 kWh ($134,495/yr); K400: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (36% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,089t/mo organics to Newtown Creek WRRF \u2192 545 MWh/mo biogas",
+      "Deploy BESS at top sites: K410: 1000 kWh ($178,850/yr)",
+      "Close 18% diversion gap \u2014 add composting sites (currently 1 within 2km)"
+    ]
+  },
+  {
+    "district_code": "BK14",
+    "energy_score": 38,
+    "waste_score": 56,
+    "nexus_score": 61,
+    "energy_analysis": "District has 0 municipal buildings with 5 solar-ready (453,761 kWh/yr potential). Deploying BESS across the district (15,050 kWh total capacity) could save $2,698,485/yr in peak shaving.",
+    "waste_analysis": "Generates 5,062 tons refuse/month with only 13.5% diversion rate (16.5% below 30% target). 27654 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,721 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (11.5 km away). This would generate 860 MWh/month of biogas energy, powering 956 apartments and avoiding 248 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K249: 1000 kWh ($178,850/yr); K217: 750 kWh ($134,495/yr); K152: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (37% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,721t/mo organics to Newtown Creek WRRF \u2192 860 MWh/mo biogas"
+    ]
+  },
+  {
+    "district_code": "BK15",
+    "energy_score": 69,
+    "waste_score": 42,
+    "nexus_score": 44,
+    "energy_analysis": "District has 0 municipal buildings with 16 solar-ready (2,684,451 kWh/yr potential). Deploying BESS across the district (26,800 kWh total capacity) could save $4,798,185/yr in peak shaving.",
+    "waste_analysis": "Generates 4,855 tons refuse/month with only 18.0% diversion rate (12.0% below 30% target). 32916 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,651 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (16.7 km away). This would generate 825 MWh/month of biogas energy, powering 917 apartments and avoiding 238 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K495: 1000 kWh ($178,850/yr); K043: 1000 kWh ($178,850/yr); K425: 1000 kWh ($178,850/yr)",
+    "equity_note": "Partially EJ area (3% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: K495: 1000 kWh ($178,850/yr)"
+    ]
+  },
+  {
+    "district_code": "BK16",
+    "energy_score": 57,
+    "waste_score": 71,
+    "nexus_score": 76,
+    "energy_analysis": "District has 0 municipal buildings with 7 solar-ready (1,001,781 kWh/yr potential). Deploying BESS across the district (20,350 kWh total capacity) could save $3,646,390/yr in peak shaving.",
+    "waste_analysis": "Generates 2,879 tons refuse/month with only 8.4% diversion rate (21.6% below 30% target). 13142 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "979 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (8.5 km away). This would generate 489 MWh/month of biogas energy, powering 544 apartments and avoiding 141 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K275: 1000 kWh ($178,850/yr); K041: 1000 kWh ($178,850/yr); K298: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (46% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: K275: 1000 kWh ($178,850/yr)",
+      "Close 22% diversion gap \u2014 add composting sites (currently 28 within 2km)",
+      "Buffer EV demand (22 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BK17",
+    "energy_score": 58,
+    "waste_score": 58,
+    "nexus_score": 64,
+    "energy_analysis": "District has 0 municipal buildings with 7 solar-ready (1,044,714 kWh/yr potential). Deploying BESS across the district (21,850 kWh total capacity) could save $3,915,380/yr in peak shaving.",
+    "waste_analysis": "Generates 4,847 tons refuse/month with only 12.2% diversion rate (17.8% below 30% target). 27690 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,648 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (10.0 km away). This would generate 824 MWh/month of biogas energy, powering 915 apartments and avoiding 237 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: K395: 1000 kWh ($178,850/yr); K198: 750 kWh ($134,495/yr); K269: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (50% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,648t/mo organics to Newtown Creek WRRF \u2192 824 MWh/mo biogas",
+      "Deploy BESS at top sites: K395: 1000 kWh ($178,850/yr)"
+    ]
+  },
+  {
+    "district_code": "BK18",
+    "energy_score": 83,
+    "waste_score": 47,
+    "nexus_score": 54,
+    "energy_analysis": "District has 0 municipal buildings with 17 solar-ready (3,142,007 kWh/yr potential). Deploying BESS across the district (25,700 kWh total capacity) could save $4,604,310/yr in peak shaving.",
+    "waste_analysis": "Generates 5,624 tons refuse/month with only 16.9% diversion rate (13.1% below 30% target). 36087 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,912 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (12.2 km away). This would generate 956 MWh/month of biogas energy, powering 1,062 apartments and avoiding 275 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Brooklyn South 17 and 18 District Garage: 1000 kWh ($178,850/yr); K515_South Shore Educatiol Campus: 1000 kWh ($178,850/yr); K211: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (34% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Brooklyn South 17 and 18 District Garage: 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (24 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "BK55",
+    "energy_score": 24,
+    "waste_score": 99,
+    "nexus_score": 99,
+    "energy_analysis": "District has 0 municipal buildings with 3 solar-ready (356,840 kWh/yr potential). Deploying BESS across the district (3,600 kWh total capacity) could save $644,575/yr in peak shaving.",
+    "waste_analysis": "Generates 0 tons refuse/month with only 0.0% diversion rate (30.0% below 30% target). 200 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "0 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (8.0 km away). This would generate 0 MWh/month of biogas energy, powering 0 apartments and avoiding 0 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Central Library and Learning Center: 1000 kWh ($178,850/yr); Brooklyn Botanic Garden Administrative Building: 250 kWh ($45,070/yr); Brooklyn Central Office: 250 kWh ($45,070/yr)",
+    "equity_note": "Non-EJ district \u2014 standard investment prioritization applies.",
+    "top_3_actions": [
+      "Close 30% diversion gap \u2014 add composting sites (currently 37 within 2km)",
+      "Buffer EV demand (43 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "MN01",
+    "energy_score": 71,
+    "waste_score": 31,
+    "nexus_score": 35,
+    "energy_analysis": "District has 0 municipal buildings with 12 solar-ready (1,065,867 kWh/yr potential). Deploying BESS across the district (23,300 kWh total capacity) could save $4,171,495/yr in peak shaving.",
+    "waste_analysis": "Generates 1,306 tons refuse/month with only 20.7% diversion rate (9.3% below 30% target). 26558 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "444 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (5.4 km away). This would generate 222 MWh/month of biogas energy, powering 247 apartments and avoiding 64 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: BMCC (Borough of Manhattan Community College): 1000 kWh ($178,850/yr); 100 Gold Street: 1000 kWh ($178,850/yr); NYPD Police Headquarters: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (13% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: BMCC (Borough of Manhattan Community College): 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (113 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "MN02",
+    "energy_score": 25,
+    "waste_score": 37,
+    "nexus_score": 41,
+    "energy_analysis": "District has 0 municipal buildings with 3 solar-ready (29,799 kWh/yr potential). Deploying BESS across the district (8,200 kWh total capacity) could save $1,468,715/yr in peak shaving.",
+    "waste_analysis": "Generates 2,677 tons refuse/month with only 18.9% diversion rate (11.1% below 30% target). 29905 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "910 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (4.3 km away). This would generate 455 MWh/month of biogas energy, powering 506 apartments and avoiding 131 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Tony Dapolito Recreation Center: 250 kWh ($45,070/yr); Washington Square Park CS: 250 kWh ($45,070/yr); Manhattan Community Districts 1, 2 and 5: 100 kWh ($17,885/yr)",
+    "equity_note": "Partially EJ area (9% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Buffer EV demand (59 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "MN03",
+    "energy_score": 73,
+    "waste_score": 68,
+    "nexus_score": 78,
+    "energy_analysis": "District has 0 municipal buildings with 10 solar-ready (1,035,760 kWh/yr potential). Deploying BESS across the district (28,700 kWh total capacity) could save $5,143,005/yr in peak shaving.",
+    "waste_analysis": "Generates 5,459 tons refuse/month with only 9.2% diversion rate (20.8% below 30% target). 24921 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,856 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (3.6 km away). This would generate 928 MWh/month of biogas energy, powering 1,031 apartments and avoiding 267 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: M025: 1000 kWh ($178,850/yr); M020: 1000 kWh ($178,850/yr); Life Family Shelter: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (37% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,856t/mo organics to Newtown Creek WRRF \u2192 928 MWh/mo biogas",
+      "Deploy BESS at top sites: M025: 1000 kWh ($178,850/yr)",
+      "Close 21% diversion gap \u2014 add composting sites (currently 51 within 2km)"
+    ]
+  },
+  {
+    "district_code": "MN04",
+    "energy_score": 51,
+    "waste_score": 33,
+    "nexus_score": 39,
+    "energy_analysis": "District has 0 municipal buildings with 6 solar-ready (795,795 kWh/yr potential). Deploying BESS across the district (19,850 kWh total capacity) could save $3,552,675/yr in peak shaving.",
+    "waste_analysis": "Generates 3,299 tons refuse/month with only 20.2% diversion rate (9.8% below 30% target). 24838 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,122 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (4.1 km away). This would generate 561 MWh/month of biogas energy, powering 623 apartments and avoiding 162 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Manhattan 4, 4A, 7 District Garage; Salt: 1000 kWh ($178,850/yr); M625: 750 kWh ($134,495/yr); M070_I.S. 70 Manhattan: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (9% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Manhattan 4, 4A, 7 District Garage; Salt: 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (46 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "MN05",
+    "energy_score": 34,
+    "waste_score": 48,
+    "nexus_score": 55,
+    "energy_analysis": "District has 0 municipal buildings with 4 solar-ready (437,778 kWh/yr potential). Deploying BESS across the district (8,700 kWh total capacity) could save $1,557,425/yr in peak shaving.",
+    "waste_analysis": "Generates 1,808 tons refuse/month with only 15.3% diversion rate (14.7% below 30% target). 24442 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "615 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (3.3 km away). This would generate 307 MWh/month of biogas energy, powering 342 apartments and avoiding 89 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Central Library - Stephen A. Schwartzman Building: 1000 kWh ($178,850/yr); Bldg A, The David Dubinsky Student Center: 750 kWh ($134,495/yr); Bldg E, Shirley Goodman Resource Center: 250 kWh ($45,070/yr)",
+    "equity_note": "Partially EJ area (7% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Buffer EV demand (49 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "MN06",
+    "energy_score": 29,
+    "waste_score": 24,
+    "nexus_score": 28,
+    "energy_analysis": "District has 0 municipal buildings with 3 solar-ready (60,500 kWh/yr potential). Deploying BESS across the district (14,800 kWh total capacity) could save $2,649,840/yr in peak shaving.",
+    "waste_analysis": "Generates 3,696 tons refuse/month with only 22.6% diversion rate (7.4% below 30% target). 13579 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,257 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (2.2 km away). This would generate 628 MWh/month of biogas energy, powering 698 apartments and avoiding 181 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Recreation Center 54: 250 kWh ($45,070/yr); M488: 250 kWh ($45,070/yr); M844: 500 kWh ($89,425/yr)",
+    "equity_note": "Partially EJ area (15% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Buffer EV demand (32 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "MN07",
+    "energy_score": 29,
+    "waste_score": 36,
+    "nexus_score": 36,
+    "energy_analysis": "District has 0 municipal buildings with 3 solar-ready (333,190 kWh/yr potential). Deploying BESS across the district (18,200 kWh total capacity) could save $3,258,645/yr in peak shaving.",
+    "waste_analysis": "Generates 5,755 tons refuse/month with only 19.9% diversion rate (10.1% below 30% target). 20629 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,957 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (5.7 km away). This would generate 978 MWh/month of biogas energy, powering 1,087 apartments and avoiding 282 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: M485: 1000 kWh ($178,850/yr); M191: 750 kWh ($134,495/yr); M470 - Brandeis: 1000 kWh ($178,850/yr)",
+    "equity_note": "Partially EJ area (12% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Monitor for future assessment",
+      "Evaluate solar-readiness for new installations"
+    ]
+  },
+  {
+    "district_code": "MN08",
+    "energy_score": 40,
+    "waste_score": 40,
+    "nexus_score": 40,
+    "energy_analysis": "District has 0 municipal buildings with 9 solar-ready (680,240 kWh/yr potential). Deploying BESS across the district (17,650 kWh total capacity) could save $3,163,495/yr in peak shaving.",
+    "waste_analysis": "Generates 6,414 tons refuse/month with only 18.9% diversion rate (11.1% below 30% target). 19986 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "2,181 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (3.9 km away). This would generate 1,090 MWh/month of biogas energy, powering 1,212 apartments and avoiding 314 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: M167: 1000 kWh ($178,850/yr); M158: 750 kWh ($134,495/yr); M271: 1000 kWh ($178,850/yr)",
+    "equity_note": "Partially EJ area (2% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Buffer EV demand (23 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "MN09",
+    "energy_score": 32,
+    "waste_score": 62,
+    "nexus_score": 58,
+    "energy_analysis": "District has 0 municipal buildings with 2 solar-ready (196,680 kWh/yr potential). Deploying BESS across the district (14,150 kWh total capacity) could save $2,534,660/yr in peak shaving.",
+    "waste_analysis": "Generates 2,959 tons refuse/month with only 12.7% diversion rate (17.3% below 30% target). 11078 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,006 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (6.9 km away). This would generate 503 MWh/month of biogas energy, powering 559 apartments and avoiding 145 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: M036: 750 kWh ($134,495/yr); Lower Washington Heights NFCC Clinic: 500 kWh ($89,425/yr); George Bruce Branch Library: 100 kWh ($17,885/yr)",
+    "equity_note": "Environmental Justice district (45% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Close 17% diversion gap \u2014 add composting sites (currently 35 within 2km)",
+      "Buffer EV demand (54 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "MN10",
+    "energy_score": 71,
+    "waste_score": 83,
+    "nexus_score": 88,
+    "energy_analysis": "District has 0 municipal buildings with 10 solar-ready (1,321,573 kWh/yr potential). Deploying BESS across the district (21,400 kWh total capacity) could save $3,830,965/yr in peak shaving.",
+    "waste_analysis": "Generates 5,102 tons refuse/month with only 5.6% diversion rate (24.4% below 30% target). 21792 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,735 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (6.2 km away). This would generate 867 MWh/month of biogas energy, powering 964 apartments and avoiding 250 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: M144: 1000 kWh ($178,850/yr); M208: 1000 kWh ($178,850/yr); M092: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (39% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,735t/mo organics to Hunts Point WRRF \u2192 867 MWh/mo biogas",
+      "Deploy BESS at top sites: M144: 1000 kWh ($178,850/yr)",
+      "Close 24% diversion gap \u2014 add composting sites (currently 42 within 2km)"
+    ]
+  },
+  {
+    "district_code": "MN11",
+    "energy_score": 98,
+    "waste_score": 70,
+    "nexus_score": 77,
+    "energy_analysis": "District has 0 municipal buildings with 13 solar-ready (9,469,229 kWh/yr potential). Deploying BESS across the district (40,700 kWh total capacity) could save $7,287,775/yr in peak shaving.",
+    "waste_analysis": "Generates 2,776 tons refuse/month with only 9.1% diversion rate (20.9% below 30% target). 12635 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "944 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (5.5 km away). This would generate 472 MWh/month of biogas energy, powering 524 apartments and avoiding 136 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: NYPA PPA 8 Locations: 1000 kWh ($178,850/yr); M501: 1000 kWh ($178,850/yr); M117: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (47% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: NYPA PPA 8 Locations: 1000 kWh ($178,850/yr)",
+      "Close 21% diversion gap \u2014 add composting sites (currently 28 within 2km)",
+      "Buffer EV demand (98 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "MN12",
+    "energy_score": 64,
+    "waste_score": 64,
+    "nexus_score": 69,
+    "energy_analysis": "District has 0 municipal buildings with 11 solar-ready (850,872 kWh/yr potential). Deploying BESS across the district (30,500 kWh total capacity) could save $5,464,935/yr in peak shaving.",
+    "waste_analysis": "Generates 5,760 tons refuse/month with only 11.4% diversion rate (18.6% below 30% target). 17582 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,958 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (7.0 km away). This would generate 979 MWh/month of biogas energy, powering 1,088 apartments and avoiding 282 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: M143: 1000 kWh ($178,850/yr); M028: 1000 kWh ($178,850/yr); M128: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (42% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,958t/mo organics to Hunts Point WRRF \u2192 979 MWh/mo biogas",
+      "Deploy BESS at top sites: M143: 1000 kWh ($178,850/yr)",
+      "Close 19% diversion gap \u2014 add composting sites (currently 24 within 2km)"
+    ]
+  },
+  {
+    "district_code": "MN64",
+    "energy_score": 23,
+    "waste_score": 95,
+    "nexus_score": 99,
+    "energy_analysis": "District has 0 municipal buildings with 1 solar-ready (12,540 kWh/yr potential). Deploying BESS across the district (1,150 kWh total capacity) could save $206,035/yr in peak shaving.",
+    "waste_analysis": "Generates 0 tons refuse/month with only 0.0% diversion rate (30.0% below 30% target). 236 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "0 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (4.6 km away). This would generate 0 MWh/month of biogas energy, powering 0 apartments and avoiding 0 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Arsel Building: 250 kWh ($45,070/yr); Metropolitan Museum of Art: 100 kWh ($17,885/yr); Manhattan Parks Shop and Garage: 100 kWh ($17,885/yr)",
+    "equity_note": "Environmental Justice district (50% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Close 30% diversion gap \u2014 add composting sites (currently 59 within 2km)"
+    ]
+  },
+  {
+    "district_code": "QN01",
+    "energy_score": 74,
+    "waste_score": 41,
+    "nexus_score": 46,
+    "energy_analysis": "District has 0 municipal buildings with 13 solar-ready (1,341,967 kWh/yr potential). Deploying BESS across the district (36,900 kWh total capacity) could save $6,613,150/yr in peak shaving.",
+    "waste_analysis": "Generates 4,759 tons refuse/month with only 18.5% diversion rate (11.5% below 30% target). 39460 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,618 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (4.2 km away). This would generate 809 MWh/month of biogas energy, powering 899 apartments and avoiding 233 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q445_William Cullen Bryant High School: 1000 kWh ($178,850/yr); Q171: 750 kWh ($134,495/yr); Q126: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (7% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Q445_William Cullen Bryant High School: 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (36 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "QN02",
+    "energy_score": 77,
+    "waste_score": 39,
+    "nexus_score": 48,
+    "energy_analysis": "District has 0 municipal buildings with 11 solar-ready (1,394,008 kWh/yr potential). Deploying BESS across the district (21,950 kWh total capacity) could save $3,931,835/yr in peak shaving.",
+    "waste_analysis": "Generates 3,800 tons refuse/month with only 18.7% diversion rate (11.3% below 30% target). 21887 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,292 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (1.9 km away). This would generate 646 MWh/month of biogas energy, powering 718 apartments and avoiding 186 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q801: 1000 kWh ($178,850/yr); Borden Avenue Shelter: 1000 kWh ($178,850/yr); EMS 45: 1000 kWh ($178,850/yr)",
+    "equity_note": "Partially EJ area (10% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Q801: 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (176 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "QN03",
+    "energy_score": 29,
+    "waste_score": 63,
+    "nexus_score": 60,
+    "energy_analysis": "District has 0 municipal buildings with 4 solar-ready (351,450 kWh/yr potential). Deploying BESS across the district (14,500 kWh total capacity) could save $2,598,330/yr in peak shaving.",
+    "waste_analysis": "Generates 4,887 tons refuse/month with only 13.2% diversion rate (16.8% below 30% target). 26219 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,662 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (5.8 km away). This would generate 831 MWh/month of biogas energy, powering 923 apartments and avoiding 239 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q227: 1000 kWh ($178,850/yr); 115th Precinct: 500 kWh ($89,425/yr); Q292: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (40% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,662t/mo organics to Hunts Point WRRF \u2192 831 MWh/mo biogas",
+      "Close 17% diversion gap \u2014 add composting sites (currently 8 within 2km)"
+    ]
+  },
+  {
+    "district_code": "QN04",
+    "energy_score": 40,
+    "waste_score": 57,
+    "nexus_score": 66,
+    "energy_analysis": "District has 0 municipal buildings with 5 solar-ready (301,004 kWh/yr potential). Deploying BESS across the district (17,000 kWh total capacity) could save $3,046,170/yr in peak shaving.",
+    "waste_analysis": "Generates 4,304 tons refuse/month with only 13.1% diversion rate (16.9% below 30% target). 15427 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,463 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (6.5 km away). This would generate 732 MWh/month of biogas energy, powering 813 apartments and avoiding 211 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Hope Pavilion: 750 kWh ($134,495/yr); Elmhurst Hospital Center (EHC)-H BLDG: 500 kWh ($89,425/yr); Q007: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (39% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 1,463t/mo organics to Newtown Creek WRRF \u2192 732 MWh/mo biogas",
+      "Buffer EV demand (41 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "QN05",
+    "energy_score": 50,
+    "waste_score": 34,
+    "nexus_score": 38,
+    "energy_analysis": "District has 0 municipal buildings with 5 solar-ready (980,397 kWh/yr potential). Deploying BESS across the district (25,900 kWh total capacity) could save $4,640,795/yr in peak shaving.",
+    "waste_analysis": "Generates 5,020 tons refuse/month with only 20.6% diversion rate (9.4% below 30% target). 39938 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,707 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (5.7 km away). This would generate 853 MWh/month of biogas energy, powering 948 apartments and avoiding 246 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q485: 1000 kWh ($178,850/yr); Q071: 750 kWh ($134,495/yr); Q229: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (8% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Q485: 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (28 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "QN06",
+    "energy_score": 39,
+    "waste_score": 35,
+    "nexus_score": 36,
+    "energy_analysis": "District has 0 municipal buildings with 7 solar-ready (896,159 kWh/yr potential). Deploying BESS across the district (12,600 kWh total capacity) could save $2,258,515/yr in peak shaving.",
+    "waste_analysis": "Generates 2,914 tons refuse/month with only 19.8% diversion rate (10.2% below 30% target). 13132 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "991 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (8.6 km away). This would generate 495 MWh/month of biogas energy, powering 550 apartments and avoiding 143 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q157: 1000 kWh ($178,850/yr); Q220: 750 kWh ($134,495/yr); Q175: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (19% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Buffer EV demand (40 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "QN07",
+    "energy_score": 74,
+    "waste_score": 41,
+    "nexus_score": 46,
+    "energy_analysis": "District has 0 municipal buildings with 13 solar-ready (1,468,808 kWh/yr potential). Deploying BESS across the district (34,100 kWh total capacity) could save $6,108,080/yr in peak shaving.",
+    "waste_analysis": "Generates 7,060 tons refuse/month with only 17.9% diversion rate (12.1% below 30% target). 39735 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "2,400 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (6.1 km away). This would generate 1,200 MWh/month of biogas energy, powering 1,334 apartments and avoiding 346 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q237_I.S. 237 Rachel Carson: 1000 kWh ($178,850/yr); Q185: 1000 kWh ($178,850/yr); North Shore Marine Transfer Station: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (20% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Q237_I.S. 237 Rachel Carson: 1000 kWh ($178,850/yr)"
+    ]
+  },
+  {
+    "district_code": "QN08",
+    "energy_score": 66,
+    "waste_score": 46,
+    "nexus_score": 49,
+    "energy_analysis": "District has 0 municipal buildings with 9 solar-ready (1,408,275 kWh/yr potential). Deploying BESS across the district (21,050 kWh total capacity) could save $3,770,870/yr in peak shaving.",
+    "waste_analysis": "Generates 3,802 tons refuse/month with only 17.3% diversion rate (12.7% below 30% target). 23199 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,293 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (10.9 km away). This would generate 646 MWh/month of biogas energy, powering 718 apartments and avoiding 186 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q620: 1000 kWh ($178,850/yr); Q505_Hillcrest High School: 1000 kWh ($178,850/yr); Q178: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (41% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Q620: 1000 kWh ($178,850/yr)"
+    ]
+  },
+  {
+    "district_code": "QN09",
+    "energy_score": 49,
+    "waste_score": 45,
+    "nexus_score": 47,
+    "energy_analysis": "District has 0 municipal buildings with 3 solar-ready (396,473 kWh/yr potential). Deploying BESS across the district (20,850 kWh total capacity) could save $3,735,815/yr in peak shaving.",
+    "waste_analysis": "Generates 4,171 tons refuse/month with only 17.4% diversion rate (12.6% below 30% target). 26991 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,418 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (10.7 km away). This would generate 709 MWh/month of biogas energy, powering 788 apartments and avoiding 204 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q210: 1000 kWh ($178,850/yr); Q099: 500 kWh ($89,425/yr); Q254: 750 kWh ($134,495/yr)",
+    "equity_note": "Environmental Justice district (46% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Buffer EV demand (64 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "QN10",
+    "energy_score": 29,
+    "waste_score": 47,
+    "nexus_score": 48,
+    "energy_analysis": "District has 0 municipal buildings with 4 solar-ready (346,093 kWh/yr potential). Deploying BESS across the district (13,750 kWh total capacity) could save $2,463,120/yr in peak shaving.",
+    "waste_analysis": "Generates 3,987 tons refuse/month with only 17.0% diversion rate (13.0% below 30% target). 31840 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,356 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (12.6 km away). This would generate 678 MWh/month of biogas energy, powering 753 apartments and avoiding 195 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q226_J.H.S. 226 Virgil I. Grissom: 750 kWh ($134,495/yr); Q137: 750 kWh ($134,495/yr); Sunrise Yard: 500 kWh ($89,425/yr)",
+    "equity_note": "Environmental Justice district (31% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Monitor for future assessment",
+      "Evaluate solar-readiness for new installations"
+    ]
+  },
+  {
+    "district_code": "QN11",
+    "energy_score": 69,
+    "waste_score": 28,
+    "nexus_score": 35,
+    "energy_analysis": "District has 0 municipal buildings with 14 solar-ready (2,473,691 kWh/yr potential). Deploying BESS across the district (24,850 kWh total capacity) could save $4,451,215/yr in peak shaving.",
+    "waste_analysis": "Generates 3,404 tons refuse/month with only 21.5% diversion rate (8.5% below 30% target). 20455 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,157 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (11.1 km away). This would generate 579 MWh/month of biogas energy, powering 643 apartments and avoiding 167 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Queens East 11/13 District Garage: 1000 kWh ($178,850/yr); Q405: 1000 kWh ($178,850/yr); Q025: 1000 kWh ($178,850/yr)",
+    "equity_note": "Partially EJ area (29% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Queens East 11/13 District Garage: 1000 kWh ($178,850/yr)"
+    ]
+  },
+  {
+    "district_code": "QN12",
+    "energy_score": 91,
+    "waste_score": 60,
+    "nexus_score": 65,
+    "energy_analysis": "District has 0 municipal buildings with 12 solar-ready (2,177,351 kWh/yr potential). Deploying BESS across the district (38,500 kWh total capacity) could save $6,897,165/yr in peak shaving.",
+    "waste_analysis": "Generates 7,037 tons refuse/month with only 13.6% diversion rate (16.4% below 30% target). 58170 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "2,393 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (14.5 km away). This would generate 1,196 MWh/month of biogas energy, powering 1,329 apartments and avoiding 345 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q400: 1000 kWh ($178,850/yr); Q192: 1000 kWh ($178,850/yr); Q030: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (50% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Divert 2,393t/mo organics to Hunts Point WRRF \u2192 1,196 MWh/mo biogas",
+      "Deploy BESS at top sites: Q400: 1000 kWh ($178,850/yr)",
+      "Close 16% diversion gap \u2014 add composting sites (currently 5 within 2km)"
+    ]
+  },
+  {
+    "district_code": "QN13",
+    "energy_score": 71,
+    "waste_score": 43,
+    "nexus_score": 49,
+    "energy_analysis": "District has 0 municipal buildings with 11 solar-ready (2,094,752 kWh/yr potential). Deploying BESS across the district (27,350 kWh total capacity) could save $4,900,485/yr in peak shaving.",
+    "waste_analysis": "Generates 5,857 tons refuse/month with only 17.2% diversion rate (12.8% below 30% target). 37788 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,991 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (16.2 km away). This would generate 996 MWh/month of biogas energy, powering 1,106 apartments and avoiding 287 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q435: 1000 kWh ($178,850/yr); Q231: 1000 kWh ($178,850/yr); Q490: 1000 kWh ($178,850/yr)",
+    "equity_note": "Environmental Justice district (43% EJ buildings) \u2014 should receive priority investment in clean energy and waste infrastructure.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Q435: 1000 kWh ($178,850/yr)"
+    ]
+  },
+  {
+    "district_code": "QN14",
+    "energy_score": 61,
+    "waste_score": 61,
+    "nexus_score": 60,
+    "energy_analysis": "District has 0 municipal buildings with 8 solar-ready (1,633,786 kWh/yr potential). Deploying BESS across the district (17,900 kWh total capacity) could save $3,207,135/yr in peak shaving.",
+    "waste_analysis": "Generates 3,561 tons refuse/month with only 12.4% diversion rate (17.6% below 30% target). 17573 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,211 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (21.0 km away). This would generate 605 MWh/month of biogas energy, powering 673 apartments and avoiding 174 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Q410: 1000 kWh ($178,850/yr); Queens 14 District Garage: 1000 kWh ($178,850/yr); Q215_Lucretia Mott: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (27% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Divert 1,211t/mo organics to Newtown Creek WRRF \u2192 605 MWh/mo biogas",
+      "Deploy BESS at top sites: Q410: 1000 kWh ($178,850/yr)",
+      "Close 18% diversion gap \u2014 add composting sites (currently 2 within 2km)"
+    ]
+  },
+  {
+    "district_code": "QN81",
+    "energy_score": 27,
+    "waste_score": 99,
+    "nexus_score": 98,
+    "energy_analysis": "District has 0 municipal buildings with 3 solar-ready (575,410 kWh/yr potential). Deploying BESS across the district (3,250 kWh total capacity) could save $581,620/yr in peak shaving.",
+    "waste_analysis": "Generates 0 tons refuse/month with only 0.0% diversion rate (30.0% below 30% target). 100 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "0 tons/month of organic waste in the refuse stream could be diverted to Hunts Point WRRF (6.9 km away). This would generate 0 MWh/month of biogas energy, powering 0 apartments and avoiding 0 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Queens Museum of Art: 1000 kWh ($178,850/yr); Olmsted Center Campus: FMCP Garage: 500 kWh ($89,425/yr); New York Hall of Science: 250 kWh ($45,070/yr)",
+    "equity_note": "Non-EJ district \u2014 standard investment prioritization applies.",
+    "top_3_actions": [
+      "Close 30% diversion gap \u2014 add composting sites (currently 2 within 2km)",
+      "Buffer EV demand (115 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "QN82",
+    "energy_score": 5,
+    "waste_score": 97,
+    "nexus_score": 99,
+    "energy_analysis": "District has 0 municipal buildings with 0 solar-ready (0 kWh/yr potential). Deploying BESS across the district (200 kWh total capacity) could save $35,770/yr in peak shaving.",
+    "waste_analysis": "Generates 0 tons refuse/month with only 0.0% diversion rate (30.0% below 30% target). 54 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "0 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (8.7 km away). This would generate 0 MWh/month of biogas energy, powering 0 apartments and avoiding 0 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Forest Hills Park CS (Oak Ridge Bldg): 100 kWh ($17,885/yr); Forest Hills Park CS (Oak Ridge Bldg): 100 kWh ($17,885/yr)",
+    "equity_note": "Non-EJ district \u2014 standard investment prioritization applies.",
+    "top_3_actions": [
+      "Close 30% diversion gap \u2014 add composting sites (currently 2 within 2km)"
+    ]
+  },
+  {
+    "district_code": "SI01",
+    "energy_score": 82,
+    "waste_score": 50,
+    "nexus_score": 57,
+    "energy_analysis": "District has 0 municipal buildings with 14 solar-ready (2,442,055 kWh/yr potential). Deploying BESS across the district (36,950 kWh total capacity) could save $6,616,015/yr in peak shaving.",
+    "waste_analysis": "Generates 6,124 tons refuse/month with only 15.7% diversion rate (14.3% below 30% target). 53249 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "2,082 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (17.2 km away). This would generate 1,041 MWh/month of biogas energy, powering 1,157 apartments and avoiding 300 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Port Richmond WWTP: 1000 kWh ($178,850/yr); SI Ferry Maintence Facility - St. George Ferry Termil: 1000 kWh ($178,850/yr); R045: 750 kWh ($134,495/yr)",
+    "equity_note": "Partially EJ area (25% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Port Richmond WWTP: 1000 kWh ($178,850/yr)",
+      "Buffer EV demand (24 ports) with depot-level BESS"
+    ]
+  },
+  {
+    "district_code": "SI02",
+    "energy_score": 57,
+    "waste_score": 54,
+    "nexus_score": 54,
+    "energy_analysis": "District has 0 municipal buildings with 7 solar-ready (2,561,966 kWh/yr potential). Deploying BESS across the district (19,600 kWh total capacity) could save $3,509,750/yr in peak shaving.",
+    "waste_analysis": "Generates 5,106 tons refuse/month with only 14.7% diversion rate (15.3% below 30% target). 38541 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "1,736 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (22.1 km away). This would generate 868 MWh/month of biogas energy, powering 964 apartments and avoiding 250 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: R880: 1000 kWh ($178,850/yr); Ocean Breeze Indoor Athletic Facility: 1000 kWh ($178,850/yr); Staten Island 2 District Garage: 1000 kWh ($178,850/yr)",
+    "equity_note": "Partially EJ area (11% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: R880: 1000 kWh ($178,850/yr)"
+    ]
+  },
+  {
+    "district_code": "SI03",
+    "energy_score": 66,
+    "waste_score": 46,
+    "nexus_score": 50,
+    "energy_analysis": "District has 0 municipal buildings with 12 solar-ready (3,877,599 kWh/yr potential). Deploying BESS across the district (26,000 kWh total capacity) could save $4,657,250/yr in peak shaving.",
+    "waste_analysis": "Generates 5,937 tons refuse/month with only 16.7% diversion rate (13.3% below 30% target). 59375 sanitation complaints, including 0 illegal dumping reports.",
+    "waste_to_energy_analysis": "2,019 tons/month of organic waste in the refuse stream could be diverted to Newtown Creek WRRF (28.8 km away). This would generate 1,009 MWh/month of biogas energy, powering 1,122 apartments and avoiding 291 tons CO\u2082/month.",
+    "bess_recommendation": "Priority BESS deployments: Staten Island 1/3 (New Construction): 1000 kWh ($178,850/yr); R062 - NET ZERO: 1000 kWh ($178,850/yr); R455_Tottenville High School: 1000 kWh ($178,850/yr)",
+    "equity_note": "Partially EJ area (2% EJ buildings) \u2014 equity weighting applies to a subset of sites.",
+    "top_3_actions": [
+      "Deploy BESS at top sites: Staten Island 1/3 (New Construction): 1000 kWh ($178,850/yr)"
+    ]
+  }
+]
