@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { ENERGY_SITES, scoreColor } from '../data/sites';

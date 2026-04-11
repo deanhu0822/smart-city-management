@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { HOURLY_DISPATCH, SOC_DATA, WASTE_FORECAST, DIVERSION_GAP, SCENARIO_DEPLOYMENTS } from '../data/chartData';

@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useCallback, useMemo, useState } from 'react';
 import Map, { Source, Layer, Popup, NavigationControl } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';

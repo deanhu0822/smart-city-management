@@ -1,3 +1,5 @@
+'use client';
+
 /** Custom SVG Sankey-style flow diagrams — Energy Flow + Waste Flow */
 
 const CARD = { background: '#131C2E', border: '1px solid #1E293B', borderRadius: 12, padding: 16 };

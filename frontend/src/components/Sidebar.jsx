@@ -1,3 +1,5 @@
+'use client';
+
 import { useDashboard } from '../context/DashboardContext';
 
 const NAV_ITEMS = [

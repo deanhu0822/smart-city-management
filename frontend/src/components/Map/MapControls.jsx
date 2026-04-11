@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useCallback, useRef } from 'react';
 import { ENERGY_SITES } from '../../data/sites';
 

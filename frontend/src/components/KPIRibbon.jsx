@@ -1,3 +1,5 @@
+'use client';
+
 import { useDashboard } from '../context/DashboardContext';
 import { ENERGY_KPIS, WASTE_KPIS, NEXUS_KPIS } from '../data/sites';
 

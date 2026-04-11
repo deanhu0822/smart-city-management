@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { ENERGY_SITES, WASTE_SITES, NEXUS_SITES, scoreBg, scoreText } from '../data/sites';
