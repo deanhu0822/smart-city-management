@@ -9,7 +9,7 @@ import { ENERGY_SITES, NEXUS_SITES, scoreColor } from '../../data/sites';
 import { BOROUGH_POLYGONS, EJ_POLYGONS, WASTE_DISTRICT_POINTS } from '../../data/districts';
 import districtData from '../../data/top10_district_analysis.json';
 
-/** Build GeoJSON from top10_district_analysis.json at module load time */
+/** District centroid markers from top10_district_analysis.json */
 const TOP10_DISTRICTS_GEOJSON = {
   type: 'FeatureCollection',
   features: districtData.map((d, i) => ({
@@ -27,6 +27,32 @@ const TOP10_DISTRICTS_GEOJSON = {
     },
     geometry: { type: 'Point', coordinates: [d.centroid_lon, d.centroid_lat] },
   })),
+};
+
+/** Individual building points from each district's buildings array */
+const DISTRICT_BUILDINGS_GEOJSON = {
+  type: 'FeatureCollection',
+  features: districtData.flatMap((d, i) =>
+    d.buildings
+      .filter(b => b.latitude != null && b.longitude != null)
+      .map(b => ({
+        type: 'Feature',
+        properties: {
+          districtCode: d.district_code,
+          districtRank: i + 1,
+          site: b.site,
+          address: b.address,
+          agency: b.agency,
+          ej: b.ej,
+          solar_kwh_yr: b.energy.solar_production_kwh_yr,
+          annual_cost_usd: b.energy.est_annual_cost_usd,
+          ghg_co2: b.energy.ghg_tons_co2e_yr,
+          bess_kwh: b.bess_recommendation.capacity_kwh,
+          bess_savings_usd: b.bess_recommendation.est_annual_savings_usd,
+        },
+        geometry: { type: 'Point', coordinates: [b.longitude, b.latitude] },
+      }))
+  ),
 };
 import MapLegend from './MapLegend';
 import MapControls from './MapControls';
@@ -167,6 +193,20 @@ const EJ_FILL_LAYER = {
   },
 };
 
+/** Individual building dots — small circles colored by EJ status */
+const BUILDING_CIRCLE_LAYER = {
+  id: 'district-buildings',
+  type: 'circle',
+  source: 'district-buildings',
+  paint: {
+    'circle-radius': 5,
+    'circle-color': ['case', ['==', ['get', 'ej'], true], '#10B981', '#38BDF8'],
+    'circle-opacity': 0.85,
+    'circle-stroke-color': '#0B1120',
+    'circle-stroke-width': 1,
+  },
+};
+
 /** Top-10 district circle layer — gold ring markers */
 const DISTRICT_CIRCLE_LAYER = {
   id: 'top10-districts',
@@ -274,6 +314,35 @@ export default function CityMap() {
     if (!mapRef.current) return;
     const map = mapRef.current.getMap();
 
+    // Building dots hover — checked in all view modes
+    const buildingFeatures = map.queryRenderedFeatures(e.point, { layers: ['district-buildings'] });
+    if (buildingFeatures.length) {
+      map.getCanvas().style.cursor = 'pointer';
+      const p = buildingFeatures[0].properties;
+      const coords = buildingFeatures[0].geometry.coordinates;
+      const fmtKwh = n => n == null ? '—' : n >= 1e6 ? `${(n/1e6).toFixed(1)}M` : n >= 1e3 ? `${(n/1e3).toFixed(0)}K` : String(Math.round(n));
+      const fmtUsd = n => (!n || n === 0) ? '—' : n >= 1e6 ? `$${(n/1e6).toFixed(1)}M` : `$${(n/1e3).toFixed(0)}K`;
+      setPopup({
+        lng: coords[0], lat: coords[1],
+        content: (
+          <div>
+            <div style={{ fontWeight: 700, marginBottom: 2, color: '#F1F5F9' }}>{p.site || p.address}</div>
+            <div style={{ color: '#94A3B8', fontSize: 11, marginBottom: 4 }}>{p.address} · {p.agency}</div>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 4 }}>
+              <span style={{ background: 'rgba(100,116,139,.15)', color: '#94A3B8', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>
+                {p.districtCode}
+              </span>
+              {p.ej && <span style={{ background: 'rgba(139,92,246,.15)', color: '#C4B5FD', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>EJ</span>}
+            </div>
+            <div style={{ color: '#94A3B8', fontSize: 11 }}>☀ Solar: <span style={{ color: '#FDE047', fontWeight: 600 }}>{fmtKwh(p.solar_kwh_yr)} kWh/yr</span></div>
+            <div style={{ color: '#94A3B8', fontSize: 11 }}>BESS: <span style={{ color: '#FCD34D' }}>{p.bess_kwh} kWh</span> · Savings: <span style={{ color: '#10B981', fontWeight: 600 }}>{fmtUsd(p.bess_savings_usd)}/yr</span></div>
+            {p.ghg_co2 != null && <div style={{ color: '#94A3B8', fontSize: 11 }}>GHG: <span style={{ color: '#6EE7B7' }}>{p.ghg_co2} t CO₂/yr</span></div>}
+          </div>
+        ),
+      });
+      return;
+    }
+
     // Top-10 district hover — checked in all view modes
     const districtFeatures = map.queryRenderedFeatures(e.point, { layers: ['top10-districts'] });
     if (districtFeatures.length) {
@@ -365,6 +434,7 @@ export default function CityMap() {
         onClick={onMapClick}
         onMouseMove={onMouseMove}
         interactiveLayerIds={[
+          'district-buildings',
           'top10-districts',
           ...(viewMode === 'energy' ? ['energy-sites'] : viewMode === 'waste' ? ['waste-districts'] : []),
         ]}
@@ -416,6 +486,11 @@ export default function CityMap() {
             <Layer {...NEXUS_HEATMAP_LAYER} />
           </Source>
         )}
+
+        {/* ── DISTRICT BUILDINGS (all modes) ── */}
+        <Source id="district-buildings" type="geojson" data={DISTRICT_BUILDINGS_GEOJSON}>
+          <Layer {...BUILDING_CIRCLE_LAYER} />
+        </Source>
 
         {/* ── TOP-10 SOLAR DISTRICTS (all modes) ── */}
         <Source id="top10-districts" type="geojson" data={TOP10_DISTRICTS_GEOJSON}>

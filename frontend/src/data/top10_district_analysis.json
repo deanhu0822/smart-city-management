@@ -46,7 +46,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.7934,
+        "longitude": -73.9279
       },
       {
         "site": "M501",
@@ -74,7 +76,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.7936,
+        "longitude": -73.9416
       },
       {
         "site": "M117",
@@ -102,7 +106,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.7943,
+        "longitude": -73.9396
       },
       {
         "site": "M206",
@@ -130,7 +136,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.7985,
+        "longitude": -73.9317
       },
       {
         "site": "M079",
@@ -158,7 +166,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.7992,
+        "longitude": -73.9445
       },
       {
         "site": "M646",
@@ -186,7 +196,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.7849,
+        "longitude": -73.9449
       },
       {
         "site": "M099",
@@ -214,7 +226,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.7883,
+        "longitude": -73.9395
       },
       {
         "site": "Jennie A. Clarke Residence",
@@ -242,7 +256,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.789,
+        "longitude": -73.9459
       },
       {
         "site": "Henry J. Carter Hospital",
@@ -270,7 +286,9 @@
           "capacity_kwh": 250,
           "power_kw": 63,
           "est_annual_savings_usd": 45070
-        }
+        },
+        "latitude": 40.7903,
+        "longitude": -73.9431
       },
       {
         "site": "East 119th Street Veterans Residence",
@@ -298,7 +316,9 @@
           "capacity_kwh": 250,
           "power_kw": 63,
           "est_annual_savings_usd": 45070
-        }
+        },
+        "latitude": 40.8001,
+        "longitude": -73.9455
       }
     ],
     "waste": {
@@ -385,7 +405,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5788,
+        "longitude": -74.1989
       },
       {
         "site": "R062 - NET ZERO",
@@ -413,7 +435,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.535,
+        "longitude": -74.194
       },
       {
         "site": "R455_Tottenville High School",
@@ -441,7 +465,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5045,
+        "longitude": -74.2465
       },
       {
         "site": "Staten Island 3 District Garage (BRS)",
@@ -469,7 +495,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5788,
+        "longitude": -74.1989
       },
       {
         "site": "R036",
@@ -497,7 +525,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5238,
+        "longitude": -74.205
       },
       {
         "site": "R036",
@@ -525,7 +555,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5238,
+        "longitude": -74.205
       },
       {
         "site": "R007",
@@ -553,7 +585,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5215,
+        "longitude": -74.1895
       },
       {
         "site": "R003",
@@ -581,7 +615,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5285,
+        "longitude": -74.2168
       },
       {
         "site": "R050",
@@ -609,7 +645,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5168,
+        "longitude": -74.228
       },
       {
         "site": "R075_I.S. 075 Frank D. Paulo",
@@ -637,7 +675,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.5385,
+        "longitude": -74.183
       }
     ],
     "waste": {
@@ -724,7 +764,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6338,
+        "longitude": -73.9048
       },
       {
         "site": "K515_South Shore Educatiol Campus",
@@ -752,7 +794,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.627,
+        "longitude": -73.8975
       },
       {
         "site": "K211",
@@ -780,7 +824,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.628,
+        "longitude": -73.918
       },
       {
         "site": "K276",
@@ -808,7 +854,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6302,
+        "longitude": -73.923
       },
       {
         "site": "K251",
@@ -836,7 +884,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6353,
+        "longitude": -73.921
       },
       {
         "site": "K272",
@@ -864,7 +914,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.6215,
+        "longitude": -73.907
       },
       {
         "site": "K115",
@@ -892,7 +944,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.6289,
+        "longitude": -73.912
       },
       {
         "site": "K203",
@@ -920,7 +974,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.634,
+        "longitude": -73.9288
       },
       {
         "site": "K222",
@@ -948,7 +1004,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.623,
+        "longitude": -73.934
       },
       {
         "site": "K207",
@@ -976,7 +1034,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.612,
+        "longitude": -73.927
       }
     ],
     "waste": {
@@ -1063,7 +1123,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6806,
+        "longitude": -73.9318
       },
       {
         "site": "K023",
@@ -1091,7 +1153,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6904,
+        "longitude": -73.9412
       },
       {
         "site": "K309",
@@ -1119,7 +1183,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6845,
+        "longitude": -73.934
       },
       {
         "site": "K026",
@@ -1147,7 +1213,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6878,
+        "longitude": -73.9338
       },
       {
         "site": "K117",
@@ -1175,7 +1243,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6915,
+        "longitude": -73.9485
       },
       {
         "site": "K005",
@@ -1203,7 +1273,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.683,
+        "longitude": -73.9368
       },
       {
         "site": "K044",
@@ -1231,7 +1303,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6852,
+        "longitude": -73.9445
       },
       {
         "site": "K057",
@@ -1259,7 +1333,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.6858,
+        "longitude": -73.933
       },
       {
         "site": "K003",
@@ -1287,7 +1363,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.6862,
+        "longitude": -73.941
       },
       {
         "site": "K035",
@@ -1315,7 +1393,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.6835,
+        "longitude": -73.938
       }
     ],
     "waste": {
@@ -1402,7 +1482,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.59,
+        "longitude": -73.936
       },
       {
         "site": "K043",
@@ -1430,7 +1512,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5845,
+        "longitude": -73.9415
       },
       {
         "site": "K425",
@@ -1458,7 +1542,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5835,
+        "longitude": -73.944
       },
       {
         "site": "Temporary Building #8",
@@ -1486,7 +1572,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.578,
+        "longitude": -73.9365
       },
       {
         "site": "K014",
@@ -1514,7 +1602,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5915,
+        "longitude": -73.933
       },
       {
         "site": "K206",
@@ -1542,7 +1632,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.595,
+        "longitude": -73.948
       },
       {
         "site": "K234",
@@ -1570,7 +1662,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.588,
+        "longitude": -73.9555
       },
       {
         "site": "K052",
@@ -1598,7 +1692,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.591,
+        "longitude": -73.94
       },
       {
         "site": "K194",
@@ -1626,7 +1722,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.593,
+        "longitude": -73.937
       },
       {
         "site": "K278_J.H.S. 278 Marine Park",
@@ -1654,7 +1752,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.597,
+        "longitude": -73.931
       }
     ],
     "waste": {
@@ -1741,7 +1841,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.584,
+        "longitude": -74.093
       },
       {
         "site": "Ocean Breeze Indoor Athletic Facility",
@@ -1769,7 +1871,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.5745,
+        "longitude": -74.074
       },
       {
         "site": "Staten Island 2 District Garage",
@@ -1797,7 +1901,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.582,
+        "longitude": -74.162
       },
       {
         "site": "R440",
@@ -1825,7 +1931,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.599,
+        "longitude": -74.128
       },
       {
         "site": "R069_Daniel D. Tompkins School",
@@ -1853,7 +1961,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6015,
+        "longitude": -74.1155
       },
       {
         "site": "R054",
@@ -1881,7 +1991,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.605,
+        "longitude": -74.138
       },
       {
         "site": "Greenbelt tive Plant Center",
@@ -1909,7 +2021,9 @@
           "capacity_kwh": 250,
           "power_kw": 63,
           "est_annual_savings_usd": 45070
-        }
+        },
+        "latitude": 40.593,
+        "longitude": -74.151
       },
       {
         "site": "Greenbelt Conservancy Headquarters",
@@ -1937,7 +2051,9 @@
           "capacity_kwh": 100,
           "power_kw": 25,
           "est_annual_savings_usd": 17885
-        }
+        },
+        "latitude": 40.588,
+        "longitude": -74.143
       },
       {
         "site": "Brielle Ave",
@@ -1965,7 +2081,9 @@
           "capacity_kwh": 100,
           "power_kw": 25,
           "est_annual_savings_usd": 17885
-        }
+        },
+        "latitude": 40.576,
+        "longitude": -74.082
       },
       {
         "site": "R002",
@@ -1993,7 +2111,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.581,
+        "longitude": -74.089
       }
     ],
     "waste": {
@@ -2080,7 +2200,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.7637,
+        "longitude": -73.739
       },
       {
         "site": "Q405",
@@ -2108,7 +2230,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.7605,
+        "longitude": -73.778
       },
       {
         "site": "Q025",
@@ -2136,7 +2260,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.7655,
+        "longitude": -73.757
       },
       {
         "site": "Q213",
@@ -2164,7 +2290,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.729,
+        "longitude": -73.738
       },
       {
         "site": "Q205",
@@ -2192,7 +2320,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.763,
+        "longitude": -73.769
       },
       {
         "site": "Q074",
@@ -2220,7 +2350,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.748,
+        "longitude": -73.759
       },
       {
         "site": "Q046",
@@ -2248,7 +2380,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.7535,
+        "longitude": -73.741
       },
       {
         "site": "Q130",
@@ -2276,7 +2410,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.763,
+        "longitude": -73.747
       },
       {
         "site": "Q162",
@@ -2304,7 +2440,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.748,
+        "longitude": -73.742
       },
       {
         "site": "Science Building",
@@ -2332,7 +2470,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.738,
+        "longitude": -73.736
       }
     ],
     "waste": {
@@ -2419,7 +2559,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6405,
+        "longitude": -74.1365
       },
       {
         "site": "SI Ferry Maintence Facility - St. George Ferry Termil",
@@ -2447,7 +2589,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6433,
+        "longitude": -74.0739
       },
       {
         "site": "R045",
@@ -2475,7 +2619,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.631,
+        "longitude": -74.104
       },
       {
         "site": "121st Precinct",
@@ -2503,7 +2649,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.625,
+        "longitude": -74.151
       },
       {
         "site": "R445_Port Richmond High School",
@@ -2531,7 +2679,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.6362,
+        "longitude": -74.1335
       },
       {
         "site": "R029",
@@ -2559,7 +2709,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.624,
+        "longitude": -74.141
       },
       {
         "site": "R040",
@@ -2587,7 +2739,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.641,
+        "longitude": -74.077
       },
       {
         "site": "Lyons Pool and Recreation Center",
@@ -2615,7 +2769,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.64,
+        "longitude": -74.078
       },
       {
         "site": "Mariner's Harbor Library",
@@ -2643,7 +2799,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.6425,
+        "longitude": -74.134
       },
       {
         "site": "Bldg A/Staten Island Museum",
@@ -2671,7 +2829,9 @@
           "capacity_kwh": 250,
           "power_kw": 63,
           "est_annual_savings_usd": 45070
-        }
+        },
+        "latitude": 40.6432,
+        "longitude": -74.102
       }
     ],
     "waste": {
@@ -2758,7 +2918,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.6815,
+        "longitude": -73.787
       },
       {
         "site": "Q192",
@@ -2786,7 +2948,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.711,
+        "longitude": -73.753
       },
       {
         "site": "Q030",
@@ -2814,7 +2978,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.669,
+        "longitude": -73.766
       },
       {
         "site": "Q072_Catherine & Count Basie Middle School 72",
@@ -2842,7 +3008,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.677,
+        "longitude": -73.784
       },
       {
         "site": "Q008",
@@ -2870,7 +3038,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.701,
+        "longitude": -73.798
       },
       {
         "site": "Q136",
@@ -2898,7 +3068,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.686,
+        "longitude": -73.753
       },
       {
         "site": "Q223",
@@ -2926,7 +3098,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.692,
+        "longitude": -73.793
       },
       {
         "site": "Q116",
@@ -2954,7 +3128,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.702,
+        "longitude": -73.789
       },
       {
         "site": "Q015",
@@ -2982,7 +3158,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.687,
+        "longitude": -73.775
       },
       {
         "site": "Q035",
@@ -3010,7 +3188,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.706,
+        "longitude": -73.759
       }
     ],
     "waste": {
@@ -3097,7 +3277,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.8265,
+        "longitude": -73.857
       },
       {
         "site": "X125",
@@ -3125,7 +3307,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.8265,
+        "longitude": -73.852
       },
       {
         "site": "X131_J.H.S. 131 Albert Einstein",
@@ -3153,7 +3337,9 @@
           "capacity_kwh": 1000,
           "power_kw": 250,
           "est_annual_savings_usd": 178850
-        }
+        },
+        "latitude": 40.83,
+        "longitude": -73.856
       },
       {
         "site": "X102",
@@ -3181,7 +3367,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.823,
+        "longitude": -73.859
       },
       {
         "site": "X100",
@@ -3209,7 +3397,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.83,
+        "longitude": -73.849
       },
       {
         "site": "X093",
@@ -3237,7 +3427,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.8275,
+        "longitude": -73.852
       },
       {
         "site": "X036",
@@ -3265,7 +3457,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.825,
+        "longitude": -73.8505
       },
       {
         "site": "X077",
@@ -3293,7 +3487,9 @@
           "capacity_kwh": 750,
           "power_kw": 188,
           "est_annual_savings_usd": 134495
-        }
+        },
+        "latitude": 40.828,
+        "longitude": -73.854
       },
       {
         "site": "Bronx River Greenway River House",
@@ -3321,7 +3517,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.831,
+        "longitude": -73.865
       },
       {
         "site": "X047",
@@ -3349,7 +3547,9 @@
           "capacity_kwh": 500,
           "power_kw": 125,
           "est_annual_savings_usd": 89425
-        }
+        },
+        "latitude": 40.8345,
+        "longitude": -73.8555
       }
     ],
     "waste": {
