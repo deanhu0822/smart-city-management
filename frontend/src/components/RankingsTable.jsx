@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useDashboard } from '../context/DashboardContext';
-import { ENERGY_SITES, WASTE_SITES, NEXUS_SITES, scoreColor, scoreBg, scoreText } from '../data/sites';
+import { ENERGY_SITES, WASTE_SITES, NEXUS_SITES, scoreBg, scoreText } from '../data/sites';
 
 function ScoreBadge({ score }) {
   return (
@@ -13,10 +13,6 @@ function ScoreBadge({ score }) {
       {score}
     </span>
   );
-}
-
-function EJDot({ ej }) {
-  return <span style={{ color: ej ? '#10B981' : '#334155', fontSize: 14 }}>●</span>;
 }
 
 function OrganicPill({ organic }) {
@@ -84,16 +80,17 @@ export default function RankingsTable() {
               <thead>
                 <tr>
                   <th style={TH}>#</th>
-                  <th style={TH}>Site Name</th>
+                  <th style={TH}>Site</th>
                   <th style={TH}>Borough</th>
-                  <th style={TH}>Score</th>
-                  <th style={TH}>Solar</th>
-                  <th style={TH}>EJ</th>
-                  <th style={TH}>Savings</th>
+                  <th style={TH}>Energy</th>
+                  <th style={TH}>Waste</th>
+                  <th style={TH}>Nexus</th>
+                  <th style={TH}>BESS</th>
+                  <th style={TH}>Savings/yr</th>
                 </tr>
               </thead>
               <tbody>
-                {rows.map((s, i) => {
+                {rows.map((s) => {
                   const isSelected = s.id === selectedId;
                   return (
                     <tr
@@ -107,16 +104,18 @@ export default function RankingsTable() {
                       onMouseEnter={e => !isSelected && (e.currentTarget.style.background = 'rgba(59,130,246,.04)')}
                       onMouseLeave={e => !isSelected && (e.currentTarget.style.background = 'transparent')}
                     >
-                      <td style={{ ...TD, color: '#475569', borderLeft: isSelected ? '2px solid #3B82F6' : '2px solid transparent' }}>{i + 1}</td>
-                      <td style={{ ...TD, fontWeight: 500, maxWidth: 140, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.name}</td>
+                      <td style={{ ...TD, color: '#475569', borderLeft: isSelected ? '2px solid #3B82F6' : '2px solid transparent' }}>{s.rank}</td>
+                      <td style={{ ...TD, fontWeight: 500, maxWidth: 130, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                          title={s.name}>{s.name}</td>
                       <td style={TD}>
                         <span style={{ background: 'rgba(100,116,139,.15)', color: '#94A3B8', padding: '2px 6px', borderRadius: 20, fontSize: 10 }}>
-                          {s.borough}
+                          {s.borough === 'Staten Island' ? 'S.I.' : s.borough}
                         </span>
                       </td>
-                      <td style={TD}><ScoreBadge score={s.score} /></td>
-                      <td style={{ ...TD, color: '#F59E0B' }}>{s.solar.toFixed(2)}</td>
-                      <td style={TD}><EJDot ej={s.ej} /></td>
+                      <td style={TD}><ScoreBadge score={s.energyScore} /></td>
+                      <td style={TD}><ScoreBadge score={s.wasteScore} /></td>
+                      <td style={TD}><ScoreBadge score={s.nexusScore} /></td>
+                      <td style={{ ...TD, color: '#93C5FD', fontVariantNumeric: 'tabular-nums' }}>{s.bessKwh} kWh</td>
                       <td style={{ ...TD, color: '#10B981', fontWeight: 600 }}>{s.savings}</td>
                     </tr>
                   );

@@ -3,7 +3,7 @@ import Map, { Source, Layer, Popup, NavigationControl } from 'react-map-gl/mapli
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 import { useDashboard } from '../../context/DashboardContext';
-import { ENERGY_SITES, WASTE_SITES, NEXUS_SITES, scoreColor } from '../../data/sites';
+import { ENERGY_SITES, NEXUS_SITES, scoreColor } from '../../data/sites';
 import { BOROUGH_POLYGONS, EJ_POLYGONS, WASTE_DISTRICT_POINTS } from '../../data/districts';
 import MapLegend from './MapLegend';
 import MapControls from './MapControls';
@@ -54,11 +54,11 @@ const ENERGY_CIRCLE_LAYER = {
   type: 'circle',
   source: 'energy-sites',
   paint: {
-    'circle-radius': ['interpolate', ['linear'], ['get', 'score'], 50, 6, 80, 9, 100, 12],
+    'circle-radius': ['interpolate', ['linear'], ['get', 'nexusScore'], 88, 7, 95, 10, 100, 13],
     'circle-color': [
       'case',
-      ['>=', ['get', 'score'], 80], '#EF4444',
-      ['>=', ['get', 'score'], 60], '#F59E0B',
+      ['>=', ['get', 'nexusScore'], 95], '#EF4444',
+      ['>=', ['get', 'nexusScore'], 90], '#F59E0B',
       '#3B82F6',
     ],
     'circle-opacity': 0.9,
@@ -232,8 +232,8 @@ export default function CityMap() {
               <div style={{ fontWeight: 700, marginBottom: 4, color: '#F1F5F9' }}>{p.name}</div>
               <div style={{ color: '#94A3B8', marginBottom: 2 }}>{p.borough} · {p.agency}</div>
               <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                <span style={{ color: scoreColor(p.score), fontWeight: 700, fontSize: 14 }}>{p.score}</span>
-                <span style={{ color: '#64748B', fontSize: 11 }}>priority score</span>
+                <span style={{ color: scoreColor(p.nexusScore), fontWeight: 700, fontSize: 14 }}>{p.nexusScore}</span>
+                <span style={{ color: '#64748B', fontSize: 11 }}>nexus score</span>
               </div>
               <div style={{ color: '#6EE7B7', marginTop: 2 }}>Savings: {p.savings}/yr</div>
               {p.ej && <div style={{ marginTop: 3 }}><span style={{ background: 'rgba(16,185,129,.15)', color: '#6EE7B7', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>EJ Area</span></div>}
