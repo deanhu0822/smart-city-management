@@ -201,3 +201,7 @@ The Qwen 3 80B provides significantly more capacity than Llama 3.1 8B NIM for nu
 Built for [Spark Hack NYC 2026](https://luma.com/spark-hack-nyc) — Environmental Impact Track.
 
 **NVIDIA GB10**: 128 GB unified memory, 1 PFLOP FP4 on Acer Veriton GN100
+
+## Resources 
+
+[Spark Hack Notion Page](https://concrete-panther-c83.notion.site/Spark-Hack-Series-New-York-Presented-by-NVIDIA-Acer-and-Antler-611f567d17cc8207881a0162071001c8)
