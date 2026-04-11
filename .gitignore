@@ -1,7 +1,11 @@
 # Data files (too large for git)
-data/raw/
-data/clean/
-data/processed/
+data/
+# Keep gold folder
+!data/gold/
+# Keep silver and other subfolders if needed, but not their contents
+!data/silver/
+!data/bridge/
+!data/spatial/
 
 # Python
 __pycache__/
@@ -18,4 +22,3 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
-data/

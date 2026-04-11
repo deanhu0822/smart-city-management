@@ -176,6 +176,24 @@ time_series = pd.read_parquet("data/gold/time_series.parquet")
 # (See: design doc/BESS_simulation.md)
 ```
 
+## Future Things to Implement
+
+### Local LLM Scoring (Qwen 3 80B)
+
+The mini workstation already has the Qwen 3 80B model activated and available for local inference. For future local LLM scoring of sites, we can leverage this model directly:
+
+```bash
+# Using the local Qwen 3 80B endpoint (already running on the workstation)
+curl -X POST http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen3-80b",
+    "messages": [{"role": "user", "content": "Score this site for solar potential..."}]
+  }'
+```
+
+The Qwen 3 80B provides significantly more capacity than Llama 3.1 8B NIM for nuanced site scoring, natural language reasoning about building characteristics, and batch processing of site evaluations.
+
 ---
 
 ## Team
