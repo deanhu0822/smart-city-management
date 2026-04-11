@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #050505;
+  --band: #333230;
+  --ink: #131313;
+  --hero: #f0a75d;
+  --panel: #d4d4d6;
+  --accent: #bb5041;
+  --module: #88a382;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-band: var(--band);
+  --color-ink: var(--ink);
+  --color-hero: var(--hero);
+  --color-panel: var(--panel);
+  --color-accent: var(--accent);
+  --color-module: var(--module);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-mono-ui);
+  --font-mono: var(--font-mono-ui);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-mono-ui), monospace;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--hero);
+  color: var(--ink);
+}
+
+.signal-bars,
+.barcode {
+  display: inline-block;
+  height: 14px;
+  background-size: 28px 14px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(19, 19, 19, 0.78) 0 2px,
+      transparent 2px 4px,
+      rgba(19, 19, 19, 0.62) 4px 5px,
+      transparent 5px 7px
+    );
+  animation: flow-bars 1.8s linear infinite;
+}
+
+.signal-bars {
+  width: 92px;
+}
+
+.barcode {
+  width: 78px;
+}
+
+@keyframes flow-bars {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 28px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-bars,
+  .barcode {
+    animation: none;
+  }
+}
+
