@@ -4,7 +4,7 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from typing import Optional
 
 app = FastAPI()
-MODEL = "llama3.2-vision"
+MODEL = "qwen3.5"
 
 @app.post("/describe")
 async def describe_image(
