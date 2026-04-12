@@ -2,6 +2,12 @@ import ollama
 from pydantic import BaseModel
 from typing import List
 from typing import Optional, List, Literal
+import dotenv
+import os
+
+dotenv.load()
+
+MODEL = os.getenv("MODEL")
 
 # 1. Define the classification schema
 class WasteClassification(BaseModel):
@@ -17,24 +23,27 @@ class ImageAnalysis(BaseModel):
 
 # 2. Request structured output from a vision model
 # Ensure you have the vision model pulled (e.g., ollama pull qwen3.5)
-IMAGE_PATH = 'path_to_your_image.jpg'
+# IMAGE_PATH = 'path_to_your_image.jpg'
 
-response = ollama.chat(
-    model='qwen3.5',
-    messages=[{
-        'role': 'user',
-        'content': 'Analyze this image and identify if it contains organics, electronics, plastic, or batteries.',
-        'images': [IMAGE_PATH]
-    }],
-    format=WasteClassification.model_json_schema()
-)
+def classify_image(image_path):
+    response = ollama.chat(
+        model=MODEL,
+        messages=[{
+            'role': 'user',
+            'content': 'Analyze this image and identify if it contains organics, electronics, plastic, or batteries.',
+            'images': [image_path]
+        }],
+        format=WasteClassification.model_json_schema()
+    )
 
-# 3. Parse and use the structured data
-analysis = WasteClassification.model_validate_json(response.message.content)
 
-print(f"Analysis Results for {IMAGE_PATH}:")
-print(f"- Organics: {analysis.contains_organics}")
-print(f"- Electronics: {analysis.contains_electronics}")
-print(f"- Plastic: {analysis.contains_plastic}")
-print(f"- Batteries: {analysis.contains_batteries}")
-print(f"- Detected Items: {', '.join(analysis.detected_items)}")
+    print(f"Analysis Results for {image_path}:")
+    print(f"- Organics: {analysis.contains_organics}")
+    print(f"- Electronics: {analysis.contains_electronics}")
+    print(f"- Plastic: {analysis.contains_plastic}")
+    print(f"- Batteries: {analysis.contains_batteries}")
+    print(f"- Detected Items: {', '.join(analysis.detected_items)}")
+
+    # 3. Parse and use the structured data
+    analysis = WasteClassification.model_validate_json(response.message.content)
+    return analysis
