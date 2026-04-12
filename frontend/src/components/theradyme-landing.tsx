@@ -19,6 +19,13 @@ const microLabel =
 const bodyCopy = "text-[rgba(19,19,19,0.72)]";
 const shellPadding = "px-3 sm:px-4 lg:px-6";
 
+type NetworkInfo = {
+  downlink?: number;
+  effectiveType?: string;
+  addEventListener?: (type: "change", listener: () => void) => void;
+  removeEventListener?: (type: "change", listener: () => void) => void;
+};
+
 const getNewYorkTime = () =>
   new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York",
@@ -27,8 +34,41 @@ const getNewYorkTime = () =>
     hour12: true,
   }).format(new Date());
 
+const getNetworkInfo = (): NetworkInfo | undefined => {
+  const nav = navigator as Navigator & {
+    connection?: NetworkInfo;
+    mozConnection?: NetworkInfo;
+    webkitConnection?: NetworkInfo;
+  };
+
+  return nav.connection ?? nav.mozConnection ?? nav.webkitConnection;
+};
+
+const getWifiStrength = () => {
+  const connection = getNetworkInfo();
+
+  if (!connection) {
+    return navigator.onLine ? "Online" : "Offline";
+  }
+
+  const downlink = connection.downlink ?? 0;
+  const effectiveType = connection.effectiveType?.toUpperCase();
+
+  let strength = "Weak";
+  if (downlink >= 25) {
+    strength = "Excellent";
+  } else if (downlink >= 10) {
+    strength = "Strong";
+  } else if (downlink >= 3) {
+    strength = "Moderate";
+  }
+
+  return effectiveType ? `${strength} (${effectiveType})` : strength;
+};
+
 export function SmartCityManagmentLanding() {
   const [estTime, setEstTime] = useState("--:--");
+  const [wifiStrength, setWifiStrength] = useState("--");
 
   useEffect(() => {
     const updateTime = () => {
@@ -43,6 +83,22 @@ export function SmartCityManagmentLanding() {
     };
   }, []);
 
+  useEffect(() => {
+    const updateWifiStrength = () => {
+      setWifiStrength(getWifiStrength());
+    };
+
+    updateWifiStrength();
+    const connection = getNetworkInfo();
+    connection?.addEventListener?.("change", updateWifiStrength);
+    const intervalId = window.setInterval(updateWifiStrength, 15_000);
+
+    return () => {
+      connection?.removeEventListener?.("change", updateWifiStrength);
+      window.clearInterval(intervalId);
+    };
+  }, []);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -50,27 +106,6 @@ export function SmartCityManagmentLanding() {
   return (
     <div className="overflow-x-hidden bg-canvas">
       <main className={`mx-auto w-full max-w-[1440px] ${shellPadding} pt-3 sm:pt-4`}>
-        {/* ── TOPBAR ── */}
-        <header
-          className={`${panelRound} flex flex-col items-start gap-4 rounded-[1.4rem] bg-panel px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:rounded-full sm:px-6 sm:py-3.5`}
-        >
-          <div
-            aria-hidden="true"
-            className="shrink-0 h-[15px] w-[313px]"
-          />
-
-          <nav
-            aria-label="Primary"
-            className="flex w-full flex-wrap items-center gap-x-4 gap-y-2 text-[0.62rem] font-semibold uppercase tracking-[0.14em] sm:w-auto sm:justify-end sm:gap-[clamp(18px,2.8vw,48px)] sm:text-[0.66rem]"
-          >
-            {NAV_ITEMS.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        </header>
-
         {/* ── HERO GRID ── */}
         <section className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1.75fr)_minmax(18rem,1fr)]">
           {/* LEFT — hero panel */}
@@ -139,36 +174,36 @@ export function SmartCityManagmentLanding() {
               id="audit-shield"
               className={`${panelRound} flex flex-col bg-panel px-4 pb-4 pt-4 sm:px-5 sm:pb-5 sm:pt-5`}
             >
-              <div className={microLabel}>Audit Risk Assessment</div>
+              <div className={microLabel}>Simulation</div>
 
               <div className="mt-3 font-display text-[clamp(2.4rem,5vw,3.6rem)] uppercase leading-none tracking-[-0.06em]">
-                0.04%
+                Energy
               </div>
               <p
                 className={`mt-2 text-[0.82rem] leading-[1.5] ${bodyCopy}`}
               >
-                Historical industry avg: 2.4%
+                total power saved per day: 87.2 kW
               </p>
 
               <div className="mt-4 grid min-h-[68px] grid-cols-1 border border-[rgba(19,19,19,0.55)] sm:grid-cols-[1fr_auto]">
                 <div className="flex items-center px-4">
-                  <span className={microLabel}>Risk Lvl</span>
+                  <span className={microLabel}>Daily Savings</span>
                 </div>
                 <div className="flex items-center justify-center border-t border-[rgba(19,19,19,0.55)] px-5 py-3 sm:border-l sm:border-t-0 sm:py-0">
                   <span className="font-display text-[clamp(1.4rem,2.8vw,2rem)] uppercase leading-none tracking-[-0.06em]">
-                    Low
+                    $38.50
                   </span>
                 </div>
               </div>
 
               <div className="mt-auto pt-8">
-                <div className={microLabel}>Deduction Discovery</div>
-                <div className="mt-7 grid grid-cols-4 gap-2">
+                <div className={microLabel}>NYC Open Data</div>
+                <div className="flow-strip-wrap mt-7 grid grid-cols-4 gap-2">
                   {DISCOVERY_BARS.map((i) => (
                     <span
                       key={i}
                       aria-hidden="true"
-                      className="block h-[2px] bg-[rgba(19,19,19,0.6)]"
+                      className="flow-strip block h-[2px]"
                     />
                   ))}
                 </div>
@@ -176,11 +211,21 @@ export function SmartCityManagmentLanding() {
             </article>
 
             <article
-              className={`${panelRound} flex min-h-[72px] items-center justify-center bg-accent px-5 py-4 sm:min-h-[82px] sm:px-6 sm:py-5`}
+              className={`${panelRound} flex min-h-[72px] flex-col items-center justify-center gap-2 bg-accent px-5 py-4 sm:min-h-[82px] sm:px-6 sm:py-5`}
             >
-              <span className="text-[0.62rem] uppercase tracking-[0.18em] text-[rgba(19,19,19,0.65)]">
-                Recents
-              </span>
+              <div className="grid w-full grid-cols-2 items-center gap-2 sm:gap-3">
+                {NAV_ITEMS.map((item, index) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={`inline-flex min-w-[104px] justify-center rounded-full border border-transparent bg-[rgba(19,19,19,0.16)] px-4 py-1.5 text-[0.76rem] font-semibold uppercase tracking-[0.14em] text-[rgba(19,19,19,0.8)] transition-[background-color,border-color,color,transform] hover:bg-[rgba(19,19,19,0.24)] active:scale-[0.98] active:border-white active:bg-transparent active:text-white focus-visible:border-white focus-visible:outline-none ${
+                      index === 0 ? "justify-self-start" : "justify-self-end"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
             </article>
           </div>
         </section>
@@ -195,18 +240,17 @@ export function SmartCityManagmentLanding() {
               className={`${panelCard} flex min-h-[200px] flex-col bg-module px-4 pb-4 pt-4 sm:min-h-[220px] sm:px-5 sm:pt-5`}
             >
               <div className="font-display text-[clamp(2.4rem,3.6vw,3.6rem)] uppercase leading-none tracking-[-0.06em]">
-                TS26
+                Waste
               </div>
               <div className="mt-2.5 h-px bg-[rgba(19,19,19,0.5)]" />
-              <div className={`${microLabel} mt-3`}>Module A</div>
+              <div className={`${microLabel} mt-3`}>NYC Open Data</div>
               <div className="mt-2 max-w-[14ch] font-display text-[clamp(1.05rem,1.4vw,1.4rem)] uppercase leading-[1.2] tracking-[-0.05em]">
-                Retroactive Scanning
+                Clean
               </div>
               <p
                 className={`mt-3 max-w-[26ch] text-[0.85rem] leading-[1.48] ${bodyCopy}`}
               >
-                Deep scan of 3 previous fiscal years for unclaimed R&amp;D
-                credits.
+                Optimize trash clean for 2.4 million units from NYC Open Data.
               </p>
             </article>
 
@@ -216,9 +260,11 @@ export function SmartCityManagmentLanding() {
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className={microLabel}>Compliance Engine</div>
-                  <div className="mt-2 max-w-[9ch] font-display text-[clamp(1.1rem,1.6vw,1.55rem)] uppercase leading-[1.2] tracking-[-0.05em]">
-                    Global Entity Sync
+                  <div className={microLabel}>Fine Tuning</div>
+                  <div className="mt-2 max-w-[14ch] font-display text-[clamp(1.1rem,1.6vw,1.55rem)] uppercase leading-[1.2] tracking-[-0.05em]">
+                    Nemotron-Nano 12B
+                    <br />
+                    Qwen VL-8B
                   </div>
                 </div>
 
@@ -249,15 +295,15 @@ export function SmartCityManagmentLanding() {
 
               <div className="mt-auto grid min-h-[72px] grid-cols-1 border border-[rgba(19,19,19,0.55)] sm:grid-cols-2">
                 <div className="flex flex-col justify-center px-4 py-3">
-                  <div className={microLabel}>Jurisdictions</div>
+                  <div className={microLabel}>samples</div>
                   <div className="mt-1 font-display text-[1.2rem] uppercase leading-none tracking-[-0.05em]">
-                    142
+                    5000
                   </div>
                 </div>
                 <div className="flex flex-col justify-center border-t border-[rgba(19,19,19,0.55)] px-4 py-3 sm:border-l sm:border-t-0">
-                  <div className={microLabel}>Speed</div>
+                  <div className={microLabel}>batch</div>
                   <div className="mt-1 font-display text-[1.2rem] uppercase leading-none tracking-[-0.05em]">
-                    2.47s
+                    4
                   </div>
                 </div>
               </div>
@@ -268,15 +314,14 @@ export function SmartCityManagmentLanding() {
               id="pricing"
               className={`${panelCard} flex min-h-[200px] flex-col bg-hero px-4 pb-4 pt-4 md:col-span-2 sm:min-h-[220px] sm:px-5 sm:pt-5 xl:col-span-1`}
             >
-              <div className={microLabel}>Data Security</div>
+              <div className={microLabel}>Local Processing &amp; Privacy</div>
               <div className="mt-4 inline-flex w-fit items-center justify-center border border-[rgba(19,19,19,0.6)] px-4 py-2.5 font-display text-[clamp(1.05rem,1.7vw,1.6rem)] uppercase leading-none tracking-[-0.05em]">
-                AES-256
+                NVIDIA GB10
               </div>
               <p
                 className={`mt-5 max-w-[26ch] text-[0.85rem] leading-[1.48] ${bodyCopy}`}
               >
-                Military-grade encryption for all financial ledgers.
-                Zero-knowledge architecture.
+                128 GB unified memory, 1 PFLOP FP4 on Acer Veriton GN100.
               </p>
               <span className="barcode mt-auto" aria-hidden="true" />
             </article>
@@ -292,9 +337,9 @@ export function SmartCityManagmentLanding() {
               New York
             </div>
             <div className="min-[620px]:text-right">
-              SYS_ID: #E0A15E
+              SYS_ID: 6
               <br />
-              LATENCY: 12MS
+              WIFI: {wifiStrength}
             </div>
           </footer>
         </div>
