@@ -8,6 +8,7 @@ import { useDashboard } from '../../context/DashboardContext';
 import { ENERGY_SITES, NEXUS_SITES, scoreColor } from '../../data/sites';
 import { BOROUGH_POLYGONS, EJ_POLYGONS, WASTE_DISTRICT_POINTS } from '../../data/districts';
 import districtData from '../../data/top10_district_analysis.json';
+import highlightData from '../../data/highlight_buildings.json';
 
 /** District centroid markers from top10_district_analysis.json */
 const TOP10_DISTRICTS_GEOJSON = {
@@ -54,6 +55,64 @@ const DISTRICT_BUILDINGS_GEOJSON = {
       }))
   ),
 };
+/** Highlighted buildings GeoJSON */
+const HIGHLIGHT_BUILDINGS_GEOJSON = {
+  type: 'FeatureCollection',
+  features: highlightData.map(b => ({
+    type: 'Feature',
+    properties: {
+      rank: b.rank,
+      site: b.site,
+      address: b.address,
+      borough: b.borough,
+      district_code: b.district_code,
+      district_name: b.district_name,
+      agency: b.agency,
+      ej: b.environmental_justice_area === 'Yes',
+      energy_score: b.energy_score,
+      waste_score: b.waste_score,
+      nexus_score: b.nexus_score,
+      bess_kwh: b.recommended_bess_kwh,
+      savings_usd: b.estimated_annual_savings_usd,
+      recommendation: b.top_recommendation,
+      why: b.why_highlighted,
+    },
+    geometry: { type: 'Point', coordinates: [b.lon, b.lat] },
+  })),
+};
+
+/** Star glow — soft amber circle behind the star */
+const HIGHLIGHT_GLOW_LAYER = {
+  id: 'highlight-glow',
+  type: 'circle',
+  source: 'highlight-buildings',
+  paint: {
+    'circle-radius': 14,
+    'circle-color': 'rgba(251,191,36,0.15)',
+    'circle-stroke-color': 'rgba(251,191,36,0.4)',
+    'circle-stroke-width': 1,
+  },
+};
+
+/** Star symbol layer using ★ Unicode */
+const HIGHLIGHT_STAR_LAYER = {
+  id: 'highlight-stars',
+  type: 'symbol',
+  source: 'highlight-buildings',
+  layout: {
+    'text-field': '★',
+    'text-size': 22,
+    'text-allow-overlap': true,
+    'text-ignore-placement': true,
+    'text-anchor': 'center',
+  },
+  paint: {
+    'text-color': '#FBBF24',
+    'text-halo-color': '#0B1120',
+    'text-halo-width': 1.5,
+  },
+};
+
 import MapLegend from './MapLegend';
 import MapControls from './MapControls';
 
@@ -251,7 +310,7 @@ export default function CityMap() {
       (borough === 'All Boroughs' || s.borough === borough) && s.score >= minScore
     ), [borough, minScore]);
 
-  const energyGeoJSON     = useMemo(() => buildEnergyGeoJSON(filteredEnergySites), [filteredEnergySites]);
+  // const energyGeoJSON     = useMemo(() => buildEnergyGeoJSON(filteredEnergySites), [filteredEnergySites]);
   const nexusGeoJSON      = useMemo(() => buildNexusGeoJSON(NEXUS_SITES), []);
   const wasteDistrictData = useMemo(() => WASTE_DISTRICT_POINTS, []);
 
@@ -268,6 +327,48 @@ export default function CityMap() {
   const onMapClick = useCallback((e) => {
     if (!mapRef.current) return;
     const map = mapRef.current.getMap();
+
+    // Highlighted building star click — all modes
+    const starClick = map.queryRenderedFeatures(e.point, { layers: ['highlight-stars'] });
+    if (starClick.length) {
+      const p = starClick[0].properties;
+      const coords = starClick[0].geometry.coordinates;
+      setPopup({
+        lng: coords[0], lat: coords[1],
+        content: (
+          <div style={{ minWidth: 220 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+              <span style={{ fontSize: 16, lineHeight: 1 }}>★</span>
+              <span style={{ fontWeight: 700, fontSize: 13, color: '#F1F5F9' }}>{p.site}</span>
+            </div>
+            {p.address && p.address !== 'N/A' && (
+              <div style={{ color: '#60A5FA', fontSize: 12, marginBottom: 4 }}>📍 {p.address}</div>
+            )}
+            <div style={{ color: '#94A3B8', fontSize: 11, marginBottom: 6 }}>
+              {p.district_name} · {p.borough}
+            </div>
+            <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', marginBottom: 6 }}>
+              <span style={{ background: 'rgba(100,116,139,.2)', color: '#94A3B8', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>{p.agency}</span>
+              <span style={{ background: 'rgba(100,116,139,.2)', color: '#94A3B8', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>{p.district_code}</span>
+              {p.ej && <span style={{ background: 'rgba(139,92,246,.2)', color: '#C4B5FD', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>EJ Area</span>}
+            </div>
+            <div style={{ borderTop: '1px solid #1E293B', paddingTop: 6, display: 'flex', flexDirection: 'column', gap: 3 }}>
+              <div style={{ display: 'flex', gap: 8 }}>
+                <span style={{ color: '#94A3B8', fontSize: 11 }}>Energy <span style={{ color: '#60A5FA', fontWeight: 600 }}>{p.energy_score}</span></span>
+                <span style={{ color: '#94A3B8', fontSize: 11 }}>Waste <span style={{ color: '#F59E0B', fontWeight: 600 }}>{p.waste_score}</span></span>
+                <span style={{ color: '#94A3B8', fontSize: 11 }}>Nexus <span style={{ color: '#C4B5FD', fontWeight: 600 }}>{p.nexus_score}</span></span>
+              </div>
+              <div style={{ color: '#94A3B8', fontSize: 11 }}>
+                BESS: <span style={{ color: '#FCD34D' }}>{p.bess_kwh} kWh</span>
+                {' · '}Savings: <span style={{ color: '#10B981', fontWeight: 600 }}>${Number(p.savings_usd).toLocaleString()}/yr</span>
+              </div>
+              <div style={{ color: '#6EE7B7', fontSize: 10, marginTop: 2, fontStyle: 'italic' }}>{p.why}</div>
+            </div>
+          </div>
+        ),
+      });
+      return;
+    }
 
     // Energy mode — click on energy sites
     if (viewMode === 'energy') {
@@ -313,6 +414,13 @@ export default function CityMap() {
   const onMouseMove = useCallback((e) => {
     if (!mapRef.current) return;
     const map = mapRef.current.getMap();
+
+    // Highlighted star hover
+    const starFeatures = map.queryRenderedFeatures(e.point, { layers: ['highlight-stars'] });
+    if (starFeatures.length) {
+      map.getCanvas().style.cursor = 'pointer';
+      return;
+    }
 
     // Building dots hover — checked in all view modes
     const buildingFeatures = map.queryRenderedFeatures(e.point, { layers: ['district-buildings'] });
@@ -434,6 +542,7 @@ export default function CityMap() {
         onClick={onMapClick}
         onMouseMove={onMouseMove}
         interactiveLayerIds={[
+          'highlight-stars',
           'district-buildings',
           'top10-districts',
           ...(viewMode === 'energy' ? ['energy-sites'] : viewMode === 'waste' ? ['waste-districts'] : []),
@@ -459,7 +568,7 @@ export default function CityMap() {
         )}
 
         {/* ── ENERGY SITES (Energy mode) ── */}
-        {viewMode === 'energy' && (
+        {/* {viewMode === 'energy' && (
           <Source id="energy-sites" type="geojson" data={energyGeoJSON}>
             <Layer {...ENERGY_CIRCLE_LAYER} />
             <Layer
@@ -471,7 +580,7 @@ export default function CityMap() {
               }}
             />
           </Source>
-        )}
+        )} */}
 
         {/* ── WASTE DISTRICT CIRCLES (Waste mode) ── */}
         {viewMode === 'waste' && (
@@ -490,6 +599,12 @@ export default function CityMap() {
         {/* ── DISTRICT BUILDINGS (all modes) ── */}
         <Source id="district-buildings" type="geojson" data={DISTRICT_BUILDINGS_GEOJSON}>
           <Layer {...BUILDING_CIRCLE_LAYER} />
+        </Source>
+
+        {/* ── HIGHLIGHTED BUILDINGS — star icons (all modes) ── */}
+        <Source id="highlight-buildings" type="geojson" data={HIGHLIGHT_BUILDINGS_GEOJSON}>
+          <Layer {...HIGHLIGHT_GLOW_LAYER} />
+          <Layer {...HIGHLIGHT_STAR_LAYER} />
         </Source>
 
         {/* ── TOP-10 SOLAR DISTRICTS (all modes) ── */}
