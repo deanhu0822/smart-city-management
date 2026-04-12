@@ -7,6 +7,8 @@ class UserProfile(BaseModel):
     age: int
     interests: list[str]
 
+
+
 # 2. Request structured output
 response = ollama.chat(
     model='qwen3.5',
