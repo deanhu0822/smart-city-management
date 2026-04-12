@@ -12,6 +12,7 @@ export function DashboardProvider({ children }) {
   const [budget, setBudget]         = useState(10);
   const [ejPriority, setEjPriority] = useState(true);
   const [simTab, setSimTab]         = useState('bess');      // 'bess' | 'waste' | 'scenario'
+  const [selectedItem, setSelectedItem] = useState(null);   // { type: 'building'|'district'|'highlight', data: {} }
 
   // Scenario planner state
   const [scenario, setScenario] = useState({
@@ -26,6 +27,10 @@ export function DashboardProvider({ children }) {
     setSelectedId(id);
   }, []);
 
+  const selectItem = useCallback((type, data) => {
+    setSelectedItem({ type, data });
+  }, []);
+
   const changeView = useCallback((v) => {
     setViewMode(v);
     if (v === 'waste')  setSimTab('waste');
@@ -37,6 +42,7 @@ export function DashboardProvider({ children }) {
     <DashboardContext.Provider value={{
       viewMode, changeView,
       selectedId, selectSite,
+      selectedItem, selectItem,
       borough, setBorough,
       minScore, setMinScore,
       budget, setBudget,

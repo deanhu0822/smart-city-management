@@ -24,7 +24,7 @@ npm run lint    # ESLint
 | Fonts | Michroma (`--font-display`), IBM Plex Mono (`--font-mono-ui`) via `next/font/google` |
 | Scroll | Lenis smooth scroll — wrapped in `LenisProvider` in `layout.tsx` |
 | Map | MapLibre GL JS 5 + react-map-gl 8 (`import Map from 'react-map-gl/maplibre'`) |
-| Map tiles | CARTO Dark Matter raster tiles — **free, no API key** |
+| Map tiles | CARTO Light Matter raster tiles — **free, no API key** |
 | Charts | Custom hand-rolled SVG — no recharts |
 | State | React Context (`DashboardContext`) — no Zustand/Redux |
 
@@ -54,17 +54,17 @@ src/
 │   ├── Map/
 │   │   ├── CityMap.jsx         # MapLibre GL map — 3 layer modes + district/building overlays
 │   │   ├── MapLegend.jsx       # Dynamic legend per viewMode
-│   │   └── MapControls.jsx     # Live geocoder search over ENERGY_SITES array
+│   │   └── MapControls.jsx     # Live geocoder search (currently tied to ENERGY_SITES — not yet updated)
 │   ├── Sidebar.jsx             # View toggle pills, nav, borough/score/budget/EJ filters
 │   ├── Header.jsx              # Breadcrumb, status pills
 │   ├── KPIRibbon.jsx           # 4 KPI cards, switches content with viewMode
 │   ├── RankingsTable.jsx       # Top 10 districts table with collapsible building rows
-│   ├── SiteDetail.jsx          # 3-col panel: identity / score rings / BESS + AI insight
+│   ├── SiteDetail.jsx          # 3-col detail panel — renders based on selectedItem type from context
 │   ├── FlowVisualization.jsx   # SVG Sankey flows (Energy + Waste side by side)
 │   ├── Simulation.jsx          # Tabbed: BESS Dispatch / Waste Forecast / Scenario Planner
 │   └── BoroughComparison.jsx   # Horizontal grouped bar + 5 borough summary cards
 ├── context/
-│   └── DashboardContext.jsx    # All shared state (viewMode, selectedId, borough, filters, scenario)
+│   └── DashboardContext.jsx    # All shared state (viewMode, selectedId, selectedItem, borough, filters, scenario)
 ├── hooks/
 │   └── useViewMode.js          # Re-exports useDashboard from context
 └── data/
@@ -74,6 +74,11 @@ src/
     │                                   #   buildings_summary, waste, complaints, ai_analysis.
     │                                   #   Each building has latitude + longitude fields.
     │                                   #   Single source of truth for district map layers and table.
+    ├── highlight_buildings.json        # 8 hand-picked priority buildings — CAPITALIZED field keys:
+    │                                   #   Site, Address, Borough, Agency, "Environmental Justice Area",
+    │                                   #   lat, lon, bbl, energy_score, waste_score, nexus_score,
+    │                                   #   recommended_bess_kwh, estimated_annual_savings_usd,
+    │                                   #   top_recommendation, rank
     ├── districtBuildings.js    # DEPRECATED — superseded by top10_district_analysis.json
     ├── top10Districts.js       # DEPRECATED — superseded by top10_district_analysis.json
     ├── sites.js                # Imports JSON, transforms → ENERGY_SITES, WASTE_SITES, NEXUS_SITES,
@@ -97,14 +102,27 @@ All dashboard components read from `useDashboard()`. Never use local state for c
 | Field | Type | Description |
 |---|---|---|
 | `viewMode` | `'energy' \| 'waste' \| 'nexus'` | Drives KPIs, table schema, map layers |
-| `selectedId` | `number` | 0-based index into `ENERGY_SITES` |
+| `selectedId` | `number` | 0-based index into `ENERGY_SITES` (legacy, used by energy mode) |
+| `selectedItem` | `{ type, data } \| null` | Currently selected map item — type is `'building'`, `'district'`, or `'highlight'` |
 | `borough` | `string` | Filter — `'All Boroughs'` or a borough name |
 | `minScore` | `number` | Filter — hide sites below this nexus score |
 | `ejPriority` | `boolean` | EJ toggle |
 | `simTab` | `'bess' \| 'waste' \| 'scenario'` | Active simulation tab |
 | `scenario` | `object` | Scenario Planner slider values |
 
-Changing `viewMode` via `changeView()` also auto-switches `simTab`.
+- `selectItem(type, data)` — called from `CityMap.jsx` `onMapClick` when user clicks a building dot, district centroid, or star icon
+- `changeView(v)` also auto-switches `simTab`
+
+## Map Click → SiteDetail Flow
+
+1. User clicks a map feature in `CityMap.jsx`
+2. `onMapClick` queries rendered features in priority order: highlight stars → building dots → district centroids → mode-specific layers
+3. For the first match, calls `selectItem(type, properties)` on the context
+4. `SiteDetail.jsx` reads `selectedItem` from context and renders the matching layout:
+   - `type === 'highlight'` → ScoreRings for energy/waste/nexus, BESS kWh + savings, recommendation
+   - `type === 'building'` → solar kWh/yr, annual cost, GHG, BESS kWh + savings
+   - `type === 'district'` → solar potential, total/solar-ready buildings, BESS savings, EJ%
+   - `null` → placeholder prompt
 
 ## Data
 
@@ -135,6 +153,11 @@ Building fields:
 - `energy` — `solar_production_kwh_yr`, `est_annual_cost_usd`, `ghg_tons_co2e_yr`, etc.
 - `bess_recommendation` — `capacity_kwh`, `power_kw`, `est_annual_savings_usd`
 
+### Highlighted buildings (`highlight_buildings.json`)
+8 hand-picked priority buildings shown as ★ star icons on the map in all view modes. Keys are **capitalized**: `Site`, `Address`, `Borough`, `Agency`, `"Environmental Justice Area"` (string `"Yes"`/`"No"`). Other fields: `lat`, `lon`, `bbl`, `energy_score`, `waste_score`, `nexus_score`, `recommended_bess_kwh`, `estimated_annual_savings_usd`, `top_recommendation`, `rank`.
+
+When reading these in `CityMap.jsx`, access with `b.Site`, `b.Address`, `b['Environmental Justice Area']`, etc.
+
 ### Score thresholds (real data range 88–98)
 | Range | Color | Meaning |
 |---|---|---|
@@ -146,46 +169,45 @@ Helper functions in `sites.js`: `scoreColor(s)`, `scoreBg(s)`, `scoreText(s)`.
 
 ## Map Layers
 
-Three modes driven by `viewMode`, plus two permanent overlays visible in all modes:
+Three modes driven by `viewMode`, plus permanent overlays visible in all modes:
 
 | Mode | Layers |
 |---|---|
-| **Energy** | Circle layer — radius + color by `nexusScore`. White ring on `selectedId`. Hover popup. |
+| **Energy** | (energy-sites layer commented out — not currently shown) |
 | **Waste** | Borough fill choropleth (orange intensity by `wasteTons`) + district circles (size by refuse tonnage) |
 | **Nexus** | Borough fill + EJ area fill (purple outlined) + heatmap by `nexusScore` |
 | **All modes** | Gold ring district centroid markers (rank label 1–10) from `top10_district_analysis.json` |
-| **All modes** | Building dots (5px) — emerald green for EJ, sky blue for non-EJ — from `top10_district_analysis.json` |
+| **All modes** | Building dots (5px emerald green `#10B981`) from `top10_district_analysis.json` |
+| **All modes** | Amber star icons (★) from `highlight_buildings.json` with amber glow ring |
 
-Hover popup priority: building dot → district centroid → energy site.
+Click priority order in `onMapClick`: highlight stars → building dots → district centroids → mode-specific layers.
+Hover popup priority: highlight stars → building dots → district centroids → energy sites.
 
-GeoJSON for district centroids (`TOP10_DISTRICTS_GEOJSON`) and building points (`DISTRICT_BUILDINGS_GEOJSON`) are both built at module load time in `CityMap.jsx` from the imported JSON — no runtime fetch.
+GeoJSON objects (`TOP10_DISTRICTS_GEOJSON`, `DISTRICT_BUILDINGS_GEOJSON`, `HIGHLIGHT_BUILDINGS_GEOJSON`) are all built at module load time in `CityMap.jsx` from imported JSON — no runtime fetch.
 
-Map tile style defined inline as a MapLibre style object in `CityMap.jsx` — CARTO Dark Matter raster, no external style JSON file.
+Map tile style defined inline as a MapLibre style object in `CityMap.jsx` — CARTO Light Matter raster tiles.
 
 ## Styling Conventions
 
-Dashboard components use **inline styles** (not Tailwind classes) to match the original `City_Planning_Nexus.html` reference design. Landing page and layout use Tailwind.
+Dashboard components use **inline styles** (not Tailwind classes). The dashboard uses a **light theme**.
 
-**Dashboard color palette:**
+**Dashboard color palette (light theme):**
 ```
-Background:   #0B1120
-Card:         #131C2E  border: #1E293B
-Sidebar:      #0F172A
-Blue accent:  #3B82F6   text: #60A5FA / #93C5FD
-Emerald:      #10B981   text: #6EE7B7
-Amber:        #F59E0B   text: #FCD34D
-Red:          #EF4444   text: #FCA5A5
-Purple:       #8B5CF6   text: #C4B5FD
-Text primary: #F1F5F9
+Background:   #F1F5F9
+Card:         #FFFFFF   border: #E2E8F0
+Text primary: #0F172A
 Text muted:   #64748B
 Text dim:     #475569 / #334155
+Blue accent:  #3B82F6   text: #60A5FA / #3B82F6
+Emerald:      #10B981   text: #059669
+Amber:        #F59E0B   text: #CA8A04
+Red:          #EF4444
+Purple:       #8B5CF6   text: #7C3AED
 ```
-
-**Upload page** uses a light theme (`#F3F4F6` background, white card, `#1E293B` active toggle).
 
 **Card pattern:**
 ```jsx
-style={{ background: '#131C2E', border: '1px solid #1E293B', borderRadius: 12, padding: 16 }}
+style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 12, padding: 16 }}
 ```
 
 **Section label pattern:**
@@ -199,6 +221,6 @@ style={{ fontSize: 10, fontWeight: 600, color: '#475569', letterSpacing: '0.1em'
 - **No recharts** — all charts are hand-rolled SVG inside components.
 - **No API calls** — all data is static/derived from the imported JSON.
 - **Do not touch** `City_Planning_Nexus.html` — it is a reference artifact only.
-- Map click → `selectSite(id)` + `flyTo()` → updates SiteDetail and table highlight.
-- Borough filter + minScore slider filter both the map circles and the rankings table rows.
+- Map click → `selectItem(type, data)` → updates `SiteDetail` via context.
+- Borough filter + minScore slider are wired in Sidebar but not yet applied to map layers.
 - KPI numbers in `ENERGY_KPIS` are computed dynamically from `ENERGY_SITES` at module load time in `sites.js` — do not hardcode them.

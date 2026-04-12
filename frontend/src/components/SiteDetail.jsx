@@ -1,14 +1,13 @@
 'use client';
 
-import { useMemo } from 'react';
 import { useDashboard } from '../context/DashboardContext';
-import { ENERGY_SITES, scoreColor } from '../data/sites';
+import { scoreColor } from '../data/sites';
 
 function KVItem({ label, value, valueStyle }) {
   return (
     <div style={{ background: '#F8FAFC', borderRadius: 6, padding: '8px 10px' }}>
       <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>{label}</div>
-      <div style={{ fontSize: 13, fontWeight: 600, ...valueStyle }}>{value}</div>
+      <div style={{ fontSize: 13, fontWeight: 600, color: '#0F172A', ...valueStyle }}>{value ?? '—'}</div>
     </div>
   );
 }
@@ -34,16 +33,34 @@ function ScoreRing({ score, label }) {
   );
 }
 
-export default function SiteDetail() {
-  const { selectedId } = useDashboard();
-  const site = useMemo(() => ENERGY_SITES[selectedId] ?? ENERGY_SITES[0], [selectedId]);
+function ScoreBar({ label, val, color }) {
+  return (
+    <div style={{ marginBottom: 8 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#64748B', marginBottom: 3 }}>
+        <span>{label}</span><span style={{ color, fontWeight: 700 }}>{val}/100</span>
+      </div>
+      <div style={{ height: 4, background: '#E2E8F0', borderRadius: 2, overflow: 'hidden' }}>
+        <div style={{ height: '100%', width: `${val}%`, background: color, borderRadius: 2, transition: 'width 0.4s ease' }} />
+      </div>
+    </div>
+  );
+}
 
-  const roofStyle = site.roof === 'Good'
-    ? { bg: 'rgba(16,185,129,.15)', text: '#6EE7B7' }
-    : site.roof === 'Fair'
-    ? { bg: 'rgba(245,158,11,.15)', text: '#FCD34D' }
-    : { bg: 'rgba(239,68,68,.15)', text: '#FCA5A5' };
+function fmtKwh(n) {
+  if (n == null) return '—';
+  if (n >= 1e6) return `${(n / 1e6).toFixed(1)}M kWh/yr`;
+  if (n >= 1e3) return `${(n / 1e3).toFixed(0)}K kWh/yr`;
+  return `${Math.round(n)} kWh/yr`;
+}
 
+function fmtUsd(n) {
+  if (!n || n === 0) return '—';
+  if (n >= 1e6) return `$${(n / 1e6).toFixed(1)}M`;
+  return `$${(n / 1e3).toFixed(0)}K`;
+}
+
+/** ─── Highlight Building layout ─── */
+function HighlightDetail({ data: p }) {
   return (
     <div>
       <div style={{
@@ -51,121 +68,243 @@ export default function SiteDetail() {
         letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12,
         display: 'flex', alignItems: 'center', gap: 6,
       }}>
-        Site Detail —
-        <span style={{ color: '#60A5FA', textTransform: 'none', letterSpacing: 0, fontSize: 12, fontWeight: 500 }}>
-          {site.name}
+        ★ Highlighted Site —
+        <span style={{ color: '#F59E0B', textTransform: 'none', letterSpacing: 0, fontSize: 12, fontWeight: 500 }}>
+          {p.site}
         </span>
-        <span style={{ background: 'rgba(139,92,246,.15)', color: '#C4B5FD', padding: '1px 7px', borderRadius: 20, fontSize: 10, fontWeight: 600, marginLeft: 4 }}>
-          Rank #{site.rank}
+        <span style={{ background: 'rgba(251,191,36,.15)', color: '#F59E0B', padding: '1px 7px', borderRadius: 20, fontSize: 10, fontWeight: 600, marginLeft: 4 }}>
+          Rank #{p.rank}
         </span>
       </div>
 
       <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 12, padding: 16 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 20 }}>
 
-          {/* ── Column 1: Identity ── */}
+          {/* Identity */}
           <div>
-            <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10, lineHeight: 1.3 }}>{site.name}</div>
+            <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10, lineHeight: 1.3, color: '#0F172A' }}>{p.site}</div>
             <div style={{ display: 'grid', gap: 6 }}>
-              <KVItem label="ADDRESS" value={`${site.address}, ${site.borough}, NY`} valueStyle={{ fontSize: 11, color: '#94A3B8' }} />
-              <KVItem label="AGENCY"  value={site.agency} />
-              <KVItem label="BBL"     value={site.bbl}    valueStyle={{ fontFamily: 'monospace', fontSize: 12, color: '#64748B' }} />
+              <KVItem label="ADDRESS" value={p.address} valueStyle={{ fontSize: 11, color: '#64748B' }} />
+              <KVItem label="AGENCY"  value={p.agency} />
+              <KVItem label="BOROUGH" value={p.borough} />
               <div style={{ background: '#F8FAFC', borderRadius: 6, padding: '8px 10px' }}>
                 <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>EJ STATUS</div>
                 <span style={{
                   display: 'inline-block', padding: '2px 6px', borderRadius: 20, fontSize: 11, fontWeight: 500,
-                  background: site.ej ? 'rgba(16,185,129,.15)' : 'rgba(100,116,139,.15)',
-                  color: site.ej ? '#6EE7B7' : '#94A3B8',
+                  background: p.ej ? 'rgba(16,185,129,.15)' : 'rgba(100,116,139,.15)',
+                  color: p.ej ? '#059669' : '#64748B',
                 }}>
-                  {site.ej ? '✅ EJ Area' : 'Non-EJ'}
+                  {p.ej ? '✅ EJ Area' : 'Non-EJ'}
                 </span>
-              </div>
-              <div style={{ background: '#F8FAFC', borderRadius: 6, padding: '8px 10px' }}>
-                <div style={{ fontSize: 10, color: '#475569', marginBottom: 4 }}>DERIVED ENERGY PROFILE</div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, fontSize: 11 }}>
-                  <div style={{ color: '#64748B' }}>Monthly avg <span style={{ color: '#F1F5F9', fontWeight: 600 }}>{site.cons} kWh</span></div>
-                  <div style={{ color: '#64748B' }}>Peak demand <span style={{ color: '#F1F5F9', fontWeight: 600 }}>{site.peak} kW</span></div>
-                  <div style={{ color: '#64748B' }}>Annual cost <span style={{ color: '#FCA5A5', fontWeight: 600 }}>{site.cost}</span></div>
-                  <div style={{ color: '#64748B' }}>Solar pot. <span style={{ color: '#FCD34D', fontWeight: 600 }}>{site.solPot} kWh/yr</span></div>
-                  <div style={{ color: '#64748B' }}>Roof <span style={{ display: 'inline-block', padding: '1px 5px', borderRadius: 20, fontSize: 10, background: roofStyle.bg, color: roofStyle.text }}>{site.roof}</span></div>
-                  <div style={{ color: '#64748B' }}>EV ports <span style={{ color: '#F1F5F9', fontWeight: 600 }}>{site.ev} nearby</span></div>
-                </div>
               </div>
             </div>
           </div>
 
-          {/* ── Column 2: Score breakdown ── */}
+          {/* Score breakdown */}
           <div>
             <div style={{ fontSize: 10, fontWeight: 600, color: '#475569', letterSpacing: '0.08em', marginBottom: 12 }}>XGBoost SCORE BREAKDOWN</div>
             <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: 14 }}>
-              <ScoreRing score={site.energyScore} label="Energy" />
-              <ScoreRing score={site.wasteScore}  label="Waste"  />
-              <ScoreRing score={site.nexusScore}  label="Nexus"  />
+              <ScoreRing score={p.energy_score} label="Energy" />
+              <ScoreRing score={p.waste_score}  label="Waste"  />
+              <ScoreRing score={p.nexus_score}  label="Nexus"  />
             </div>
-            {/* Score bars */}
-            {[
-              { label: 'Energy Score', val: site.energyScore, color: '#3B82F6' },
-              { label: 'Waste Score',  val: site.wasteScore,  color: '#F59E0B' },
-              { label: 'Nexus Score',  val: site.nexusScore,  color: '#8B5CF6' },
-            ].map(({ label, val, color }) => (
-              <div key={label} style={{ marginBottom: 8 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#64748B', marginBottom: 3 }}>
-                  <span>{label}</span><span style={{ color, fontWeight: 700 }}>{val}/100</span>
-                </div>
-                <div style={{ height: 4, background: '#E2E8F0', borderRadius: 2, overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${val}%`, background: color, borderRadius: 2, transition: 'width 0.4s ease' }} />
-                </div>
-              </div>
-            ))}
-            {/* Waste context */}
-            <div style={{ marginTop: 10, background: '#0B1120', borderRadius: 6, padding: '8px 10px', fontSize: 11, color: '#64748B' }}>
-              <div style={{ fontSize: 9, color: '#334155', marginBottom: 4, fontWeight: 600, letterSpacing: '0.08em' }}>DISTRICT WASTE CONTEXT</div>
-              Refuse: <span style={{ color: '#F59E0B' }}>{site.wasteRef} t/mo</span> · Organic: <span style={{ color: '#10B981' }}>{site.wasteOrg}</span>
-              {' '}→ <span style={{ color: '#10B981' }}>{site.wasteDivert} t/mo</span> → <span style={{ color: '#10B981' }}>~{site.wasteMWh} MWh/yr</span> biogas
-            </div>
+            <ScoreBar label="Energy Score" val={p.energy_score} color="#3B82F6" />
+            <ScoreBar label="Waste Score"  val={p.waste_score}  color="#F59E0B" />
+            <ScoreBar label="Nexus Score"  val={p.nexus_score}  color="#8B5CF6" />
           </div>
 
-          {/* ── Column 3: BESS recommendation ── */}
+          {/* BESS Recommendation */}
           <div>
             <div style={{ fontSize: 10, fontWeight: 600, color: '#475569', letterSpacing: '0.08em', marginBottom: 12 }}>BESS RECOMMENDATION</div>
             <div style={{ display: 'grid', gap: 6 }}>
-              <KVItem label="Recommended Capacity" value={`${site.bessKwh} kWh BESS`} valueStyle={{ color: '#93C5FD' }} />
-              <KVItem label="Est. Annual Savings"   value={`${site.savings}/yr`}        valueStyle={{ color: '#6EE7B7' }} />
-              <KVItem label="Peak Reduction"        value={`${site.pkRed} kW (${site.pkPct}%)`} />
-              <KVItem label="CO₂ Offset"            value={`${site.co2} tons/yr`}       valueStyle={{ color: '#6EE7B7' }} />
+              <KVItem label="Recommended Capacity" value={`${p.bess_kwh} kWh BESS`} valueStyle={{ color: '#3B82F6' }} />
+              <KVItem label="Est. Annual Savings"   value={`${fmtUsd(p.savings_usd)}/yr`} valueStyle={{ color: '#059669' }} />
             </div>
             <div style={{
               marginTop: 10, background: 'rgba(59,130,246,.06)',
               border: '1px solid rgba(59,130,246,.2)', borderRadius: 8, padding: '10px 12px',
             }}>
               <div style={{ fontSize: 9, color: '#475569', fontWeight: 600, letterSpacing: '0.08em', marginBottom: 5 }}>TOP RECOMMENDATION</div>
-              <div style={{ fontSize: 11, color: '#93C5FD', lineHeight: 1.5 }}>{site.recommendation}</div>
+              <div style={{ fontSize: 11, color: '#3B82F6', lineHeight: 1.5 }}>{p.recommendation}</div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
 
-        {/* ── AI / Model Insight bar ── */}
-        <div style={{
-          marginTop: 14, background: 'rgba(139,92,246,.05)',
-          border: '1px solid rgba(139,92,246,.2)', borderRadius: 8, padding: 12,
-          display: 'flex', alignItems: 'flex-start', gap: 10,
-        }}>
-          <span style={{
-            display: 'inline-block', padding: '2px 6px', borderRadius: 20, fontSize: 11,
-            fontWeight: 500, background: 'rgba(139,92,246,.15)', color: '#C4B5FD',
-            whiteSpace: 'nowrap', flexShrink: 0,
-          }}>
-            🤖 XGBoost Insight
-          </span>
-          <span style={{ fontSize: 12, color: '#94A3B8', lineHeight: 1.6 }}>
-            {site.reasoning}
-            {' '}Estimated savings of <strong style={{ color: '#10B981' }}>{site.savings}/yr</strong> with
-            a <strong style={{ color: '#93C5FD' }}>{site.bessKwh} kWh BESS</strong> deployment,
-            offsetting ~<strong style={{ color: '#6EE7B7' }}>{site.co2} tons CO₂/yr</strong>.
-            {site.ej && ' This site serves an Environmental Justice community — deployment is equity-weighted.'}
-          </span>
+/** ─── District Building layout ─── */
+function BuildingDetail({ data: p }) {
+  return (
+    <div>
+      <div style={{
+        fontSize: 10, fontWeight: 600, color: '#475569',
+        letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12,
+        display: 'flex', alignItems: 'center', gap: 6,
+      }}>
+        Building Detail —
+        <span style={{ color: '#10B981', textTransform: 'none', letterSpacing: 0, fontSize: 12, fontWeight: 500 }}>
+          {p.site || p.address}
+        </span>
+        <span style={{ background: 'rgba(16,185,129,.15)', color: '#059669', padding: '1px 7px', borderRadius: 20, fontSize: 10, fontWeight: 600, marginLeft: 4 }}>
+          District {p.districtCode}
+        </span>
+      </div>
+
+      <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 12, padding: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 20 }}>
+
+          {/* Identity */}
+          <div>
+            <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10, lineHeight: 1.3, color: '#0F172A' }}>{p.site || p.address}</div>
+            <div style={{ display: 'grid', gap: 6 }}>
+              <KVItem label="ADDRESS" value={p.address} valueStyle={{ fontSize: 11, color: '#64748B' }} />
+              <KVItem label="AGENCY"  value={p.agency} />
+              <KVItem label="DISTRICT" value={p.districtCode} />
+              <div style={{ background: '#F8FAFC', borderRadius: 6, padding: '8px 10px' }}>
+                <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>EJ STATUS</div>
+                <span style={{
+                  display: 'inline-block', padding: '2px 6px', borderRadius: 20, fontSize: 11, fontWeight: 500,
+                  background: p.ej ? 'rgba(16,185,129,.15)' : 'rgba(100,116,139,.15)',
+                  color: p.ej ? '#059669' : '#64748B',
+                }}>
+                  {p.ej ? '✅ EJ Area' : 'Non-EJ'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Energy profile */}
+          <div>
+            <div style={{ fontSize: 10, fontWeight: 600, color: '#475569', letterSpacing: '0.08em', marginBottom: 12 }}>ENERGY PROFILE</div>
+            <div style={{ display: 'grid', gap: 6 }}>
+              <KVItem label="Solar Potential"   value={fmtKwh(p.solar_kwh_yr)} valueStyle={{ color: '#F59E0B' }} />
+              <KVItem label="Est. Annual Cost"  value={fmtUsd(p.annual_cost_usd)} valueStyle={{ color: '#EF4444' }} />
+              <KVItem label="GHG Emissions"     value={p.ghg_co2 != null ? `${p.ghg_co2} t CO₂/yr` : '—'} valueStyle={{ color: '#64748B' }} />
+            </div>
+          </div>
+
+          {/* BESS */}
+          <div>
+            <div style={{ fontSize: 10, fontWeight: 600, color: '#475569', letterSpacing: '0.08em', marginBottom: 12 }}>BESS RECOMMENDATION</div>
+            <div style={{ display: 'grid', gap: 6 }}>
+              <KVItem label="Recommended Capacity" value={p.bess_kwh ? `${p.bess_kwh} kWh BESS` : '—'} valueStyle={{ color: '#3B82F6' }} />
+              <KVItem label="Est. Annual Savings"  value={p.bess_savings_usd ? `${fmtUsd(p.bess_savings_usd)}/yr` : '—'} valueStyle={{ color: '#059669' }} />
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/** ─── District layout ─── */
+function DistrictDetail({ data: p }) {
+  return (
+    <div>
+      <div style={{
+        fontSize: 10, fontWeight: 600, color: '#475569',
+        letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12,
+        display: 'flex', alignItems: 'center', gap: 6,
+      }}>
+        District Detail —
+        <span style={{ color: '#EAB308', textTransform: 'none', letterSpacing: 0, fontSize: 12, fontWeight: 500 }}>
+          {p.district || p.code}
+        </span>
+        <span style={{ background: 'rgba(234,179,8,.15)', color: '#CA8A04', padding: '1px 7px', borderRadius: 20, fontSize: 10, fontWeight: 600, marginLeft: 4 }}>
+          Rank #{p.rank}
+        </span>
+      </div>
+
+      <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 12, padding: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 20 }}>
+
+          {/* Identity */}
+          <div>
+            <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10, lineHeight: 1.3, color: '#0F172A' }}>{p.district || p.code}</div>
+            <div style={{ display: 'grid', gap: 6 }}>
+              <KVItem label="DISTRICT CODE" value={p.code} />
+              <KVItem label="BOROUGH"       value={p.borough} />
+              <div style={{ background: '#F8FAFC', borderRadius: 6, padding: '8px 10px' }}>
+                <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>EJ COVERAGE</div>
+                <span style={{
+                  display: 'inline-block', padding: '2px 6px', borderRadius: 20, fontSize: 11, fontWeight: 500,
+                  background: p.pct_ej > 20 ? 'rgba(139,92,246,.15)' : 'rgba(100,116,139,.15)',
+                  color: p.pct_ej > 20 ? '#7C3AED' : '#64748B',
+                }}>
+                  {p.pct_ej}% EJ Buildings
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Solar potential */}
+          <div>
+            <div style={{ fontSize: 10, fontWeight: 600, color: '#475569', letterSpacing: '0.08em', marginBottom: 12 }}>SOLAR POTENTIAL</div>
+            <div style={{ display: 'grid', gap: 6 }}>
+              <KVItem label="Total Solar Potential" value={fmtKwh(p.solar_kwh_yr)} valueStyle={{ color: '#F59E0B' }} />
+              <KVItem label="Total Buildings"       value={p.buildings} />
+              <KVItem label="Solar-Ready Buildings" value={p.solar_ready} valueStyle={{ color: '#059669' }} />
+            </div>
+          </div>
+
+          {/* BESS savings */}
+          <div>
+            <div style={{ fontSize: 10, fontWeight: 600, color: '#475569', letterSpacing: '0.08em', marginBottom: 12 }}>BESS DISTRICT SAVINGS</div>
+            <div style={{ display: 'grid', gap: 6 }}>
+              <KVItem label="Total BESS Savings" value={fmtUsd(p.bess_savings_usd) + '/yr'} valueStyle={{ color: '#059669' }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** ─── Placeholder ─── */
+function Placeholder() {
+  return (
+    <div style={{
+      background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 12, padding: '28px 20px',
+      textAlign: 'center', color: '#94A3B8', fontSize: 13,
+    }}>
+      Click a building dot <span style={{ color: '#10B981' }}>●</span>, district centroid <span style={{ color: '#EAB308' }}>◎</span>, or highlighted star <span style={{ color: '#FBBF24' }}>★</span> on the map to see details here.
+    </div>
+  );
+}
+
+export default function SiteDetail() {
+  const { selectedItem } = useDashboard();
+
+  const sectionLabel = (
+    <div style={{
+      fontSize: 10, fontWeight: 600, color: '#475569',
+      letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12,
+    }}>
+      Site Detail
+    </div>
+  );
+
+  if (!selectedItem) {
+    return (
+      <div>
+        {sectionLabel}
+        <Placeholder />
+      </div>
+    );
+  }
+
+  const { type, data } = selectedItem;
+
+  if (type === 'highlight') return <HighlightDetail data={data} />;
+  if (type === 'building')  return <BuildingDetail  data={data} />;
+  if (type === 'district')  return <DistrictDetail  data={data} />;
+
+  return (
+    <div>
+      {sectionLabel}
+      <Placeholder />
     </div>
   );
 }

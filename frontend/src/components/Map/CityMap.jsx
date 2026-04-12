@@ -243,7 +243,7 @@ const DISTRICT_LABEL_LAYER = {
 
 export default function CityMap() {
   const mapRef = useRef(null);
-  const { viewMode, selectedId, selectSite } = useDashboard();
+  const { viewMode, selectedId, selectSite, selectItem } = useDashboard();
   const [popup, setPopup] = useState(null); // { lng, lat, content }
 
   const nexusGeoJSON = useMemo(() => ({
@@ -275,6 +275,7 @@ export default function CityMap() {
     if (starClick.length) {
       const p = starClick[0].properties;
       const coords = starClick[0].geometry.coordinates;
+      selectItem('highlight', p);
       setPopup({
         lng: coords[0], lat: coords[1],
         content: (
@@ -287,11 +288,10 @@ export default function CityMap() {
               <div style={{ color: '#60A5FA', fontSize: 12, marginBottom: 4 }}>📍 {p.address}</div>
             )}
             <div style={{ color: '#94A3B8', fontSize: 11, marginBottom: 6 }}>
-              {p.district_name} · {p.borough}
+              {p.borough}
             </div>
             <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', marginBottom: 6 }}>
               <span style={{ background: 'rgba(100,116,139,.2)', color: '#94A3B8', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>{p.agency}</span>
-              <span style={{ background: 'rgba(100,116,139,.2)', color: '#94A3B8', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>{p.district_code}</span>
               {p.ej && <span style={{ background: 'rgba(139,92,246,.2)', color: '#C4B5FD', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>EJ Area</span>}
             </div>
             <div style={{ borderTop: '1px solid #1E293B', paddingTop: 6, display: 'flex', flexDirection: 'column', gap: 3 }}>
@@ -304,11 +304,28 @@ export default function CityMap() {
                 BESS: <span style={{ color: '#FCD34D' }}>{p.bess_kwh} kWh</span>
                 {' · '}Savings: <span style={{ color: '#10B981', fontWeight: 600 }}>${Number(p.savings_usd).toLocaleString()}/yr</span>
               </div>
-              <div style={{ color: '#6EE7B7', fontSize: 10, marginTop: 2, fontStyle: 'italic' }}>{p.why}</div>
             </div>
           </div>
         ),
       });
+      return;
+    }
+
+    // Building dot click — all modes
+    const buildingClick = map.queryRenderedFeatures(e.point, { layers: ['district-buildings'] });
+    if (buildingClick.length) {
+      const p = buildingClick[0].properties;
+      selectItem('building', p);
+      setPopup(null);
+      return;
+    }
+
+    // District centroid click — all modes
+    const districtClick = map.queryRenderedFeatures(e.point, { layers: ['top10-districts'] });
+    if (districtClick.length) {
+      const p = districtClick[0].properties;
+      selectItem('district', p);
+      setPopup(null);
       return;
     }
 
@@ -351,7 +368,7 @@ export default function CityMap() {
       const features = map.queryRenderedFeatures(e.point, { layers: ['nexus-heatmap'] });
       if (features.length === 0) setPopup(null);
     }
-  }, [viewMode, selectSite, flyToSite]);
+  }, [viewMode, selectSite, selectItem, flyToSite]);
 
   const onMouseMove = useCallback((e) => {
     if (!mapRef.current) return;
