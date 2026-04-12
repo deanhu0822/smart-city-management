@@ -96,3 +96,28 @@ input {
   }
 }
 
+/* ── MapLibre popup dark card ── */
+.maplibregl-popup-content {
+  background: #0F172A !important;
+  border: 1px solid #1E293B !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.4) !important;
+  color: #F1F5F9 !important;
+  font-size: 12px !important;
+}
+
+/* Arrow tip — bottom anchor (most common in this app) */
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+  border-top-color: #0F172A !important;
+}
+.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+  border-bottom-color: #0F172A !important;
+}
+.maplibregl-popup-anchor-left .maplibregl-popup-tip {
+  border-right-color: #0F172A !important;
+}
+.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+  border-left-color: #0F172A !important;
+}
+

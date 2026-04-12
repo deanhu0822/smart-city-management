@@ -78,19 +78,6 @@ const HIGHLIGHT_BUILDINGS_GEOJSON = {
   })),
 };
 
-/** Star glow — soft amber circle behind the star */
-const HIGHLIGHT_GLOW_LAYER = {
-  id: 'highlight-glow',
-  type: 'circle',
-  source: 'highlight-buildings',
-  paint: {
-    'circle-radius': 14,
-    'circle-color': 'rgba(251,191,36,0.15)',
-    'circle-stroke-color': 'rgba(251,191,36,0.4)',
-    'circle-stroke-width': 1,
-  },
-};
-
 /** Star symbol layer using ★ Unicode */
 const HIGHLIGHT_STAR_LAYER = {
   id: 'highlight-stars',
@@ -98,15 +85,15 @@ const HIGHLIGHT_STAR_LAYER = {
   source: 'highlight-buildings',
   layout: {
     'text-field': '★',
-    'text-size': 22,
+    'text-size': 26,
     'text-allow-overlap': true,
     'text-ignore-placement': true,
     'text-anchor': 'center',
   },
   paint: {
     'text-color': '#FBBF24',
-    'text-halo-color': '#0B1120',
-    'text-halo-width': 1.5,
+    'text-halo-color': '#92400E',
+    'text-halo-width': 2,
   },
 };
 
@@ -194,17 +181,17 @@ const EJ_FILL_LAYER = {
   },
 };
 
-/** Individual building dots — small circles colored by EJ status */
+/** Individual building dots — EJ buildings purple, others emerald */
 const BUILDING_CIRCLE_LAYER = {
   id: 'district-buildings',
   type: 'circle',
   source: 'district-buildings',
   paint: {
-    'circle-radius': 5,
+    'circle-radius': 7,
     'circle-color': '#10B981',
-    'circle-opacity': 0.85,
+    'circle-opacity': 0.92,
     'circle-stroke-color': '#FFFFFF',
-    'circle-stroke-width': 1,
+    'circle-stroke-width': 1.5,
   },
 };
 
@@ -214,9 +201,9 @@ const DISTRICT_CIRCLE_LAYER = {
   type: 'circle',
   source: 'top10-districts',
   paint: {
-    'circle-radius': 14,
-    'circle-color': 'rgba(234,179,8,0.18)',
-    'circle-stroke-color': '#EAB308',
+    'circle-radius': 17,
+    'circle-color': 'rgba(234,179,8,0.22)',
+    'circle-stroke-color': '#D97706',
     'circle-stroke-width': 2.5,
     'circle-opacity': 1,
   },
@@ -229,15 +216,15 @@ const DISTRICT_LABEL_LAYER = {
   source: 'top10-districts',
   layout: {
     'text-field': ['to-string', ['get', 'rank']],
-    'text-size': 11,
+    'text-size': 12,
     'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
     'text-allow-overlap': true,
     'text-ignore-placement': true,
   },
   paint: {
     'text-color': '#FDE047',
-    'text-halo-color': '#0B1120',
-    'text-halo-width': 1,
+    'text-halo-color': '#78350F',
+    'text-halo-width': 1.5,
   },
 };
 
@@ -420,22 +407,25 @@ export default function CityMap() {
         lng: coords[0], lat: coords[1],
         content: (
           <div>
-            <div style={{ fontWeight: 700, marginBottom: 4, color: 'black' }}>
-              {p.address}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+              <span style={{ background: '#D97706', color: '#FDE047', borderRadius: '50%', width: 20, height: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>
+                {p.rank}
+              </span>
+              <span style={{ fontWeight: 700, fontSize: 13, color: '#F1F5F9' }}>{p.district || p.borough}</span>
             </div>
-            <div style={{ color: '#FDE047', marginBottom: 4, fontSize: 12 }}>
-              ☀ Solar Potential: {Number(p.solar_kwh_yr).toLocaleString()} kWh/yr
+            <div style={{ color: '#FDE047', marginBottom: 4, fontSize: 11 }}>
+              ☀ Solar: {Number(p.solar_kwh_yr).toLocaleString()} kWh/yr
             </div>
             <div style={{ color: '#94A3B8', fontSize: 11 }}>
               Buildings: <span style={{ color: '#F1F5F9' }}>{p.buildings}</span>
               {' '}· Solar-ready: <span style={{ color: '#6EE7B7' }}>{p.solar_ready}</span>
             </div>
             <div style={{ color: '#94A3B8', fontSize: 11 }}>
-              BESS Savings: <span style={{ color: '#10B981' }}>${Number(p.bess_savings_usd).toLocaleString()}/yr</span>
+              BESS Savings: <span style={{ color: '#10B981', fontWeight: 600 }}>${Number(p.bess_savings_usd).toLocaleString()}/yr</span>
             </div>
             {p.pct_ej > 20 && (
               <div style={{ marginTop: 4 }}>
-                <span style={{ background: 'rgba(139,92,246,.15)', color: '#C4B5FD', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>
+                <span style={{ background: 'rgba(139,92,246,.2)', color: '#C4B5FD', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>
                   {p.pct_ej}% EJ
                 </span>
               </div>
@@ -562,7 +552,6 @@ export default function CityMap() {
 
         {/* ── HIGHLIGHTED BUILDINGS — star icons (all modes) ── */}
         <Source id="highlight-buildings" type="geojson" data={HIGHLIGHT_BUILDINGS_GEOJSON}>
-          <Layer {...HIGHLIGHT_GLOW_LAYER} />
           <Layer {...HIGHLIGHT_STAR_LAYER} />
         </Source>
 
@@ -590,12 +579,24 @@ export default function CityMap() {
       {/* Map title overlay */}
       <div style={{
         position: 'absolute', top: 10, left: 10, zIndex: 10,
-        background: 'rgba(255,255,255,.9)', backdropFilter: 'blur(4px)',
+        background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(6px)',
+        border: '1px solid #E2E8F0',
         padding: '5px 10px', borderRadius: 8,
-        fontSize: 11, fontWeight: 500, color: '#334155',
+        display: 'flex', alignItems: 'center', gap: 7,
+        fontSize: 11, fontWeight: 600, color: '#0F172A',
         pointerEvents: 'none',
+        boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
       }}>
-        NYC Municipal Sites — {viewMode === 'energy' ? 'Priority Map' : viewMode === 'waste' ? 'Waste Flow' : 'Nexus Intelligence'}
+        <span style={{
+          width: 8, height: 8, borderRadius: '50%',
+          background: viewMode === 'energy' ? '#3B82F6' : viewMode === 'waste' ? '#F59E0B' : '#8B5CF6',
+          display: 'inline-block', flexShrink: 0,
+        }} />
+        NYC Municipal Sites
+        <span style={{ color: '#64748B', fontWeight: 400 }}>—</span>
+        <span style={{ color: viewMode === 'energy' ? '#2563EB' : viewMode === 'waste' ? '#D97706' : '#7C3AED' }}>
+          {viewMode === 'energy' ? 'Priority Map' : viewMode === 'waste' ? 'Waste Flow' : 'Nexus Intelligence'}
+        </span>
       </div>
 
       {/* Search bar */}
