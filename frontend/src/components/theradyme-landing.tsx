@@ -4,7 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 
 const NAV_ITEMS = [
   { href: "/map", label: "Research" },
-  { href: "#audit-shield", label: "Product" },
+  { href: "/upload", label: "Product" },
 ];
 
 const HERO_LINES = ["Smart", "City Nexus"];

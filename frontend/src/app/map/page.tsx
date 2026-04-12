@@ -42,7 +42,9 @@ function Dashboard() {
 
           <SiteDetail />
           <FlowVisualization />
-          <Simulation />
+
+          <div style={{ padding: '100px' }}></div>
+          {/* <Simulation /> */}
           {/* <BoroughComparison /> */}
 
           <div style={{
