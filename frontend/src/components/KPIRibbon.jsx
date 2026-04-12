@@ -10,7 +10,7 @@ function KPICard({ kpi }) {
 
   return (
     <div style={{
-      background: '#131C2E', border: '1px solid #1E293B',
+      background: '#FFFFFF', border: '1px solid #E2E8F0',
       borderRadius: 12, padding: 14,
     }}>
       <div style={{
@@ -24,7 +24,7 @@ function KPICard({ kpi }) {
         {kpi.num}
       </div>
       <div style={{ fontSize: 12, color: '#64748B', marginBottom: 2 }}>{kpi.label}</div>
-      <div style={{ fontSize: 11, color: '#334155' }}>{kpi.sub}</div>
+      <div style={{ fontSize: 11, color: '#94A3B8' }}>{kpi.sub}</div>
       {kpi.tag && (
         <div style={{ marginTop: 5 }}>
           <span style={{

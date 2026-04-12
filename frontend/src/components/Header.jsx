@@ -7,15 +7,15 @@ export default function Header() {
 
   return (
     <header style={{
-      background: 'rgba(15,23,42,.95)', height: 52,
+      background: 'rgba(248,250,252,.97)', height: 52,
       display: 'flex', alignItems: 'center',
       padding: '0 20px', justifyContent: 'space-between',
-      borderBottom: '1px solid rgba(255,255,255,.05)',
+      borderBottom: '1px solid rgba(0,0,0,.07)',
       position: 'sticky', top: 0, zIndex: 10,
     }}>
-      <span style={{ fontSize: 12, color: '#94A3B8' }}>
+      <span style={{ fontSize: 12, color: '#64748B' }}>
         Dashboard{' '}
-        <span style={{ color: '#334155' }}>/</span>{' '}
+        <span style={{ color: '#CBD5E1' }}>/</span>{' '}
         <span style={{ color: '#60A5FA' }}>
           {viewMode.charAt(0).toUpperCase() + viewMode.slice(1)}
         </span>
@@ -36,7 +36,7 @@ export default function Header() {
         }}>
           ● Pipeline Complete
         </span>
-        <span style={{ fontSize: 11, color: '#334155' }}>Apr 10, 2026 2:34 PM</span>
+        <span style={{ fontSize: 11, color: '#94A3B8' }}>Apr 10, 2026 2:34 PM</span>
       </div>
     </header>
   );

@@ -23,22 +23,22 @@ export default function Sidebar() {
 
   return (
     <aside style={{
-      width: 240, minWidth: 240, background: '#0F172A',
-      borderRight: '1px solid rgba(255,255,255,.05)',
+      width: 240, minWidth: 240, background: '#F8FAFC',
+      borderRight: '1px solid rgba(0,0,0,.07)',
       position: 'sticky', top: 0, height: '100vh',
       overflowY: 'auto', display: 'flex', flexDirection: 'column',
     }}>
       {/* Logo */}
-      <div style={{ padding: '20px 16px 14px', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
-        <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.3px' }}>⚡ NYC Nexus</div>
-        <div style={{ fontSize: 10, color: '#475569', marginTop: 3, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+      <div style={{ padding: '20px 16px 14px', borderBottom: '1px solid rgba(0,0,0,.07)' }}>
+        <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.3px', color: '#0F172A' }}>⚡ NYC Nexus</div>
+        <div style={{ fontSize: 10, color: '#64748B', marginTop: 3, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
           Energy · Waste · Intelligence
         </div>
       </div>
 
       {/* View Mode Toggle */}
       <div style={{ padding: '10px 12px 0' }}>
-        <div style={{ display: 'flex', gap: 4, background: '#0B1120', borderRadius: 10, padding: 4 }}>
+        <div style={{ display: 'flex', gap: 4, background: '#E2E8F0', borderRadius: 10, padding: 4 }}>
           {['energy', 'waste', 'nexus'].map(v => (
             <button
               key={v}
@@ -46,7 +46,7 @@ export default function Sidebar() {
               style={{
                 flex: 1, padding: '5px 4px', borderRadius: 7, textAlign: 'center',
                 cursor: 'pointer', fontSize: 12, fontWeight: 600, border: 'none',
-                background: viewMode === v ? '#3B82F6' : '#1E293B',
+                background: viewMode === v ? '#3B82F6' : 'transparent',
                 color: viewMode === v ? '#fff' : '#64748B',
                 transition: 'all 0.2s',
               }}
@@ -65,11 +65,11 @@ export default function Sidebar() {
             style={{
               padding: '7px 10px', borderRadius: 8, cursor: 'pointer',
               display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2,
-              color: item.active ? '#60A5FA' : '#64748B',
-              background: item.active ? 'rgba(30,41,59,.7)' : 'transparent',
+              color: item.active ? '#3B82F6' : '#64748B',
+              background: item.active ? 'rgba(59,130,246,.08)' : 'transparent',
               fontSize: 13,
             }}
-            onMouseEnter={e => !item.active && (e.currentTarget.style.background = 'rgba(30,41,59,.4)')}
+            onMouseEnter={e => !item.active && (e.currentTarget.style.background = 'rgba(0,0,0,.04)')}
             onMouseLeave={e => !item.active && (e.currentTarget.style.background = 'transparent')}
           >
             <span>{item.icon}</span>
@@ -80,11 +80,11 @@ export default function Sidebar() {
 
       {/* Filters */}
       <div style={{
-        margin: '0 10px', borderTop: '1px solid rgba(255,255,255,.06)',
+        margin: '0 10px', borderTop: '1px solid rgba(0,0,0,.07)',
         paddingTop: 12, flex: 1,
       }}>
         <div style={{
-          fontSize: 10, fontWeight: 600, color: '#334155',
+          fontSize: 10, fontWeight: 600, color: '#94A3B8',
           letterSpacing: '0.1em', marginBottom: 10, padding: '0 4px',
         }}>
           FILTERS
@@ -97,8 +97,8 @@ export default function Sidebar() {
             value={borough}
             onChange={e => setBorough(e.target.value)}
             style={{
-              background: '#1E293B', color: '#F1F5F9',
-              border: '1px solid #2D3D54', borderRadius: 6,
+              background: '#FFFFFF', color: '#0F172A',
+              border: '1px solid #E2E8F0', borderRadius: 6,
               padding: '5px 7px', fontSize: 12, width: '100%',
             }}
           >
@@ -110,7 +110,7 @@ export default function Sidebar() {
         <div style={{ marginBottom: 10, padding: '0 2px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#64748B', marginBottom: 4 }}>
             <span>Min Priority Score</span>
-            <span style={{ color: '#60A5FA' }}>{minScore}</span>
+            <span style={{ color: '#3B82F6' }}>{minScore}</span>
           </div>
           <input
             type="range" min="0" max="100" step="5" value={minScore}
@@ -123,7 +123,7 @@ export default function Sidebar() {
         <div style={{ marginBottom: 10, padding: '0 2px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#64748B', marginBottom: 4 }}>
             <span>Budget ($M)</span>
-            <span style={{ color: '#60A5FA' }}>${budget}M</span>
+            <span style={{ color: '#3B82F6' }}>${budget}M</span>
           </div>
           <input
             type="range" min="1" max="50" step="1" value={budget}
@@ -139,7 +139,7 @@ export default function Sidebar() {
             onClick={() => setEjPriority(!ejPriority)}
             style={{
               position: 'relative', width: 34, height: 18,
-              background: ejPriority ? '#3B82F6' : '#334155',
+              background: ejPriority ? '#3B82F6' : '#CBD5E1',
               borderRadius: 18, cursor: 'pointer', transition: 'background 0.3s',
             }}
           >

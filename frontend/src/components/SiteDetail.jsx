@@ -6,7 +6,7 @@ import { ENERGY_SITES, scoreColor } from '../data/sites';
 
 function KVItem({ label, value, valueStyle }) {
   return (
-    <div style={{ background: '#0B1120', borderRadius: 6, padding: '8px 10px' }}>
+    <div style={{ background: '#F8FAFC', borderRadius: 6, padding: '8px 10px' }}>
       <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>{label}</div>
       <div style={{ fontSize: 13, fontWeight: 600, ...valueStyle }}>{value}</div>
     </div>
@@ -21,13 +21,13 @@ function ScoreRing({ score, label }) {
   return (
     <div style={{ textAlign: 'center' }}>
       <svg viewBox="0 0 64 64" width={64} height={64} style={{ display: 'block', margin: '0 auto' }}>
-        <circle cx="32" cy="32" r={r} fill="none" stroke="#1E293B" strokeWidth="6" />
+        <circle cx="32" cy="32" r={r} fill="none" stroke="#E2E8F0" strokeWidth="6" />
         <circle cx="32" cy="32" r={r} fill="none"
           stroke={color} strokeWidth="6"
           strokeDasharray={circ.toFixed(1)} strokeDashoffset={offset.toFixed(1)}
           strokeLinecap="round" transform="rotate(-90 32 32)"
         />
-        <text x="32" y="37" textAnchor="middle" fill="#F1F5F9" fontSize="14" fontWeight="700" fontFamily="system-ui">{score}</text>
+        <text x="32" y="37" textAnchor="middle" fill="#0F172A" fontSize="14" fontWeight="700" fontFamily="system-ui">{score}</text>
       </svg>
       <div style={{ fontSize: 10, color: '#475569', marginTop: 2 }}>{label}</div>
     </div>
@@ -60,7 +60,7 @@ export default function SiteDetail() {
         </span>
       </div>
 
-      <div style={{ background: '#131C2E', border: '1px solid #1E293B', borderRadius: 12, padding: 16 }}>
+      <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 12, padding: 16 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 20 }}>
 
           {/* ── Column 1: Identity ── */}
@@ -70,7 +70,7 @@ export default function SiteDetail() {
               <KVItem label="ADDRESS" value={`${site.address}, ${site.borough}, NY`} valueStyle={{ fontSize: 11, color: '#94A3B8' }} />
               <KVItem label="AGENCY"  value={site.agency} />
               <KVItem label="BBL"     value={site.bbl}    valueStyle={{ fontFamily: 'monospace', fontSize: 12, color: '#64748B' }} />
-              <div style={{ background: '#0B1120', borderRadius: 6, padding: '8px 10px' }}>
+              <div style={{ background: '#F8FAFC', borderRadius: 6, padding: '8px 10px' }}>
                 <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>EJ STATUS</div>
                 <span style={{
                   display: 'inline-block', padding: '2px 6px', borderRadius: 20, fontSize: 11, fontWeight: 500,
@@ -80,7 +80,7 @@ export default function SiteDetail() {
                   {site.ej ? '✅ EJ Area' : 'Non-EJ'}
                 </span>
               </div>
-              <div style={{ background: '#0B1120', borderRadius: 6, padding: '8px 10px' }}>
+              <div style={{ background: '#F8FAFC', borderRadius: 6, padding: '8px 10px' }}>
                 <div style={{ fontSize: 10, color: '#475569', marginBottom: 4 }}>DERIVED ENERGY PROFILE</div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, fontSize: 11 }}>
                   <div style={{ color: '#64748B' }}>Monthly avg <span style={{ color: '#F1F5F9', fontWeight: 600 }}>{site.cons} kWh</span></div>
@@ -112,7 +112,7 @@ export default function SiteDetail() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#64748B', marginBottom: 3 }}>
                   <span>{label}</span><span style={{ color, fontWeight: 700 }}>{val}/100</span>
                 </div>
-                <div style={{ height: 4, background: '#1E293B', borderRadius: 2, overflow: 'hidden' }}>
+                <div style={{ height: 4, background: '#E2E8F0', borderRadius: 2, overflow: 'hidden' }}>
                   <div style={{ height: '100%', width: `${val}%`, background: color, borderRadius: 2, transition: 'width 0.4s ease' }} />
                 </div>
               </div>

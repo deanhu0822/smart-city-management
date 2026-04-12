@@ -2,7 +2,7 @@
 
 /** Custom SVG Sankey-style flow diagrams — Energy Flow + Waste Flow */
 
-const CARD = { background: '#131C2E', border: '1px solid #1E293B', borderRadius: 12, padding: 16 };
+const CARD = { background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 12, padding: 16 };
 
 /* ── Energy Flow nodes ── */
 const E_SOURCES = [
@@ -47,8 +47,8 @@ const W_DESTS = [
 function FlowNode({ x, y, w = 80, h = 28, label, value, color = '#94A3B8' }) {
   return (
     <g>
-      <rect x={x} y={y} width={w} height={h} rx={4} fill="#1E293B" stroke="#334155" strokeWidth={1} />
-      <text x={x + w / 2} y={y + 11} fill="#94A3B8" fontSize={8} textAnchor="middle" fontFamily="system-ui">{label}</text>
+      <rect x={x} y={y} width={w} height={h} rx={4} fill="#F1F5F9" stroke="#E2E8F0" strokeWidth={1} />
+      <text x={x + w / 2} y={y + 11} fill="#64748B" fontSize={8} textAnchor="middle" fontFamily="system-ui">{label}</text>
       <text x={x + w / 2} y={y + 21} fill={color} fontSize={7.5} textAnchor="middle" fontFamily="system-ui">{value}</text>
     </g>
   );
@@ -65,7 +65,7 @@ function FlowPath({ x1, y1, x2, y2, h = 12, color = '#64748B', opacity = 0.3 }) 
 function EnergyFlow() {
   return (
     <div style={CARD}>
-      <div style={{ fontSize: 12, fontWeight: 600, color: '#94A3B8', marginBottom: 12 }}>Energy Flow — Citywide</div>
+      <div style={{ fontSize: 12, fontWeight: 600, color: '#334155', marginBottom: 12 }}>Energy Flow — Citywide</div>
       <svg viewBox="0 0 430 175" width="100%" style={{ overflow: 'visible' }}>
         {/* Source → Sector flows */}
         {E_SOURCES.map((src, si) =>
@@ -102,7 +102,7 @@ function EnergyFlow() {
 function WasteFlow() {
   return (
     <div style={CARD}>
-      <div style={{ fontSize: 12, fontWeight: 600, color: '#94A3B8', marginBottom: 12 }}>Waste Flow — Citywide</div>
+      <div style={{ fontSize: 12, fontWeight: 600, color: '#334155', marginBottom: 12 }}>Waste Flow — Citywide</div>
       <svg viewBox="0 0 430 175" width="100%" style={{ overflow: 'visible' }}>
         {/* Source → Collection */}
         {W_SOURCES.map((src, si) =>
@@ -137,7 +137,7 @@ export default function FlowVisualization() {
   return (
     <div>
       <div style={{
-        fontSize: 10, fontWeight: 600, color: '#475569',
+        fontSize: 10, fontWeight: 600, color: '#64748B',
         letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12,
       }}>
         Citywide Flow Visualization

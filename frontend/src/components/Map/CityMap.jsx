@@ -125,7 +125,7 @@ const DARK_MAP_STYLE = {
   sources: {
     'carto-dark': {
       type: 'raster',
-      tiles: ['https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png'],
+      tiles: ['https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png'],
       tileSize: 256,
       attribution: '© CARTO © OpenStreetMap contributors',
     },
@@ -217,7 +217,7 @@ const WASTE_CIRCLES_LAYER = {
       '#3B82F6',
     ],
     'circle-opacity': 0.85,
-    'circle-stroke-color': '#0B1120',
+    'circle-stroke-color': '#FFFFFF',
     'circle-stroke-width': 1.5,
   },
 };
@@ -261,7 +261,7 @@ const BUILDING_CIRCLE_LAYER = {
     'circle-radius': 5,
     'circle-color': '#10B981',
     'circle-opacity': 0.85,
-    'circle-stroke-color': '#0B1120',
+    'circle-stroke-color': '#FFFFFF',
     'circle-stroke-width': 1,
   },
 };
@@ -533,7 +533,7 @@ export default function CityMap() {
   }, [selectSite, flyToSite]);
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: 12, overflow: 'hidden', background: '#0B1120' }}>
+    <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: 12, overflow: 'hidden', background: '#F1F5F9' }}>
       <Map
         ref={mapRef}
         mapStyle={DARK_MAP_STYLE}
@@ -631,9 +631,9 @@ export default function CityMap() {
       {/* Map title overlay */}
       <div style={{
         position: 'absolute', top: 10, left: 10, zIndex: 10,
-        background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(4px)',
+        background: 'rgba(255,255,255,.9)', backdropFilter: 'blur(4px)',
         padding: '5px 10px', borderRadius: 8,
-        fontSize: 11, fontWeight: 500, color: '#CBD5E1',
+        fontSize: 11, fontWeight: 500, color: '#334155',
         pointerEvents: 'none',
       }}>
         NYC Municipal Sites — {viewMode === 'energy' ? 'Priority Map' : viewMode === 'waste' ? 'Waste Flow' : 'Nexus Intelligence'}

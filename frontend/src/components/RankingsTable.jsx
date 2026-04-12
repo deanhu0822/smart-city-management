@@ -9,16 +9,16 @@ const districts = TOP10_DISTRICTS_GEOJSON.features.map(f => f.properties);
 /* ── style constants ── */
 const TH = {
   padding: '6px 8px', textAlign: 'left', fontSize: 10,
-  color: '#475569', fontWeight: 600, letterSpacing: '0.05em',
+  color: '#64748B', fontWeight: 600, letterSpacing: '0.05em',
   borderBottom: '1px solid #1E293B', whiteSpace: 'nowrap',
 };
-const TD = { padding: '6px 8px', borderBottom: '1px solid rgba(30,41,59,.5)', fontSize: 12 };
+const TD = { padding: '6px 8px', borderBottom: '1px solid rgba(226,232,240,.5)', fontSize: 12 };
 const BTH = {
   padding: '5px 8px', textAlign: 'left', fontSize: 10,
-  color: '#334155', fontWeight: 600, letterSpacing: '0.05em',
-  borderBottom: '1px solid rgba(30,41,59,.6)', whiteSpace: 'nowrap',
+  color: '#94A3B8', fontWeight: 600, letterSpacing: '0.05em',
+  borderBottom: '1px solid rgba(226,232,240,.6)', whiteSpace: 'nowrap',
 };
-const BTD = { padding: '5px 8px', borderBottom: '1px solid rgba(30,41,59,.35)', fontSize: 11 };
+const BTD = { padding: '5px 8px', borderBottom: '1px solid rgba(226,232,240,.35)', fontSize: 11 };
 
 function fmtKwh(n) {
   if (n == null) return '—';
@@ -40,11 +40,11 @@ function BuildingsPanel({ code }) {
 
   return (
     <tr>
-      <td colSpan={8} style={{ padding: 0, background: '#0D1526' }}>
+      <td colSpan={8} style={{ padding: 0, background: '#F8FAFC' }}>
         <div style={{ padding: '10px 14px 14px' }}>
           {/* sub-header */}
           <div style={{
-            fontSize: 10, fontWeight: 600, color: '#475569',
+            fontSize: 10, fontWeight: 600, color: '#64748B',
             letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8,
           }}>
             {total} Buildings · {code}
@@ -53,7 +53,7 @@ function BuildingsPanel({ code }) {
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 600 }}>
               <thead>
-                <tr style={{ background: 'rgba(30,41,59,.5)' }}>
+                <tr style={{ background: 'rgba(226,232,240,.5)' }}>
                   <th style={BTH}>Site</th>
                   <th style={BTH}>Address</th>
                   <th style={BTH}>Agency</th>
@@ -69,9 +69,9 @@ function BuildingsPanel({ code }) {
                 {slice.map((b, i) => (
                   <tr
                     key={i}
-                    style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(15,23,42,.4)' }}
+                    style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(241,245,249,.5)' }}
                   >
-                    <td style={{ ...BTD, fontWeight: 500, color: '#CBD5E1', maxWidth: 120, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                    <td style={{ ...BTD, fontWeight: 500, color: '#334155', maxWidth: 120, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
                         title={b.site}>{b.site || '—'}</td>
                     <td style={{ ...BTD, color: '#94A3B8', maxWidth: 140, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
                         title={b.address}>{b.address || '—'}</td>
@@ -84,7 +84,7 @@ function BuildingsPanel({ code }) {
                     <td style={{ ...BTD, textAlign: 'center' }}>
                       {b.ej
                         ? <span style={{ background: 'rgba(139,92,246,.15)', color: '#C4B5FD', padding: '1px 5px', borderRadius: 20, fontSize: 10 }}>EJ</span>
-                        : <span style={{ color: '#334155', fontSize: 10 }}>—</span>
+                        : <span style={{ color: '#94A3B8', fontSize: 10 }}>—</span>
                       }
                     </td>
                     <td style={{ ...BTD, textAlign: 'right', color: '#FDE047', fontVariantNumeric: 'tabular-nums' }}>
@@ -121,7 +121,7 @@ export default function RankingsTable() {
   const toggle = (code) => setExpanded(prev => prev === code ? null : code);
 
   return (
-    <div style={{ background: '#131C2E', border: '1px solid #1E293B', borderRadius: 12, overflow: 'hidden' }}>
+    <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column', flex: 1 }}>
       {/* Header */}
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -137,7 +137,7 @@ export default function RankingsTable() {
       </div>
 
       {/* Scrollable table */}
-      <div style={{ overflowY: 'auto', maxHeight: 520 }}>
+      <div style={{ overflowY: 'auto', flex: 1 }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
@@ -172,7 +172,7 @@ export default function RankingsTable() {
                     {/* chevron */}
                     <td style={{ ...TD, width: 28, paddingRight: 0 }}>
                       <span style={{
-                        display: 'inline-block', fontSize: 10, color: '#475569',
+                        display: 'inline-block', fontSize: 10, color: '#64748B',
                         transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
                         transition: 'transform 0.2s',
                         userSelect: 'none',
@@ -195,9 +195,9 @@ export default function RankingsTable() {
                     </td>
 
                     {/* code + CD */}
-                    <td style={{ ...TD, fontWeight: 600, color: '#F1F5F9' }}>
+                    <td style={{ ...TD, fontWeight: 600, color: '#0F172A' }}>
                       {d.code}
-                      <span style={{ color: '#475569', fontWeight: 400, marginLeft: 4, fontSize: 11 }}>
+                      <span style={{ color: '#64748B', fontWeight: 400, marginLeft: 4, fontSize: 11 }}>
                         CD{d.district}
                       </span>
                     </td>
@@ -247,7 +247,7 @@ export default function RankingsTable() {
                           {d.pct_ej}%
                         </span>
                       ) : (
-                        <span style={{ color: '#475569', fontSize: 11 }}>{d.pct_ej}%</span>
+                        <span style={{ color: '#64748B', fontSize: 11 }}>{d.pct_ej}%</span>
                       )}
                     </td>
                   </tr>

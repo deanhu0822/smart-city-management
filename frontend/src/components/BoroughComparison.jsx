@@ -2,7 +2,7 @@
 
 import { BOROUGH_DATA } from '../data/sites';
 
-const CARD = { background: '#131C2E', border: '1px solid #1E293B', borderRadius: 12, padding: 16 };
+const CARD = { background: '#FFFFFF', border: '1px solid #1E293B', borderRadius: 12, padding: 16 };
 
 function BoroughBarChart() {
   const maxSites = Math.max(...BOROUGH_DATA.map(b => b.sites));
@@ -21,7 +21,7 @@ function BoroughBarChart() {
           <line
             x1={pad.l + xs(v)} y1={pad.t}
             x2={pad.l + xs(v)} y2={H - pad.b}
-            stroke="rgba(19,29,46,.8)" strokeWidth={1}
+            stroke="rgba(226,232,240,.8)" strokeWidth={1}
           />
           <text x={pad.l + xs(v)} y={H - pad.b + 10} fill="#475569" fontSize={8} textAnchor="middle">{v}</text>
         </g>
@@ -67,7 +67,7 @@ function BoroughCard({ b }) {
         }} />
         <span style={{ fontSize: 12, fontWeight: 600 }}>{b.name}</span>
       </div>
-      <div style={{ fontSize: 10, color: '#475569', marginBottom: 4 }}>If budget = $5M</div>
+      <div style={{ fontSize: 10, color: '#64748B', marginBottom: 4 }}>If budget = $5M</div>
       <div style={{ fontSize: 18, fontWeight: 700, color: '#60A5FA' }}>{b.sites5} sites</div>
       <div style={{ marginTop: 6, display: 'grid', gap: 3 }}>
         <div style={{ fontSize: 11, color: '#6EE7B7' }}>{b.savings}/yr savings</div>
@@ -82,7 +82,7 @@ export default function BoroughComparison() {
   return (
     <div>
       <div style={{
-        fontSize: 10, fontWeight: 600, color: '#475569',
+        fontSize: 10, fontWeight: 600, color: '#64748B',
         letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12,
       }}>
         Borough-Level Overview

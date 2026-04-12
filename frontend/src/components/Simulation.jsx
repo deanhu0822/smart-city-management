@@ -4,9 +4,9 @@ import { useMemo } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { HOURLY_DISPATCH, SOC_DATA, WASTE_FORECAST, DIVERSION_GAP, SCENARIO_DEPLOYMENTS } from '../data/chartData';
 
-const CARD = { background: '#131C2E', border: '1px solid #1E293B', borderRadius: 12, padding: 16 };
-const GRID_COLOR = 'rgba(19,29,46,.8)';
-const TICK_COLOR = '#475569';
+const CARD = { background: '#FFFFFF', border: '1px solid #1E293B', borderRadius: 12, padding: 16 };
+const GRID_COLOR = 'rgba(226,232,240,.8)';
+const TICK_COLOR = '#64748B';
 
 /* ─── Simple SVG Line/Area chart engine ─── */
 function miniChart(data, key, color, maxVal, yOffset = 0) {
@@ -185,14 +185,14 @@ function BessTab() {
         <SocChart />
       </div>
       {/* Summary */}
-      <div style={{ gridColumn: '1/-1', background: 'rgba(30,41,59,.4)', borderRadius: 8, padding: '10px 16px', display: 'flex', justifyContent: 'space-around' }}>
+      <div style={{ gridColumn: '1/-1', background: 'rgba(226,232,240,.4)', borderRadius: 8, padding: '10px 16px', display: 'flex', justifyContent: 'space-around' }}>
         {[
           ['Daily Savings','$38.50'],['Peak Shaved','87.2 kW (25.4%)'],
           ['Battery Cycles','0.85/day'],['Grid Independence','34% of peak hrs'],
         ].map(([l, v]) => (
           <div key={l} style={{ textAlign: 'center' }}>
             <div style={{ fontSize: 11, color: '#64748B' }}>{l}</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#F1F5F9', marginTop: 2 }}>{v}</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: '#0F172A', marginTop: 2 }}>{v}</div>
           </div>
         ))}
       </div>
@@ -217,7 +217,7 @@ function WasteTab() {
       <div style={CARD}>
         <div style={{ fontSize: 11, fontWeight: 600, color: '#94A3B8', marginBottom: 8 }}>Diversion Gap by Material</div>
         <div style={{ display: 'flex', gap: 12, marginBottom: 8 }}>
-          {[['#334155','Current %'],['#10B981','Target %']].map(([c,l]) => (
+          {[['#94A3B8','Current %'],['#10B981','Target %']].map(([c,l]) => (
             <span key={l} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 10, color: '#64748B' }}>
               <span style={{ width: 8, height: 8, borderRadius: 2, background: c, display: 'inline-block' }} />{l}
             </span>
@@ -258,7 +258,7 @@ function ScenarioTab() {
   return (
     <div>
       {/* Sliders */}
-      <div style={{ background: 'rgba(30,41,59,.3)', borderRadius: 12, padding: 16, marginBottom: 14 }}>
+      <div style={{ background: 'rgba(226,232,240,.3)', borderRadius: 12, padding: 16, marginBottom: 14 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 32px' }}>
           {sliders.map(([label, key, min, max, step, display]) => (
             <div key={key}>
@@ -287,7 +287,7 @@ function ScenarioTab() {
         background: 'linear-gradient(to right, rgba(59,130,246,.05), rgba(139,92,246,.05), rgba(16,185,129,.05))',
         border: '1px solid rgba(255,255,255,.05)', borderRadius: 12, padding: 16, marginBottom: 14,
       }}>
-        <div style={{ fontSize: 11, fontWeight: 600, color: '#475569', letterSpacing: '0.08em', marginBottom: 12 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: '#64748B', letterSpacing: '0.08em', marginBottom: 12 }}>
           PROJECTED IMPACT — ${b}M Budget
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, marginBottom: 14 }}>
@@ -297,7 +297,7 @@ function ScenarioTab() {
             { icon: '🌱', label: 'Organics', detail: `Divert ${(orgTons/1000).toFixed(0)}K tons → ${Math.round(orgTons*.005)}K MWh biogas` },
             { icon: '🚛', label: 'Routes', detail: `Optimize ${routeDist} districts → $${(b*route/100*.79).toFixed(1)}M/yr` },
           ].map(({ icon, label, detail }) => (
-            <div key={label} style={{ background: 'rgba(30,41,59,.5)', borderRadius: 8, padding: 10 }}>
+            <div key={label} style={{ background: 'rgba(226,232,240,.5)', borderRadius: 8, padding: 10 }}>
               <div style={{ fontSize: 14, marginBottom: 4 }}>{icon} <span style={{ fontWeight: 600, fontSize: 12 }}>{label}</span></div>
               <div style={{ fontSize: 10, color: '#64748B', lineHeight: 1.4 }}>{detail}</div>
             </div>
@@ -311,7 +311,7 @@ function ScenarioTab() {
             ['EJ Coverage', `${ejCov}%`, '#C4B5FD'],
           ].map(([l, v, c]) => (
             <div key={l} style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: 11, color: '#475569' }}>{l}</div>
+              <div style={{ fontSize: 11, color: '#64748B' }}>{l}</div>
               <div style={{ fontSize: 20, fontWeight: 700, color: c, marginTop: 2 }}>{v}</div>
             </div>
           ))}
@@ -319,7 +319,7 @@ function ScenarioTab() {
       </div>
 
       {/* Deployment table */}
-      <div style={{ background: '#131C2E', border: '1px solid #1E293B', borderRadius: 12, overflow: 'hidden' }}>
+      <div style={{ background: '#FFFFFF', border: '1px solid #1E293B', borderRadius: 12, overflow: 'hidden' }}>
         <div style={{ padding: '10px 14px', borderBottom: '1px solid #1E293B', fontSize: 12, fontWeight: 600 }}>
           Ranked Deployment Actions
         </div>
@@ -328,7 +328,7 @@ function ScenarioTab() {
             <thead>
               <tr>
                 {['#','Action','Location','Investment','Return/yr','CO₂','Payback','Equity'].map(h => (
-                  <th key={h} style={{ padding: '6px 8px', textAlign: 'left', fontSize: 10, color: '#475569', fontWeight: 600, letterSpacing: '0.05em', borderBottom: '1px solid #1E293B', whiteSpace: 'nowrap' }}>{h}</th>
+                  <th key={h} style={{ padding: '6px 8px', textAlign: 'left', fontSize: 10, color: '#64748B', fontWeight: 600, letterSpacing: '0.05em', borderBottom: '1px solid #1E293B', whiteSpace: 'nowrap' }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -337,17 +337,17 @@ function ScenarioTab() {
                 <tr key={d.priority}
                   onMouseEnter={e => e.currentTarget.style.background = 'rgba(59,130,246,.04)'}
                   onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(30,41,59,.5)', fontSize: 12, color: '#475569' }}>{d.priority}</td>
-                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(30,41,59,.5)', fontSize: 12, color: '#60A5FA', fontWeight: 500 }}>{d.action}</td>
-                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(30,41,59,.5)', fontSize: 11, color: '#94A3B8' }}>{d.location}</td>
-                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(30,41,59,.5)', fontSize: 12 }}>{d.invest}</td>
-                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(30,41,59,.5)', fontSize: 12, color: '#10B981', fontWeight: 600 }}>{d.ret}</td>
-                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(30,41,59,.5)', fontSize: 12, color: '#6EE7B7' }}>{d.co2}</td>
-                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(30,41,59,.5)', fontSize: 12 }}>{d.payback}</td>
-                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(30,41,59,.5)', fontSize: 11 }}>
+                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(226,232,240,.5)', fontSize: 12, color: '#64748B' }}>{d.priority}</td>
+                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(226,232,240,.5)', fontSize: 12, color: '#60A5FA', fontWeight: 500 }}>{d.action}</td>
+                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(226,232,240,.5)', fontSize: 11, color: '#94A3B8' }}>{d.location}</td>
+                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(226,232,240,.5)', fontSize: 12 }}>{d.invest}</td>
+                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(226,232,240,.5)', fontSize: 12, color: '#10B981', fontWeight: 600 }}>{d.ret}</td>
+                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(226,232,240,.5)', fontSize: 12, color: '#6EE7B7' }}>{d.co2}</td>
+                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(226,232,240,.5)', fontSize: 12 }}>{d.payback}</td>
+                  <td style={{ padding: '6px 8px', borderBottom: '1px solid rgba(226,232,240,.5)', fontSize: 11 }}>
                     {d.ej
                       ? <span style={{ background: 'rgba(16,185,129,.15)', color: '#6EE7B7', padding: '1px 6px', borderRadius: 20, fontSize: 10 }}>✅ EJ</span>
-                      : <span style={{ color: '#334155' }}>—</span>
+                      : <span style={{ color: '#94A3B8' }}>—</span>
                     }
                   </td>
                 </tr>
@@ -372,7 +372,7 @@ export default function Simulation() {
   return (
     <div>
       <div style={{
-        fontSize: 10, fontWeight: 600, color: '#475569',
+        fontSize: 10, fontWeight: 600, color: '#64748B',
         letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12,
       }}>
         Simulation

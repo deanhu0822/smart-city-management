@@ -31,12 +31,12 @@ export default function MapLegend() {
   return (
     <div style={{
       position: 'absolute', bottom: 10, left: 10, zIndex: 10,
-      background: 'rgba(11,17,32,0.88)', backdropFilter: 'blur(6px)',
-      border: '1px solid #1E293B', borderRadius: 8,
+      background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(6px)',
+      border: '1px solid #E2E8F0', borderRadius: 8,
       padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 5,
       pointerEvents: 'none',
     }}>
-      <div style={{ fontSize: 9, fontWeight: 600, color: '#475569', letterSpacing: '0.08em', marginBottom: 2 }}>
+      <div style={{ fontSize: 9, fontWeight: 600, color: '#94A3B8', letterSpacing: '0.08em', marginBottom: 2 }}>
         {viewMode.toUpperCase()} LEGEND
       </div>
       {items.map((item, i) => (
@@ -55,7 +55,7 @@ export default function MapLegend() {
               display: 'inline-block', flexShrink: 0,
             }} />
           )}
-          <span style={{ fontSize: 10, color: '#64748B', whiteSpace: 'nowrap' }}>{item.label}</span>
+          <span style={{ fontSize: 10, color: '#334155', whiteSpace: 'nowrap' }}>{item.label}</span>
         </div>
       ))}
     </div>

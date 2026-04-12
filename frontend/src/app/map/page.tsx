@@ -14,14 +14,14 @@ import BoroughComparison from '@/components/BoroughComparison';
 
 function Dashboard() {
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#0B1120' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: '#F1F5F9' }}>
       <Sidebar />
 
       <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-        <Header />
+        {/* <Header /> */}
 
         <main style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 20, flex: 1 }}>
-          <KPIRibbon />
+          {/* <KPIRibbon /> */}
 
           <div>
             <div style={{
@@ -30,21 +30,23 @@ function Dashboard() {
             }}>
               Site Distribution &amp; Rankings
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 14, alignItems: 'start' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 14, alignItems: 'stretch' }}>
               <div style={{ aspectRatio: '4/3', minHeight: 360 }}>
                 <CityMap />
               </div>
-              <RankingsTable />
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <RankingsTable />
+              </div>
             </div>
           </div>
 
           <SiteDetail />
           <FlowVisualization />
           <Simulation />
-          <BoroughComparison />
+          {/* <BoroughComparison /> */}
 
           <div style={{
-            borderTop: '1px solid rgba(255,255,255,.05)',
+            borderTop: '1px solid rgba(0,0,0,.07)',
             padding: '14px 0 20px',
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           }}>
