@@ -202,12 +202,28 @@ Built for [Spark Hack NYC 2026](https://luma.com/spark-hack-nyc) — Environment
 
 **NVIDIA GB10**: 128 GB unified memory, 1 PFLOP FP4 on Acer Veriton GN100
 
-## Resources 
+## Dataset & Model Training
 
-[Spark Hack Notion Page](https://concrete-panther-c83.notion.site/Spark-Hack-Series-New-York-Presented-by-NVIDIA-Acer-and-Antler-611f567d17cc8207881a0162071001c8)
+### Datasets Used
+- [Garbage Classification Dataset (Kaggle)](https://www.kaggle.com/datasets/mostafaabla/garbage-classification)
+- [Garbage Detection Dataset (Roboflow)](https://universe.roboflow.com/garbage-detection-czeg5/garbage_detection-wvzwv)
 
-##Finetuning sources
-https://www.kaggle.com/datasets/mostafaabla/garbage-classification
-https://universe.roboflow.com/garbage-detection-czeg5/garbage_detection-wvzwv
-nvidia--NVIDIA-Nemotron-Nano-12B-v2-VL-FP8 model fine tuned with LoRA
-both data sets were partitioned into organics, electronic, plastic, others in folders
+### Data Preparation
+Both datasets were preprocessed and reorganized into four unified classification categories:
+
+- Organics  
+- Electronic  
+- Plastic  
+- Others  
+
+Images from both sources were partitioned into folder-based class directories to maintain consistent labeling and balanced training structure.
+
+### Base Model
+- **Model Name:** NVIDIA Nemotron Nano 12B v2 VL FP8  
+- **Model ID:** `nvidia/NVIDIA-Nemotron-Nano-12B-v2-VL-FP8`
+
+### Fine-Tuning Method
+This project uses **LoRA (Low-Rank Adaptation)** for parameter-efficient fine-tuning, enabling adaptation of the multimodal vision-language model with lower memory and compute overhead.
+
+### Training Goal
+The objective is to fine-tune the model for garbage image classification across mixed-source datasets, improving recognition accuracy for real-world waste sorting applications.
