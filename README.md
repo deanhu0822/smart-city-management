@@ -6,11 +6,10 @@
 
 A decision-support platform that merges NYC's energy and waste data into one unified intelligence layer. Built to run entirely on-device using NVIDIA RAPIDS, NIMs, and cuOpt on the Acer Veriton GN100.
 
-```
+---
 
 [![Watch the demo](https://img.youtube.com/vi/mbYvLtI0oSM/0.jpg)](https://www.youtube.com/watch?v=mbYvLtI0oSM)
 
-```
 ---
 
 ## Quick Start
