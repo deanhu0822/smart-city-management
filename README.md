@@ -10,7 +10,7 @@ A decision-support platform that merges NYC's energy and waste data into one uni
 
 [![Watch the demo](https://img.youtube.com/vi/mbYvLtI0oSM/0.jpg)](https://www.youtube.com/watch?v=mbYvLtI0oSM)
 
-#
+---
 
 ## Quick Start
 
